@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //兼容mysql<5.6 最大字符
-        \Schema::defaultStringLength(191);
+//        \Schema::defaultStringLength(191);
     }
 
     /**

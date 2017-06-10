@@ -42,6 +42,14 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="name">用户名</label>
+                                <input type="text" class="form-control" name="username"
+                                       placeholder="Name" id="username"
+                                       @if(isset($dataTypeContent->username))  @endif
+                                       value="@if(isset($dataTypeContent->username)){{ old('username', $dataTypeContent->username) }}@else{{old('username')}}@endif">
+                            </div>
+
+                            <div class="form-group">
                                 <label for="name">邮箱</label>
                                 <input type="text" class="form-control" name="email"
                                        placeholder="Email" id="email"
