@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\ValidatorController;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -32,7 +33,6 @@ class RegisterController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -42,30 +42,44 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+        //自定义错误信息
+        $message = ['phone.unique' => '手机号已存在!'];
+
+        //验证数据类型
+        $validator = Validator::make($data, [
+            'phone'      => 'required|numeric|unique:users',
+            'phone_code' => 'required|string',
+            'password'   => 'required|string|min:6|max:16|confirmed',
+        ], $message);
+
+        //验证手机注册验证码
+        $validator->after(function ($validator) use ($data) {
+            $validator_code_result = ValidatorController::validatorCode($data['phone'], $data['phone_code'], 'register');
+            if ($validator_code_result === false) {
+                $validator->errors()->add('phone_code', '验证码错误!');
+            }
+        });
+
+        return $validator;
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'phone'      => $data['phone'],
+            'password'   => bcrypt($data['password']),
+            'created_at' => time(),
         ]);
     }
 }
