@@ -178,10 +178,14 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /**
-         * Package Service Providers
+         * Voyager Service Providers
          */
         TCG\Voyager\VoyagerServiceProvider::class,
 
+        /**
+         * Alidayu Service Providers
+         */
+        Larastarscn\AliDaYu\AliDaYuServiceProvider::class,
     ],
 
     /*
@@ -230,6 +234,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'AliDaYu' => Larastarscn\AliDaYu\Facades\AliDaYu::class,
 
     ],
 

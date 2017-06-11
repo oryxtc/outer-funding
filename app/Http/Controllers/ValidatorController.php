@@ -37,7 +37,7 @@ class ValidatorController extends Controller
         $data  = date('Y-m-d H:i:s', time());
         $code  = rand(1000, 9999);
         //发送阿里大鱼 TODO
-
+        $send_relust=AliDaYuController::sendSms($phone,$code);
         //如果发送成功 记录
         $save_result = \DB::table('validator_code')
             ->insert(['phone' => $phone, 'type' => $type, 'code' => $code, 'created_at' => $data, 'updated_at' => $data]);
