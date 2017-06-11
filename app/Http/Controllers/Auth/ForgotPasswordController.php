@@ -44,7 +44,10 @@ class ForgotPasswordController extends Controller
     {
         $request_data = $request->all();
         //验证数据
-        $this->validator($request_data)->validate();
+        $validator_result = $this->validator($request_data);
+        if ($validator_result['status'] === false) {
+            return PublicController::apiJson($validator_result['data'], 'failed');
+        }
         //更新用户密码
         $update_result = \DB::table('users')
             ->where(['phone' => $request_data['phone']])
@@ -71,11 +74,14 @@ class ForgotPasswordController extends Controller
 
         //验证数据类型
         $validator = Validator::make($data, [
-            'phone'      => 'required|numeric|exists:users,phone',
+            'phone' => 'required|numeric|exists:users,phone',
             'phone_code' => 'required|string',
-            'password'   => 'required|string|min:6|max:16|confirmed',
+            'password' => 'required|string|min:6|max:16|confirmed',
         ], $message);
-
+        //如果验证失败
+        if ($validator->fails() === true) {
+            return ['status' => false, 'data' => $validator->errors()->all()];
+        }
         //验证手机注册验证码
         $validator->after(function ($validator) use ($data) {
             $validator_code_result = ValidatorController::validatorCode($data['phone'], $data['phone_code'], 'reset_pass');
@@ -83,6 +89,10 @@ class ForgotPasswordController extends Controller
                 $validator->errors()->add('phone_code', '验证码错误!');
             }
         });
-        return $validator;
+        //如果验证失败
+        if ($validator->fails() === true) {
+            return ['status' => false, 'data' => $validator->errors()->all()];
+        }
+        return ['status' => true];
     }
 }

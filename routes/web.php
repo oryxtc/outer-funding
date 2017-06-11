@@ -23,7 +23,12 @@ Auth::routes();
 //发送验证码
 Route::post('/sendValidatorCode', 'ValidatorController@sendValidatorCode');
 
+//实名认证
+Route::post('/verifiedUser', 'UsersController@verifiedUser');
+
 //后台管理
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+
