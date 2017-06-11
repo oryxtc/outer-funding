@@ -29,6 +29,9 @@ Route::post('/verifiedUser', 'UsersController@verifiedUser');
 //计算配资
 Route::post('/computeFunding', 'UsersController@computeFunding');
 
+//提交配资
+Route::post('/fundingApplication', 'UsersController@fundingApplication');
+
 //后台管理
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

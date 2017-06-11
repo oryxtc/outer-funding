@@ -7,7 +7,14 @@ use AliDaYu;
 
 class AliDaYuController extends Controller
 {
-    public static function sendSms($phone, $code, $sms_param)
+
+    /**
+     * 发送普通短信
+     * @param $phone
+     * @param $code
+     * @return mixed
+     */
+    public static function sendSms($phone, $code)
     {
         $sms_param = json_encode(['code' => $code, 'name' => 'Dearmadman']);
 

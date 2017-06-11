@@ -34,13 +34,13 @@ class ValidatorController extends Controller
         //准备数据
         $phone = $request_data['phone'];
         $type  = $request_data['type'];
-        $data  = date('Y-m-d H:i:s', time());
+        $date  = date('Y-m-d H:i:s', time());
         $code  = rand(1000, 9999);
         //发送阿里大鱼 TODO
         $send_relust=AliDaYuController::sendSms($phone,$code);
         //如果发送成功 记录
         $save_result = \DB::table('validator_code')
-            ->insert(['phone' => $phone, 'type' => $type, 'code' => $code, 'created_at' => $data, 'updated_at' => $data]);
+            ->insert(['phone' => $phone, 'type' => $type, 'code' => $code, 'created_at' => $date, 'updated_at' => $data]);
         if ($save_result === false) {
             return PublicController::apiJson([], 'failed', '发送验证码失败!');
         }
