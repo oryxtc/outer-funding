@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Voyager;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VoyagerAuthController extends Controller
 {
@@ -48,6 +49,7 @@ class VoyagerAuthController extends Controller
         $credentials = $this->credentials($request);
 
         if ($this->guard()->attempt($credentials, $request->has('remember'))) {
+            dump(\Auth::user());exit;
             return $this->sendLoginResponse($request);
         }
 
@@ -66,5 +68,15 @@ class VoyagerAuthController extends Controller
     public function redirectTo()
     {
         return route('voyager.dashboard');
+    }
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard('admin');
     }
 }
