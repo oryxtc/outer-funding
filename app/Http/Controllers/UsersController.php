@@ -119,6 +119,20 @@ class UsersController extends Controller
         if ($validator->fails() === true) {
             return ['status' => false, 'data' => $validator->errors()->all()];
         }
+        //验证是否实名认证
+        $validator->after(function ($validator) {
+            $user_info = \DB::table('users')
+                ->select('actual_name', 'id_card')
+                ->where('id', \Auth::id())
+                ->first();
+            if (empty($user_info->actual_name) || empty($user_info->id_card)) {
+                $validator->errors()->add('have_validator', '请先实名认证!');
+            }
+        });
+        //如果验证失败
+        if ($validator->fails() === true) {
+            return ['status' => false, 'data' => $validator->errors()->all()];
+        }
         return ['status' => true];
     }
 
