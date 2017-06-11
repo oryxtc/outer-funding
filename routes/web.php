@@ -15,13 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/demo','DemoController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 
+//注册 登录 忘记密码
+Auth::routes();
+
+//发送验证码
+Route::post('/sendValidatorCode', 'ValidatorController@sendValidatorCode');
+
+//后台管理
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
