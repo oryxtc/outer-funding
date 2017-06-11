@@ -26,6 +26,9 @@ Route::post('/sendValidatorCode', 'ValidatorController@sendValidatorCode');
 //实名认证
 Route::post('/verifiedUser', 'UsersController@verifiedUser');
 
+//计算配资
+Route::post('/computeFunding', 'UsersController@computeFunding');
+
 //后台管理
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

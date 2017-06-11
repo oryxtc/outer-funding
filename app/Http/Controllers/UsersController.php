@@ -42,6 +42,30 @@ class UsersController extends Controller
     }
 
     /**
+     * 计算配资
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function computeFunding(Request $request)
+    {
+        $A = $request->input('caution_money'); //保证金 即A
+        $B = $request->input('multiple'); //倍数 即B
+        $Y = $request->input('duration', 0); //持续时间 即Y
+
+        //计算数据
+        $response_data['quota']       = floatval($A * $B); //配额
+        $response_data['funds']       = floatval($A * $B + $A); //总操盘资金
+        $response_data['loss_cordon'] = floatval($A * $B * 1.15); //亏损警戒线
+        $response_data['loss_money']  = floatval($A * $B * 1.10); //亏损平仓线
+        $response_data['end_time']    = date("Y-m-d", strtotime("+" . $Y . "month"));; //结束时间
+        $response_data['monthly_interest'] = $Y > 0 ? floatval($A * $B * 0.02) : 0; //月利息
+        $response_data['management_fee']   = $Y > 0 ? floatval($A * $B * 0.01) : 0; //管理费
+        $response_data['total_costs']      = $Y > 0 ? floatval($A * $B * 0.02 * $Y + $A * $B * 0.01 * $Y) : 0; //总费用
+
+        return PublicController::apiJson($response_data);
+    }
+
+    /**
      * 验证验证码
      * @param array $data
      * @return mixed
