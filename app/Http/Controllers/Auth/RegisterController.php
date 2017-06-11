@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\ValidatorController;
+use App\Http\Controllers\PublicController;
 use App\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\ValidatorController;
 
 class RegisterController extends Controller
 {
@@ -39,6 +42,43 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+
+    /**
+     * 注册用户
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        //验证数据
+        $validator_result = $this->validator($request->all());
+        if ($validator_result['status'] === false) {
+            return PublicController::apiJson($validator_result['data'], 'failed');
+        }
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: PublicController::apiJson([], 'success', '注册成功!');
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array $data
+     * @return User
+     */
+    protected function create(array $data)
+    {
+        return User::create([
+            'phone' => $data['phone'],
+            'password' => bcrypt($data['password']),
+            'created_at' => time(),
+        ]);
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -60,11 +100,14 @@ class RegisterController extends Controller
 
         //验证数据类型
         $validator = Validator::make($data, [
-            'phone'      => 'required|numeric|unique:users',
+            'phone' => 'required|numeric|unique:users',
             'phone_code' => 'required|string',
-            'password'   => 'required|string|min:6|max:16|confirmed',
+            'password' => 'required|string|min:6|max:16|confirmed',
         ], $message);
-
+        //如果验证失败
+        if ($validator->fails() === true) {
+            return ['status' => false, 'data' => $validator->errors()->all()];
+        }
         //验证手机注册验证码
         $validator->after(function ($validator) use ($data) {
             $validator_code_result = ValidatorController::validatorCode($data['phone'], $data['phone_code'], 'register');
@@ -72,22 +115,10 @@ class RegisterController extends Controller
                 $validator->errors()->add('phone_code', '验证码错误或已过期!');
             }
         });
-
-        return $validator;
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array $data
-     * @return User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'phone'      => $data['phone'],
-            'password'   => bcrypt($data['password']),
-            'created_at' => time(),
-        ]);
+        //如果验证失败
+        if ($validator->fails() === true) {
+            return ['status' => false, 'data' => $validator->errors()->all()];
+        }
+        return ['status' => true];
     }
 }
