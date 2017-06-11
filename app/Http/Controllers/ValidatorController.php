@@ -13,12 +13,11 @@ class ValidatorController extends Controller
      * @param $type
      * @return bool
      */
-    public static function validatorCode($phone,$phone_code,$type){
-
-        $code=\DB::table('validator_code')
-            ->where(['phone'=>$phone,'type'=>$type])
+    public static function validatorCode($phone, $phone_code, $type)
+    {
+        $code = \DB::table('validator_code')
+            ->where([['phone', $phone], ['type', $type], ['updated_at', '>=', date('Y-m-d H:i:s', time() - 300)]])
             ->value('code');
-
-        return $code==$phone_code;
+        return $code == $phone_code;
     }
 }

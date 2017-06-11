@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ValidatorController;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
@@ -34,18 +35,25 @@ class ForgotPasswordController extends Controller
     }
 
 
-    public function resetPassword(Request $request){
-        $request_data=$request->all();
+    /**
+     * 重置密码
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function resetPassword(Request $request)
+    {
+        $request_data = $request->all();
         //验证数据
         $this->validator($request_data)->validate();
         //更新用户密码
-        $update_result=\DB::table('users')
-            ->where(['phone'=>$request_data['phone']])
-            ->update(['password'=>bcrypt($request_data['password'])]);
-        if ($update_result===false){
-            return response()->json(['message'=>'重置密码失败!'],303);
+        $update_result = \DB::table('users')
+            ->where(['phone' => $request_data['phone']])
+            ->update(['password' => bcrypt($request_data['password'])]);
+        if ($update_result === false) {
+            return PublicController::apiJson([], 'failed', '重置密码失败!');
         }
-        return response()->json(['message'=>'重置密码成功!']);
+
+        return PublicController::apiJson([], 'success', '重置密码成功!');
     }
 
     /**
@@ -56,11 +64,14 @@ class ForgotPasswordController extends Controller
     protected function validator(array $data)
     {
         //自定义错误信息
-        $message = ['password.confirmed' => '两次密码不一致!'];
+        $message = [
+            'phone.exists' => '用户不存在!',
+            'password.confirmed' => '两次密码不一致!',
+        ];
 
         //验证数据类型
         $validator = Validator::make($data, [
-            'phone'      => 'required|numeric',
+            'phone'      => 'required|numeric|exists:users,phone',
             'phone_code' => 'required|string',
             'password'   => 'required|string|min:6|max:16|confirmed',
         ], $message);

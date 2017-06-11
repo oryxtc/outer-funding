@@ -48,7 +48,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         //自定义错误信息
-        $message = ['phone.unique' => '手机号已存在!'];
+        $message = [
+            'phone.unique' => '手机号已存在!',
+            'phone.required' => '请输入手机号!',
+            'phone_code.required' => '请输入验证码!',
+            'password.required' => '请输入密码!',
+            'password.confirmed' => '两次密码不一致!',
+            'password.min' => '请输入6-16位密码!',
+            'password.max' => '请输入6-16位密码!',
+        ];
 
         //验证数据类型
         $validator = Validator::make($data, [
@@ -61,7 +69,7 @@ class RegisterController extends Controller
         $validator->after(function ($validator) use ($data) {
             $validator_code_result = ValidatorController::validatorCode($data['phone'], $data['phone_code'], 'register');
             if ($validator_code_result === false) {
-                $validator->errors()->add('phone_code', '验证码错误!');
+                $validator->errors()->add('phone_code', '验证码错误或已过期!');
             }
         });
 
