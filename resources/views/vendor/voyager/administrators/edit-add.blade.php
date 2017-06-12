@@ -26,28 +26,47 @@
                           action="@if(isset($dataTypeContent->id)){{ route('voyager.'.$dataType->slug.'.update', $dataTypeContent->id) }}@else{{ route('voyager.'.$dataType->slug.'.store') }}@endif"
                           method="POST" enctype="multipart/form-data">
                         <!-- PUT Method if we are editing -->
-                        @if(isset($dataTypeContent->id))
-                            {{ method_field("PUT") }}
-                        @endif
+                    @if(isset($dataTypeContent->id))
+                        {{ method_field("PUT") }}
+                    @endif
 
-                        <!-- CSRF TOKEN -->
+                    <!-- CSRF TOKEN -->
                         {{ csrf_field() }}
 
                         <div class="panel-body">
                             <div class="form-group">
                                 <label for="name">姓名</label>
                                 <input type="text" class="form-control" name="name"
-                                    placeholder="Name" id="name"
-                                    value="@if(isset($dataTypeContent->name)){{ old('name', $dataTypeContent->name) }}@else{{old('name')}}@endif">
+                                       placeholder="Name" id="name"
+                                       value="@if(isset($dataTypeContent->name)){{ old('name', $dataTypeContent->name) }}@else{{old('name')}}@endif">
                             </div>
 
                             <div class="form-group">
                                 <label for="username">用户名</label>
                                 <input type="text" class="form-control" name="username"
-                                        placeholder="Username" id="username"
-                                       @if(isset($dataTypeContent->id)) readonly="readonly"  @endif
+                                       placeholder="Username" id="username"
+                                       @if(isset($dataTypeContent->id)) readonly="readonly" @endif
                                        @if(isset($dataTypeContent->username))  @endif
                                        value="@if(isset($dataTypeContent->username)){{ old('username', $dataTypeContent->username) }}@else{{old('username')}}@endif">
+                            </div>
+
+                            <div class="form-group">
+                                {{--{{ dump(\Auth::guard('admin')->hasRole('admin'))}}--}}
+                                <label for="role">用户角色</label>
+                                @if(Voyager::can('add_administrators'))
+                                    <select name="role_id" id="role" class="form-control">
+                                        <?php $roles = TCG\Voyager\Models\Role::all(); ?>
+                                        @foreach($roles as $role)
+                                            <option value="{{$role->id}}"
+                                                    @if(isset($dataTypeContent) && $dataTypeContent->role_id == $role->id) selected @endif>{{$role->display_name}}</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <input type="text" class="form-control" name="email"
+                                           placeholder="Email" id="email" readonly="readonly"
+                                           value="@if(isset($dataTypeContent->role)){{ old('role', $dataTypeContent->role->display_name) }}@else{{old('role')}}@endif">
+                                @endif
+
                             </div>
 
                             <div class="form-group">
@@ -76,19 +95,6 @@
                                 @endif
                                 <input type="file" name="avatar">
                             </div>
-
-                            <div class="form-group">
-                                <label for="role">用户角色</label>
-                                <select name="role_id" id="role" class="form-control">
-                                    <?php $roles = TCG\Voyager\Models\Role::all(); ?>
-                                    @foreach($roles as $role)
-                                        <option value="{{$role->id}}" @if(isset($dataTypeContent) && $dataTypeContent->role_id == $role->id) selected @endif>{{$role->display_name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-
-
                         </div><!-- panel-body -->
 
                         <div class="panel-footer">

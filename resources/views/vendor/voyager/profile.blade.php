@@ -19,7 +19,7 @@
              alt="{{ Auth::guard('admin')->user()->name }} avatar">
         <h4>{{ ucwords(Auth::guard('admin')->user()->name) }}</h4>
         <div class="user-email text-muted">{{ ucwords(Auth::guard('admin')->user()->email) }}</div>
-        <p>{{ Auth::guard('admin')->user()->bio }}</p>
-        <a href="{{ route('voyager.users.edit', Auth::guard('admin')->user()->id) }}" class="btn btn-primary">Edit My Profile</a>
+        {{--<p>{{ Auth::guard('admin')->user()->bio }}</p>--}}
+        <a href="{{ route('voyager.administrators.edit', Auth::guard('admin')->user()->id) }}" class="btn btn-primary">修改我的信息</a>
     </div>
 @stop

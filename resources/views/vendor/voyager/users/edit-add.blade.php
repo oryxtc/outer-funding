@@ -45,6 +45,7 @@
                                 <label for="username">用户名</label>
                                 <input type="text" class="form-control" name="username"
                                        placeholder="Username" id="username"
+                                       @if(isset($dataTypeContent->id)) readonly="readonly"  @endif
                                        @if(isset($dataTypeContent->username))  @endif
                                        value="@if(isset($dataTypeContent->username)){{ old('username', $dataTypeContent->username) }}@else{{old('username')}}@endif">
                             </div>
@@ -78,12 +79,10 @@
 
                             <div class="form-group">
                                 <label for="role">用户角色</label>
-                                <select name="role_id" id="role" class="form-control">
-                                    <?php $roles = TCG\Voyager\Models\Role::all(); ?>
-                                    @foreach($roles as $role)
-                                        <option value="{{$role->id}}" @if(isset($dataTypeContent) && $dataTypeContent->role_id == $role->id) selected @endif>{{$role->display_name}}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" class="form-control" name=""
+                                       placeholder="" id=""
+                                       readonly="readonly"
+                                       value="@if(isset($dataTypeContent->role)){{ old('role', $dataTypeContent->role->display_name) }}@else{{old('display_name')}}@endif">
                             </div>
 
 
