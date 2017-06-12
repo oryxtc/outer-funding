@@ -19,9 +19,9 @@
                  style="background-image:url({{ Voyager::image( Voyager::setting('admin_bg_image'), config('voyager.assets_path') . '/images/bg.jpg' ) }});">
                 <div class="dimmer"></div>
                 <div class="panel-content">
-                    <img src="{{ $user_avatar }}" class="avatar" alt="{{ Auth::user()->name }} avatar">
-                    <h4>{{ ucwords(Auth::user()->name) }}</h4>
-                    <p>{{ Auth::user()->email }}</p>
+                    <img src="{{ $user_avatar }}" class="avatar" alt="{{ Auth::guard('admin')->user()->name }} avatar">
+                    <h4>{{ ucwords(Auth::guard('admin')->user()->name) }}</h4>
+                    <p>{{ Auth::guard('admin')->user()->email }}</p>
 
                     <a href="{{ route('voyager.profile') }}" class="btn btn-primary">Profile</a>
                     <div style="clear:both"></div>
