@@ -1,6 +1,6 @@
 @section('database-table-helper-buttons-template')
     <div>
-        <div class="btn btn-success" @click="addNewColumn">+ Add New Column</div>
+        <div class="btn btn-success" @click="addNewColumn">+ 新增 Column</div>
         <div class="btn btn-success" @click="addTimestamps">+ Add Timestamps</div>
         <div class="btn btn-success" @click="addSoftDeletes">+ Add Soft Deletes</div>
     </div>

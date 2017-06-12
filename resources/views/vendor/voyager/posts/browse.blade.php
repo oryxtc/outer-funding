@@ -7,7 +7,7 @@
         <i class="voyager-news"></i> {{ $dataType->display_name_plural }}
         @if (Voyager::can('add_'.$dataType->name))
             <a href="{{ route('voyager.'.$dataType->slug.'.create') }}" class="btn btn-success">
-                <i class="voyager-plus"></i> Add New
+                <i class="voyager-plus"></i> 新增
             </a>
         @endif
     </h1>
@@ -98,7 +98,7 @@
                     <form action="{{ route('voyager.'.$dataType->slug.'.destroy', ['id' => '__id']) }}" id="delete_form" method="POST">
                         {{ method_field("DELETE") }}
                         {{ csrf_field() }}
-                        <input type="submit" class="btn btn-danger pull-right delete-confirm" value="Yes, Delete This {{ $dataType->display_name_singular }}">
+                        <input type="submit" class="btn btn-danger pull-right delete-confirm" value="确认删除 {{ $dataType->display_name_singular }}">
                     </form>
                     <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancel</button>
                 </div>

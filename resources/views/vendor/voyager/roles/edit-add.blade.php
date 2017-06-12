@@ -19,7 +19,7 @@
                 <div class="panel panel-bordered">
 
                     <div class="panel-heading">
-                        <h3 class="panel-title">@if(isset($dataTypeContent->id)){{ 'Edit' }}@else{{ 'Add New' }}@endif {{ $dataType->display_name_singular }}</h3>
+                        <h3 class="panel-title">@if(isset($dataTypeContent->id)){{ 'Edit' }}@else{{ '新增' }}@endif {{ $dataType->display_name_singular }}</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->

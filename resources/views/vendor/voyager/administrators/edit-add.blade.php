@@ -6,7 +6,7 @@
 
 @section('page_header')
     <h1 class="page-title">
-        <i class="{{ $dataType->icon }}"></i> @if(isset($dataTypeContent->id)){{ 'Edit' }}@else{{ 'New' }}@endif {{ $dataType->display_name_singular }}
+        <i class="{{ $dataType->icon }}"></i> @if(isset($dataTypeContent->id)){{ '修改' }}@else{{ '新增' }}@endif {{ $dataType->display_name_singular }}
     </h1>
 @stop
 
@@ -18,7 +18,7 @@
                 <div class="panel panel-bordered">
 
                     <div class="panel-heading">
-                        <h3 class="panel-title">@if(isset($dataTypeContent->id)){{ 'Edit' }}@else{{ '新增' }}@endif {{ $dataType->display_name_singular }}</h3>
+                        <h3 class="panel-title">@if(isset($dataTypeContent->id)){{ '修改' }}@else{{ '新增' }}@endif {{ $dataType->display_name_singular }}</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -44,7 +44,8 @@
                             <div class="form-group">
                                 <label for="username">用户名</label>
                                 <input type="text" class="form-control" name="username"
-                                       placeholder="Username" id="username"
+                                        placeholder="Username" id="username"
+                                       @if(isset($dataTypeContent->id)) readonly="readonly"  @endif
                                        @if(isset($dataTypeContent->username))  @endif
                                        value="@if(isset($dataTypeContent->username)){{ old('username', $dataTypeContent->username) }}@else{{old('username')}}@endif">
                             </div>
@@ -91,7 +92,7 @@
                         </div><!-- panel-body -->
 
                         <div class="panel-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">确认</button>
                         </div>
                     </form>
 

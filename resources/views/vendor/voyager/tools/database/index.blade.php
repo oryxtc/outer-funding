@@ -121,7 +121,7 @@
                     <form action="{{ route('voyager.database.destroy', ['database' => '__database']) }}" id="delete_table_form" method="POST">
                         {{ method_field('DELETE') }}
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="submit" class="btn btn-danger pull-right" value="Yes, delete this table">
+                        <input type="submit" class="btn btn-danger pull-right" value="确认删除 table">
                         <button type="button" class="btn btn-outline pull-right" style="margin-right:10px;"
                                 data-dismiss="modal">Cancel
                         </button>

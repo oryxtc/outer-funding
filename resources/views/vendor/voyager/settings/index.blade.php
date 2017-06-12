@@ -308,7 +308,7 @@
                     </script>
                     <div style="clear:both"></div>
                     <button type="submit" class="btn btn-primary pull-right new-setting-btn">
-                        <i class="voyager-plus"></i> Add New Setting
+                        <i class="voyager-plus"></i> 新增 Setting
                     </button>
                     <div style="clear:both"></div>
                 </form>
@@ -331,7 +331,7 @@
                     <form action="{{ route('voyager.settings.delete', ['id' => '__id']) }}" id="delete_form" method="POST">
                         {{ method_field("DELETE") }}
                         {{ csrf_field() }}
-                        <input type="submit" class="btn btn-danger pull-right delete-confirm" value="Yes, Delete This Setting">
+                        <input type="submit" class="btn btn-danger pull-right delete-confirm" value="确认删除 Setting">
                     </form>
                     <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancel</button>
                 </div>

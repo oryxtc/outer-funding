@@ -255,7 +255,7 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal"
                                         aria-hidden="true">&times;</button>
-                                <h4 class="modal-title"><i class="voyager-folder"></i> Add New Folder</h4>
+                                <h4 class="modal-title"><i class="voyager-folder"></i> 新增 Folder</h4>
                             </div>
 
                             <div class="modal-body">

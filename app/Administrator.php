@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use TCG\Voyager\Traits\VoyagerUser;
 
 class Administrator extends Authenticatable
 {
+    use VoyagerUser;
     use Notifiable;
 
     /**
@@ -15,7 +17,7 @@ class Administrator extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'name', 'password',
+        'role_id', 'name','avatar', 'password',
     ];
 
     /**
