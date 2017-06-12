@@ -2,30 +2,30 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use TCG\Voyager\Traits\VoyagerUser;
 
 class Administrator extends Authenticatable
 {
     use VoyagerUser;
-    use Notifiable;
+
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * On save make sure to set the default avatar if image is not set.
      */
-    protected $fillable = [
-        'role_id', 'name','avatar', 'password',
-    ];
+    public function save(array $options = [])
+    {
+        // If no avatar has been set, set it to the default
+        $this->avatar = $this->avatar ?: config('voyager.user.default_avatar', 'users/default.png');
+        $this->password = bcrypt($this->password);
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+        parent::save();
+    }
+
+    public function setCreatedAtAttribute($value)
+    {
+        $this->attributes['created_at'] = Carbon::parse($value)->format('Y-m-d H:i:s');
+    }
+
 }
