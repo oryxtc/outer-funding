@@ -75,14 +75,14 @@ return [
             'model' => App\User::class,
         ],
 
-        'administrators' => [
-            'driver' => 'eloquent',
-            'model' => App\Administrator::class,
-        ],
-//        'administrator' => [
-//            'driver' => 'database',
-//            'table' => 'administrator',
+//        'administrators' => [
+//            'driver' => 'eloquent',
+//            'model' => App\Administrator::class,
 //        ],
+        'administrators' => [
+            'driver' => 'database',
+            'table' => 'administrators',
+        ],
     ],
 
     /*
