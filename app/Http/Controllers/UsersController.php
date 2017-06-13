@@ -85,7 +85,7 @@ class UsersController extends Controller
         $data['created_at']    = $date;
         $data['updated_at']    = $date;
         //存入数据库
-        $save_result = \DB::table('funding')
+        $save_result = \DB::table('fundings')
             ->insert($data);
         if ($save_result === false) {
             return PublicController::apiJson([], 'failed', '提交失败!');

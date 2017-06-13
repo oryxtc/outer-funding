@@ -36,7 +36,7 @@ class ValidatorController extends Controller
         $type  = $request_data['type'];
         $date  = date('Y-m-d H:i:s', time());
         $code  = rand(1000, 9999);
-        //发送阿里大鱼 TODO
+        //发送阿里大鱼
         $send_result=AliDaYuController::sendSms($phone,$code,$type);
         if($send_result===false){
             return PublicController::apiJson([], 'failed', '发送验证码失败!');
