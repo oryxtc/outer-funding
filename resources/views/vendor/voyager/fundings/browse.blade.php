@@ -22,8 +22,6 @@
                         <table id="dataTable" class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>姓名</th>
-                                    <th>用户名</th>
                                     <th>保证金</th>
                                     <th>倍数</th>
                                     <th>持续时间</th>
