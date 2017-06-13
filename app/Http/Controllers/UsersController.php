@@ -74,10 +74,23 @@ class UsersController extends Controller
             return PublicController::apiJson($validator_result['data'], 'failed');
         }
 
+        //验证是否实名认证
+        $user_info = \DB::table('users')
+            ->select('actual_name', 'id_card', 'phone')
+            ->where('id', \Auth::id())
+            ->first();
+        if (empty($user_info->actual_name) || empty($user_info->id_card)) {
+            return PublicController::apiJson([], 'failed', '配资前请先实名认证!');
+        }
+
+
         $date = date('Y-m-d H:i:s', time());
         //准备数据
         $data                  = $this->fundingConfig($A, $B, $Y);
         $data['user_id']       = \Auth::id();
+        $data['phone']         = $user_info->phone;
+        $data['id_card']       = $user_info->id_card;
+        $data['actual_name']   = $user_info->actual_name;
         $data['caution_money'] = $A;
         $data['multiple']      = $B;
         $data['duration']      = $Y;
@@ -115,20 +128,6 @@ class UsersController extends Controller
             'multiple' => 'required|numeric|min:1',
             'duration' => 'required|numeric|min:1',
         ], $message);
-        //如果验证失败
-        if ($validator->fails() === true) {
-            return ['status' => false, 'data' => $validator->errors()->all()];
-        }
-        //验证是否实名认证
-        $validator->after(function ($validator) {
-            $user_info = \DB::table('users')
-                ->select('actual_name', 'id_card')
-                ->where('id', \Auth::id())
-                ->first();
-            if (empty($user_info->actual_name) || empty($user_info->id_card)) {
-                $validator->errors()->add('have_validator', '请先实名认证!');
-            }
-        });
         //如果验证失败
         if ($validator->fails() === true) {
             return ['status' => false, 'data' => $validator->errors()->all()];
