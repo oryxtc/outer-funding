@@ -16,17 +16,21 @@ class AliDaYuController extends Controller
      */
     public static function sendSms($phone, $code)
     {
-        $sms_param = json_encode(['code' => $code, 'name' => 'Dearmadman']);
+        $sms_param = json_encode(['code' => "$code", 'name' => 'Dearmadman']);
 
         $response = AliDaYu::driver('sms')->send([
             'extend' => '',
             'sms_type' => 'normal',
-            'sms_free_sign_name' => 'test',
+            'sms_free_sign_name' => '配资网',
             'sms_param' => $sms_param,
             'rec_num' => $phone ,
             'sms_template_code' => 'SMS_70555432'
         ]);
 
-        return $response->getBody()->getContents();
+        $response_data=json_decode($response->getBody()->getContents(),true);
+        //错误码  0为成功
+        $error_code=$response_data['alibaba_aliqin_fc_sms_num_send_response']['result']['err_code'];
+
+        return $error_code==0;
     }
 }
