@@ -10,4 +10,5 @@ return [
     'Roles' =>'角色管理',
     'Edit' =>'修改',
     'Create' =>'新增',
+    'Fundings' =>'配资',
 ];

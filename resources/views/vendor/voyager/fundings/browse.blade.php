@@ -22,31 +22,24 @@
                         <table id="dataTable" class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>保证金</th>
-                                    <th>倍数</th>
-                                    <th>持续时间</th>
+                                    <th>手机号</th>
                                     <th>配额</th>
-                                    <th>总操盘资金</th>
-                                    <th>亏损警戒线</th>
-                                    <th>亏损平仓线</th>
-                                    <th>结束时间</th>
-                                    <th>月利息</th>
-                                    <th>管理费</th>
-                                    <th>总费用</th>
+                                    <th>提交时间</th>
+                                    <th>处理时间</th>
+                                    <th>处理人员</th>
+                                    <th>状态</th>
                                     <th class="actions">操作</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach($dataTypeContent as $data)
                                 <tr>
-                                    <td>{{ucwords($data->name)}}</td>
-                                    <td>{{ucwords($data->username)}}</td>
-                                    <td>{{ $data->role ? $data->role->display_name : '' }}</td>
-                                    <td>{{$data->email}}</td>
-                                    <td>
-                                        <img src="@if( strpos($data->avatar, 'http://') === false && strpos($data->avatar, 'https://') === false){{ Voyager::image( $data->avatar ) }}@else{{ $data->avatar }}@endif" style="width:100px">
-                                    </td>
-                                    <td>{{ \Carbon\Carbon::parse($data->created_at)->format('Y-m-d H:i:s') }}</td>
+                                    <td>{{$data->phone}}</td>
+                                    <td>{{$data->quota}}</td>
+                                    <td>{{\Carbon\Carbon::parse($data->created_at)->format('Y-m-d H:i:s')}}</td>
+                                    <td>{{\Carbon\Carbon::parse($data->comply_at)->format('Y-m-d H:i:s')}}</td>
+                                    <td>{{isset($data->administrator->name)?$data->administrator->name:''}}</td>
+                                    <td>{{$data->status===1?'已审核':'未审核'}}</td>
                                     <td class="no-sort no-click">
                                         @if (Voyager::can('edit_'.$dataType->name))
                                             <a href="{{ route('voyager.'.$dataType->slug.'.edit', $data->id) }}" class="btn-sm btn-primary pull-right edit">
@@ -58,11 +51,6 @@
                                                 <i class="voyager-trash"></i> 删除
                                             </div>
                                         @endif
-                                        {{--@if (Voyager::can('read_'.$dataType->name))--}}
-                                            {{--<a href="{{ route('voyager.'.$dataType->slug.'.show', $data->id) }}" class="btn-sm btn-warning pull-right">--}}
-                                                {{--<i class="voyager-eye"></i> 详情--}}
-                                            {{--</a>--}}
-                                        {{--@endif--}}
                                     </td>
                                 </tr>
                             @endforeach
