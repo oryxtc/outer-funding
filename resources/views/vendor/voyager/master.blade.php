@@ -34,8 +34,11 @@
     <!-- CSS Fonts -->
     <link rel="stylesheet" href="{{ voyager_asset('fonts/voyager/styles.css') }}">
     <script type="text/javascript" src="{{ voyager_asset('lib/js/jquery.min.js') }}"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+
+    {{--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css">--}}
+    <link rel="stylesheet" href="{{asset('vendor/tcg/voyager/assets/css/fonts-googleapis.css')}}">
+
+    <script type="text/javascript" src="{{ asset('vendor/tcg/voyager/assets/js/jquery-ui.min.js') }}"></script>
 
     @yield('css')
 
