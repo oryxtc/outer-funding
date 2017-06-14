@@ -21,6 +21,7 @@ use TCG\Voyager\Models\Role;
 use TCG\Voyager\Models\Setting;
 use TCG\Voyager\Models\User;
 use TCG\Voyager\Traits\Translatable;
+use TCG\Voyager\Traits\VoyagerUser;
 
 class Voyager
 {
@@ -177,6 +178,17 @@ class Voyager
 
         return true;
     }
+
+    /**
+     * 是否是这角色
+     * @param $role
+     */
+    public function isRole($role){
+        $user = Voyager::model('User')->find(auth('admin')->id());
+        return $user->hasRole($role);
+    }
+
+
 
     public function canOrFail($permission)
     {

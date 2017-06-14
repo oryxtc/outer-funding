@@ -130,7 +130,6 @@ class VoyagerBreadController extends Controller
 
     public function edit(Request $request, $id)
     {
-        dump(Voyager::can('browse_admin'));exit;
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();

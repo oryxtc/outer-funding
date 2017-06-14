@@ -43,6 +43,12 @@ Route::group(['as' => 'voyager.'], function () {
         } catch (\Exception $e) {
             // do nothing, might just be because table not yet migrated.
         }
+        //审核路径
+        Route::group([
+            'as'=>'fundings.',
+        ],function () use($namespacePrefix){
+            Route::get('fundings/{id}/funding',['uses' =>'Voyager\VoyagerFundingsController@funding','as' => 'funding']);
+        });
 
         // Role Routes
         Route::resource('roles', $namespacePrefix.'VoyagerRoleController');

@@ -35,13 +35,21 @@
                                 @elseif($row->type == 'date')
                                     {{ \Carbon\Carbon::parse($dataTypeContent->{$row->field})->format('F jS, Y h:i A') }}
                                 @elseif($row->field== 'remark')
-                                    {{--{{\Auth::guard('admin')->user()->hasRole('admin')}}--}}
-                                    {{auth('admin')->user()->hasPermission('browse_admin')}}
-                                    {!! app('voyager')->formField($row, $dataType, $dataTypeContent) !!}
+                                    @if(Voyager::isRole('admin'))
+                                        {!! app('voyager')->formField($row, $dataType, $dataTypeContent) !!}
+                                    @else
+                                        <p>{{ $dataTypeContent->{$row->field} }}</p>
+                                    @endif
                                 @elseif($row->field== 'user_id')
                                     <p>{{ $dataTypeContent->user->name }}</p>
                                 @elseif($row->field== 'administrator_id')
                                     <p>{{ isset($dataTypeContent->administrator->name)?$dataTypeContent->administrator->name:'' }}</p>
+                                @elseif($row->field== 'status')
+                                    @if($dataTypeContent->status===0)
+                                        <div><p>未审核</p><a class="btn btn-primary" href="{{ route('voyager.'.$dataType->slug.'.funding', $dataTypeContent->id) }}" role="button">审核通过</a></div>
+                                    @elseif($dataTypeContent->status===1)
+                                        <p>已审核</p>
+                                    @endif
                                 @else
                                     <p>{{ $dataTypeContent->{$row->field} }}</p>
                                 @endif
@@ -52,7 +60,7 @@
                         @endforeach
                     </div>
                     <div class="panel-footer">
-                        <button type="submit" class="btn btn-primary">审核通过</button>
+                        <button type="submit" class="btn btn-primary">确认</button>
                     </div>
                 </form>
             </div>
