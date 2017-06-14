@@ -4,6 +4,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
 
+@section('page_title','角色')
+
 @section('page_header')
     <h1 class="page-title">
         <i class="{{ $dataType->icon }}"></i> @if(isset($dataTypeContent->id)){{ '修改' }}@else{{ '新增' }}@endif {{ $dataType->display_name_singular }}

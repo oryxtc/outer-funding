@@ -4,6 +4,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
 
+@section('page_title','配资')
+
 @section('page_header')
     <h1 class="page-title">
         <i class="{{ $dataType->icon }}"></i> 详情 {{ ucfirst($dataType->display_name_singular) }}
