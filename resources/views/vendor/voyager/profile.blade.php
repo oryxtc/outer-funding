@@ -33,7 +33,7 @@
                     <!-- /.box-header -->
                     <!-- form start -->
                     <form class="form-edit-add" role="form"
-                          action="{{ route('voyager.administrators.update', $dataTypeContent->id) }}"
+                          action="{{ route('voyager.administrators.update', ['id'=>$dataTypeContent->id,'type'=>'profile']) }}"
                           method="POST" enctype="multipart/form-data">
                         <!-- PUT Method if we are editing -->
                     @if(isset($dataTypeContent->id))

@@ -174,11 +174,16 @@ class VoyagerBreadController extends Controller
 
         if (!$request->ajax()) {
             $data = call_user_func([$dataType->model_name, 'findOrFail'], $id);
-
             $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
-
+            
+            $type=$request->get('type');
+            if(isset($type) && $type==='profile'){
+                $route='voyager.profile';
+            }else{
+                $route="voyager.{$dataType->slug}.index";
+            }
             return redirect()
-            ->route("voyager.{$dataType->slug}.index")
+            ->route($route)
             ->with([
                 'message'    => "Successfully Updated {$dataType->display_name_singular}",
                 'alert-type' => 'success',
