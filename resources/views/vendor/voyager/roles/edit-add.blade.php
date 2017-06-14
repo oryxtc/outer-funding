@@ -56,8 +56,8 @@
                                 </div>
                             @endforeach
 
-                            <label for="permission">Permissions</label><br>
-                            <a href="#" class="permission-select-all">Select All</a> / <a href="#"  class="permission-deselect-all">Deselect All</a>
+                            <label for="permission">权限设置</label><br>
+                            <a href="#" class="permission-select-all">全部勾选</a> / <a href="#"  class="permission-deselect-all">取消全部勾选</a>
                             <ul class="permissions checkbox">
                                 <?php
                                     $role_permissions = (isset($dataTypeContent)) ? $dataTypeContent->permissions->pluck('key')->toArray() : [];
@@ -65,12 +65,13 @@
                                 @foreach(TCG\Voyager\Models\Permission::all()->groupBy('table_name')->sortBy('table_name') as $table => $permission)
                                     <li>
                                         <input type="checkbox" id="{{$table}}" class="permission-group">
-                                        <label for="{{$table}}"><strong>{{ucwords($table)}}</strong></label>
+                                        <label for="{{$table}}"><strong>{{trans('voyager.'.ucwords($table))}}</strong></label>
                                         <ul>
                                             @foreach($permission as $perm)
                                                 <li>
                                                     <input type="checkbox" id="permission-{{$perm->id}}" name="permissions[]" class="the-permission" value="{{$perm->id}}" @if(in_array($perm->key, $role_permissions)) checked @endif>
-                                                    <label for="permission-{{$perm->id}}">{{title_case(str_replace('_', ' ', $perm->key))}}</label>
+                                                    {{--<label for="permission-{{$perm->id}}">{{title_case(str_replace('_', ' ', $perm->key))}}</label>--}}
+                                                    <label for="permission-{{$perm->id}}">{{trans('voyager.'.ucwords(explode('_',$perm->key)[0])).' '.trans('voyager.'.ucwords(explode('_',$perm->key)[1]))}}</label>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -79,7 +80,7 @@
                             </ul>
                         </div><!-- panel-body -->
                         <div class="panel-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">确认</button>
                         </div>
                     </form>
 
