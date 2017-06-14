@@ -59,8 +59,16 @@ class VoyagerController extends Controller
         return "<script> parent.setImageValue('".Voyager::image($fullFilename)."'); </script>";
     }
 
+
     public function profile()
     {
-        return view('voyager::profile');
+        $id=auth('admin')->id();
+        $dataType='administrators';
+
+        $dataTypeContent = app('App\Administrator')->with([])->findOrFail($id);
+
+        // Check if BREAD is Translatable
+        $isModelTranslatable = is_bread_translatable($dataTypeContent);
+        return view('voyager::profile', compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
     }
 }

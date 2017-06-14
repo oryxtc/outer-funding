@@ -11,4 +11,5 @@ return [
     'Edit' =>'修改',
     'Create' =>'新增',
     'Fundings' =>'配资',
+    'Profile' =>'简介',
 ];

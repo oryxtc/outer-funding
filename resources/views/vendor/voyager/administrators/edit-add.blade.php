@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 {{--{{ dump(\Auth::guard('admin')->hasRole('admin'))}}--}}
                                 <label for="role">用户角色</label>
-                                @if(Voyager::can('add_administrators'))
+                                @if(Voyager::isRole('admin'))
                                     <select name="role_id" id="role" class="form-control">
                                         <?php $roles = TCG\Voyager\Models\Role::all(); ?>
                                         @foreach($roles as $role)
@@ -62,8 +62,8 @@
                                         @endforeach
                                     </select>
                                 @else
-                                    <input type="text" class="form-control" name="email"
-                                           placeholder="Email" id="email" readonly="readonly"
+                                    <input type="text" class="form-control" name=""
+                                           placeholder="" id="" readonly="readonly"
                                            value="@if(isset($dataTypeContent->role)){{ old('role', $dataTypeContent->role->display_name) }}@else{{old('role')}}@endif">
                                 @endif
 
