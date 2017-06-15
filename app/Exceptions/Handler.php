@@ -60,8 +60,8 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
         if(parse_url($_SERVER['HTTP_REFERER'],PHP_URL_PATH)==='/admin'){
-            $this->route='voyager.login';
+            $route='voyager.login';
         }
-        return redirect()->guest(route($this->route));
+        return redirect()->guest(route($route));
     }
 }
