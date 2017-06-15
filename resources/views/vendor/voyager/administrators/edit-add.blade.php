@@ -88,7 +88,6 @@
                                         重置密码
                                     </button>
                                     {{--提示框--}}
-
                                     <div class="alert alert-success" role="alert" hidden>重置密码成功!</div>
                                     <div class="alert alert-danger" role="alert" hidden>重置密码失败!</div>
                                     <!-- Modal -->
@@ -104,7 +103,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <input type="password" class="form-control" name=""
-                                                           placeholder="Password" id="password"
+                                                           placeholder="Password" id="password-reset"
                                                            value="">
                                                 </div>
                                                 <div class="modal-footer">
@@ -118,7 +117,6 @@
                                         </div>
                                     </div>
                                 @endif
-
                                 {{--<input type="password" class="form-control" name="password"--}}
                                 {{--placeholder="Password" id="password"--}}
                                 {{--value="">--}}
@@ -165,7 +163,7 @@
             })
             //提交重置密码
             $('#resetPass').click(function () {
-                $.post("resetPass", {password: $('#password').val()}, function (data) {
+                $.post("resetPass", {password: $('#password-reset').val()}, function (data) {
                     $('#myModal').modal('hide')
                     if (data.status === 'success') {
                         $(".alert-success").show().delay(3000).hide(0)

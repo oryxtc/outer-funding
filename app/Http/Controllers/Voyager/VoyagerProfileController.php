@@ -4,28 +4,23 @@ namespace App\Http\Controllers\Voyager;
 
 use App\Http\Controllers\PublicController;
 use Illuminate\Http\Request;
-use TCG\Voyager\Voyager;
 
-class VoyagerAdministratorsController extends Controller
+class VoyagerProfileController extends Controller
 {
     /**
      * 重置密码
      * @param Request $request
-     * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function resetPass(Request $request,$id)
+    public function resetPass(Request $request)
     {
-        //检查有没有权限
-        if(Voyager::can('edit_administrators')===false){
-            return PublicController::apiJson([], 'failed', '你有没操作权限!');
-        }
         $password = $request->get('password');
         if (mb_strlen($password) < 6) {
             return PublicController::apiJson([], 'failed', '密码长度最小6位!');
         }
         //密码加密
         $password = bcrypt($password);
+        $id = auth('admin')->id();
         //更新数据库
         $update_result = \DB::table('administrators')
             ->where('id', $id)

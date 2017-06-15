@@ -53,6 +53,13 @@ Route::group(['as' => 'voyager.'], function () {
             Route::post('administrators/{id}/resetPass',['uses' =>'Voyager\VoyagerAdministratorsController@resetPass','as' => 'resetPass']);
         });
 
+        //重置个人密码
+        Route::group([
+            'as'=>'profile.',
+        ],function (){
+            Route::post('profile/resetPass',['uses' =>'Voyager\VoyagerProfileController@resetPass','as' => 'resetPass']);
+        });
+
         //审核路径
         Route::group([
             'as'=>'fundings.',
