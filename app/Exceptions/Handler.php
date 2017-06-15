@@ -8,17 +8,6 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
-    protected $route='login';
-
-    public function __construct(Container $container)
-    {
-        //如果是后台  则跳转到后台登陆界面
-        if(parse_url($_SERVER['HTTP_REFERER'],PHP_URL_PATH)==='/admin'){
-            $this->route='voyager.login';
-        }
-        parent::__construct($container);
-    }
-
     /**
      * A list of the exception types that should not be reported.
      *
@@ -69,6 +58,9 @@ class Handler extends ExceptionHandler
     {
         if ($request->expectsJson()) {
             return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
+        if(parse_url($_SERVER['HTTP_REFERER'],PHP_URL_PATH)==='/admin'){
+            $this->route='voyager.login';
         }
         return redirect()->guest(route($this->route));
     }

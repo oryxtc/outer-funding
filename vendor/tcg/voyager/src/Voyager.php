@@ -2,7 +2,6 @@
 
 namespace TCG\Voyager;
 
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Filesystem\Filesystem;
@@ -194,7 +193,7 @@ class Voyager
     public function canOrFail($permission)
     {
         if (!$this->can($permission)) {
-            throw new AuthenticationException(null);
+            throw new UnauthorizedHttpException(null);
         }
 
         return true;
