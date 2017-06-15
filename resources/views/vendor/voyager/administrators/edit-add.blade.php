@@ -81,12 +81,47 @@
                             <div class="form-group">
                                 <label for="password">密码</label>
                                 @if(isset($dataTypeContent->password))
-                                    <br>
-                                    <small>留空则保持不变</small>
+                                    <br/>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                                            data-target="#myModal">
+                                        重置密码
+                                    </button>
+                                    {{--提示框--}}
+
+                                    <div class="alert alert-success" role="alert" hidden>重置密码成功!</div>
+                                    <div class="alert alert-danger" role="alert" hidden>重置密码失败!</div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                         aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">重置密码</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <input type="password" class="form-control" name=""
+                                                           placeholder="Password" id="password"
+                                                           value="">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        关闭
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary" id="resetPass">确认
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endif
-                                <input type="password" class="form-control" name="password"
-                                       placeholder="Password" id="password"
-                                       value="">
+
+                                {{--<input type="password" class="form-control" name="password"--}}
+                                {{--placeholder="Password" id="password"--}}
+                                {{--value="">--}}
                             </div>
 
                             <div class="form-group">
@@ -123,6 +158,22 @@
     <script>
         $('document').ready(function () {
             $('.toggleswitch').bootstrapToggle();
+
+            //密码模态框
+            $('#myModal').on('shown.bs.modal', function () {
+                $('#myInput').focus()
+            })
+            //提交重置密码
+            $('#resetPass').click(function () {
+                $.post("resetPass", {password: $('#password').val()}, function (data) {
+                    $('#myModal').modal('hide')
+                    if (data.status === 'success') {
+                        $(".alert-success").show().delay(3000).hide(0)
+                    } else {
+                        $(".alert-danger").text(data.message).show().delay(3000).hide(0)
+                    }
+                })
+            })
         });
     </script>
     <script src="{{ voyager_asset('lib/js/tinymce/tinymce.min.js') }}"></script>

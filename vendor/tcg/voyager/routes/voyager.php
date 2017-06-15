@@ -46,6 +46,13 @@ Route::group(['as' => 'voyager.'], function () {
             // do nothing, might just be because table not yet migrated.
         }
 
+        //重置密码
+        Route::group([
+            'as'=>'administrators.',
+        ],function (){
+            Route::post('administrators/{id}/resetPass',['uses' =>'Voyager\VoyagerAdministratorsController@resetPass','as' => 'resetPass']);
+        });
+
         //审核路径
         Route::group([
             'as'=>'fundings.',

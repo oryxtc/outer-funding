@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Voyager;
 
 use App\Funding;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Facades\Voyager;
@@ -162,9 +163,18 @@ class VoyagerBreadController extends Controller
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
-        // Check permission
-        Voyager::canOrFail('edit_'.$dataType->name);
-
+        $type=$request->get('type');
+        if(isset($type) && $type==='profile'){
+            $route='voyager.profile';
+            //如果是修改自己详情
+            if($id!=auth('admin')->id()){
+                throw new AuthenticationException(null);
+            }
+        }else{
+            $route="voyager.{$dataType->slug}.index";
+            // Check permission
+            Voyager::canOrFail('edit_'.$dataType->name);
+        }
         //Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->editRows);
 
@@ -175,13 +185,6 @@ class VoyagerBreadController extends Controller
         if (!$request->ajax()) {
             $data = call_user_func([$dataType->model_name, 'findOrFail'], $id);
             $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
-            
-            $type=$request->get('type');
-            if(isset($type) && $type==='profile'){
-                $route='voyager.profile';
-            }else{
-                $route="voyager.{$dataType->slug}.index";
-            }
             return redirect()
             ->route($route)
             ->with([
