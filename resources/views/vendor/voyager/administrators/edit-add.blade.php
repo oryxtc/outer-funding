@@ -36,24 +36,33 @@
                         {{ csrf_field() }}
 
                         <div class="panel-body">
-                            <div class="form-group">
+                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <label for="name">姓名</label>
                                 <input type="text" class="form-control" name="name"
                                        placeholder="Name" id="name"
                                        value="@if(isset($dataTypeContent->name)){{ old('name', $dataTypeContent->name) }}@else{{old('name')}}@endif">
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                                 <label for="username">用户名</label>
                                 <input type="text" class="form-control" name="username"
                                        placeholder="Username" id="username"
                                        @if(isset($dataTypeContent->id)) readonly="readonly" @endif
                                        @if(isset($dataTypeContent->username))  @endif
                                        value="@if(isset($dataTypeContent->username)){{ old('username', $dataTypeContent->username) }}@else{{old('username')}}@endif">
+                                @if ($errors->has('username'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
                             </div>
 
-                            <div class="form-group">
-                                {{--{{ dump(\Auth::guard('admin')->hasRole('admin'))}}--}}
+                            <div class="form-group{{ $errors->has('role_id') ? ' has-error' : '' }}">
                                 <label for="role">用户角色</label>
                                 @if(Voyager::isRole('admin'))
                                     <select name="role_id" id="role" class="form-control">
@@ -68,7 +77,11 @@
                                            placeholder="" id="" readonly="readonly"
                                            value="@if(isset($dataTypeContent->role)){{ old('role', $dataTypeContent->role->display_name) }}@else{{old('role')}}@endif">
                                 @endif
-
+                                @if ($errors->has('role_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('role_id') }}</strong>
+                                    </span>
+                                @endif
                             </div>
 
                             <div class="form-group">
@@ -78,7 +91,7 @@
                                        value="@if(isset($dataTypeContent->email)){{ old('email', $dataTypeContent->email) }}@else{{old('email')}}@endif">
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                 <label for="password">密码</label>
                                 @if(isset($dataTypeContent->password))
                                     <br/>
@@ -120,6 +133,11 @@
                                     <input type="password" class="form-control" name="password"
                                            placeholder="Password" id="password"
                                            value="">
+                                    @if ($errors->has('password'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                    @endif
                                 @endif
 
                             </div>

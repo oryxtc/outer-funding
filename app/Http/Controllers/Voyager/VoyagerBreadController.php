@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Voyager;
 
-use App\Funding;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -237,6 +236,10 @@ class VoyagerBreadController extends Controller
     {
         $slug = $this->getSlug($request);
 
+        //如果是新增管理员 验证数据
+        if($slug==='administrators'){
+           $this->validatorAdmin($request);
+        }
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
         // Check permission
@@ -321,5 +324,33 @@ class VoyagerBreadController extends Controller
             ];
 
         return redirect()->route("voyager.{$dataType->slug}.index")->with($data);
+    }
+
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  Request $request
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validatorAdmin(Request $request)
+    {
+        //自定义错误信息
+        $message = [
+            'name.required' => '请输入姓名!',
+            'role_id.required' => '请选择角色!',
+            'username.required' => '请输入用户名!',
+            'username.unique' => '用户名已存在!',
+            'password.required' => '请输入密码!',
+            'password.min' => '请输入6-16位密码!',
+            'password.max' => '请输入6-16位密码!',
+        ];
+        //验证数据类型
+        $this->validate($request,[
+            'name' => 'required|string',
+            'role_id' => 'required',
+            'username' => 'required|string|unique:administrators',
+            'password' => 'required|string|min:6|max:16',
+        ],$message);
     }
 }
