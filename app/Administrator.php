@@ -17,8 +17,9 @@ class Administrator extends Authenticatable
     {
         // If no avatar has been set, set it to the default
         $this->avatar = $this->avatar ?: config('voyager.user.default_avatar', 'users/default.png');
-        if (!empty($this->password)) {
-            $this->password = bcrypt($this->password);
+        //新增的时候 加密
+        if(!isset($this->id)){
+            $this->password=bcrypt($this->password);
         }
         parent::save();
     }

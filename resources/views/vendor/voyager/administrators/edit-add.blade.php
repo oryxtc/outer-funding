@@ -129,7 +129,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @else
+                                @else
                                     <input type="password" class="form-control" name="password"
                                            placeholder="Password" id="password"
                                            value="">
