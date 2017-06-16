@@ -166,7 +166,13 @@
             })
             //提交重置密码
             $('#resetPass').click(function () {
-                $.post("profile/resetPass", {password: $('#password-reset').val()}, function (data) {
+                console.log(window.location.pathname)
+                if(window.location.pathname==='/admin/profile'){
+                    var url="profile/resetPass";
+                }else if(window.location.pathname==='/admin'){
+                    var url="admin/profile/resetPass";
+                }
+                $.post(url, {password: $('#password-reset').val()}, function (data) {
                     $('#myModal').modal('hide')
                     if (data.status === 'success') {
                         $(".alert-success").show().delay(3000).hide(0)
