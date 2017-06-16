@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Voyager;
 
 use App\Http\Controllers\PublicController;
 use Illuminate\Http\Request;
-use TCG\Voyager\Voyager;
 
 class VoyagerAdministratorsController extends Controller
 {
@@ -16,8 +15,9 @@ class VoyagerAdministratorsController extends Controller
      */
     public function resetPass(Request $request,$id)
     {
+
         //检查有没有权限
-        if(Voyager::can('edit_administrators')===false){
+        if(\Voyager::can('edit_administrators')===false){
             return PublicController::apiJson([], 'failed', '你有没操作权限!');
         }
         $password = $request->get('password');

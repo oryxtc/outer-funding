@@ -50,7 +50,7 @@ Route::group(['as' => 'voyager.'], function () {
         Route::group([
             'as'=>'administrators.',
         ],function (){
-            Route::post('administrators/{id}/resetPass',['uses' =>'Voyager\VoyagerAdministratorsController@resetPass','as' => 'resetPass']);
+            Route::post('administrators/{id}/resetPass',['uses' =>'Voyager\VoyagerAdministratorsController@resetPass']);
         });
 
         //重置个人密码
