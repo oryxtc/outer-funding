@@ -15,9 +15,11 @@ class Administrator extends Authenticatable
      */
     public function save(array $options = [])
     {
-
         // If no avatar has been set, set it to the default
         $this->avatar = $this->avatar ?: config('voyager.user.default_avatar', 'users/default.png');
+        if (!empty($this->password)) {
+            $this->password = bcrypt($this->password);
+        }
         parent::save();
     }
 
