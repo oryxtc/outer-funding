@@ -16,6 +16,8 @@ class Newslist extends Authenticatable
         'skill'=>'配资技巧',
         'company'=>'公司优势',
         'discuss'=>'机构评论',
+        'funding'=>'期货配资',
+        'discuss'=>'名家观点',
     ];
 
 

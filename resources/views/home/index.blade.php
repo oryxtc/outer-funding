@@ -369,17 +369,12 @@
                             </div>
                             <div class="gb_sub">
                                 <ul>
-                                    <li><a href="#/guping/mingjia/4/422.html" target="_blank"> 海通国际：中国电力新能源受国策扶持</a>
-                                    </li>
-                                    <li><a href="#/guping/mingjia/7/570.html" target="_blank"> 靳理政：由腾讯引发的蝴蝶效应</a></li>
-                                    <li><a href="#/guping/mingjia/7/569.html" target="_blank"> 靳理政：A股中长期行情向上空间可期 </a>
-                                    </li>
-                                    <li><a href="#/guping/mingjia/4/421.html" target="_blank"> 海通国际：国泰航空维持平稳发展</a></li>
-                                    <li><a href="#/guping/mingjia/1/43.html" target="_blank"> 苏渝：鼓励基金公司上市不是雪中送炭</a></li>
-                                    <li><a href="#/guping/mingjia/1/42.html" target="_blank"> 苏渝：平安与上海家化窝里斗的启示</a></li>
-                                    <li><a href="#/guping/mingjia/1/41.html" target="_blank"> 苏渝：对欺诈上市不仅仅只有重罚和赔偿</a>
-                                    </li>
-                                    <li><a href="#/guping/mingjia/1/42.html" target="_blank"> 苏渝：平安与上海家化窝里斗的启示</a></li>
+                                    @foreach($funding_data as $key=>$item)
+                                        <li>
+                                            <a target="_blank" href="/xiangqing/funding/{{$item->id}}"
+                                               class="&#39;s&#39;">{{$item->title}}</a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -391,17 +386,12 @@
                             </div>
                             <div class="gb_sub">
                                 <ul>
-                                    <li><a href="#/guping/mingjia/4/422.html" target="_blank"> 海通国际：中国电力新能源受国策扶持</a>
-                                    </li>
-                                    <li><a href="#/guping/mingjia/7/570.html" target="_blank"> 靳理政：由腾讯引发的蝴蝶效应</a></li>
-                                    <li><a href="#/guping/mingjia/7/569.html" target="_blank"> 靳理政：A股中长期行情向上空间可期 </a>
-                                    </li>
-                                    <li><a href="#/guping/mingjia/4/421.html" target="_blank"> 海通国际：国泰航空维持平稳发展</a></li>
-                                    <li><a href="#/guping/mingjia/1/43.html" target="_blank"> 苏渝：鼓励基金公司上市不是雪中送炭</a></li>
-                                    <li><a href="#/guping/mingjia/1/42.html" target="_blank"> 苏渝：平安与上海家化窝里斗的启示</a></li>
-                                    <li><a href="#/guping/mingjia/1/41.html" target="_blank"> 苏渝：对欺诈上市不仅仅只有重罚和赔偿</a>
-                                    </li>
-                                    <li><a href="#/guping/mingjia/1/42.html" target="_blank"> 苏渝：平安与上海家化窝里斗的启示</a></li>
+                                    @foreach($famous_data as $key=>$item)
+                                        <li>
+                                            <a target="_blank" href="/xiangqing/famous/{{$item->id}}"
+                                               class="&#39;s&#39;">{{$item->title}}</a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

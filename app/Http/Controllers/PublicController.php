@@ -74,7 +74,19 @@ class PublicController extends Controller
             ->orderBy('created_at', 'DESC')
             ->limit(7)
             ->get();
-        return view('home.index', compact('stock_data', 'futures_data','skill_data','company_data','discuss_data'));
+        //期货配资
+        $funding_data =\DB::table('newslists')
+            ->where('type', 'funding')
+            ->orderBy('created_at', 'DESC')
+            ->limit(8)
+            ->get();
+        //名家观点
+        $famous_data =\DB::table('newslists')
+            ->where('type', 'famous')
+            ->orderBy('created_at', 'DESC')
+            ->limit(8)
+            ->get();
+        return view('home.index', compact('stock_data', 'futures_data','skill_data','company_data','discuss_data','funding_data','famous_data'));
     }
 
     /**
