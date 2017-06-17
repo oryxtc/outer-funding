@@ -114,9 +114,14 @@
                     <div class="news">
                         <div class="t_news">
                             <ul>
-                                <li><a href="/xiangqing/stock/{{$stock_data[0]->id}}" title="{{$stock_data[0]->title}}"
-                                       target="_blank">{{$stock_data[0]->title}}</a></li>
-                                <span class="cc">{!!substr($stock_data[0]->content,0,100) !!}</span>
+                                @if(isset($stock_data[0]))
+                                    <li><a href="/xiangqing/stock/{{$stock_data[0]->id}}"
+                                           title="{{$stock_data[0]->title}}"
+                                           target="_blank">{{$stock_data[0]->title}}</a></li>
+                                    <span class="cc">{!!substr($stock_data[0]->content,0,100) !!}</span>
+                                @else
+                                    <li>暂时没有新文章!</li>
+                                @endif
                             </ul>
                         </div>
                         <div class="clear"></div>
@@ -173,9 +178,10 @@
                     <div class="s_ys">
                         <ul>
                             @foreach($company_data as $key=>$item)
-                                    <li>
-                                        <a target="_blank" href="/xiangqing/company/{{$item->id}}"class="&#39;s&#39;">{{$item->title}}</a>
-                                    </li>
+                                <li>
+                                    <a target="_blank" href="/xiangqing/company/{{$item->id}}"
+                                       class="&#39;s&#39;">{{$item->title}}</a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -261,7 +267,8 @@
                                 <ul>
                                     @foreach($skill_data as $key=>$item)
                                         <li>
-                                            <a target="_blank" href="/xiangqing/skill/{{$item->id}}"class="&#39;s&#39;">{{$item->title}}</a>
+                                            <a target="_blank" href="/xiangqing/skill/{{$item->id}}"
+                                               class="&#39;s&#39;">{{$item->title}}</a>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -279,7 +286,8 @@
                                 <ul>
                                     @foreach($discuss_data as $key=>$item)
                                         <li>
-                                            <a target="_blank" href="/xiangqing/discuss/{{$item->id}}"class="&#39;s&#39;">{{$item->title}}</a>
+                                            <a target="_blank" href="/xiangqing/discuss/{{$item->id}}"
+                                               class="&#39;s&#39;">{{$item->title}}</a>
                                         </li>
                                     @endforeach
                                 </ul>
