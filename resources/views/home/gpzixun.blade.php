@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>股票配资网</title>
+<title>股票资讯</title>
 <link href="{{asset('./AmImages/index.css')}}" rel="stylesheet" type="text/css">
 <script src="{{asset('./AmImages/jquery-1.10.1.min.js')}}"></script>
 <script language="javascript" src="{{asset('./AmImages/common.js')}}"></script>
@@ -42,7 +42,7 @@
 </div>
 <div class="caontent">
 <div class="dqwz">
-<div class="l"> 当前位置：<a href="/sjqhpz">期货配资</a>&nbsp;&gt;&nbsp;期货配资解答</div>
+<div class="l"> 当前位置：<a href="/index">首页</a>&nbsp;&gt;&nbsp;股票资讯</div>
 </div>
 <div class="clist">
 <div class="clist_l">
@@ -57,6 +57,8 @@
 <li><span> 2013-03-05</span> <a href="#/wenda/32.html" title="关于期货配资合作账户的资金安全问题" target="_blank"> 关于期货配资合作账户的资金安全问题 </a></li>
 <li><span> 2013-03-05</span> <a href="#/wenda/31.html" title="提供期货资金5倍到10倍的期货配资" target="_blank"> 提供期货资金5倍到10倍的期货配资 </a></li>
 </ul>
+</div><div class="foosun_pagebox">
+<a disabled="disabled" style="margin-right:5px;">首页</a><a disabled="disabled" style="margin-right:5px;">上一页</a><span class="foosun_pagebox_num_nonce" style="margin-right:5px;">1</span><a href="#" style="margin-right:5px;">2</a><a href="#" style="margin-right:5px;">下一页</a><a href="#" style="margin-right:5px;">尾页</a>
 </div>
 </div>
 <div class="clist_r">
@@ -64,12 +66,8 @@
 <div class="ksnav fl bm7">
 <div class="navsub fl">
 <ul>
-<li><a href="/sjqhpz">啥叫期货配资</a></li>
-<li><a href="/qhpzjd">期货配资解答</a></li>
-<li><a href="/qhpz">期货配资</a></li>
+<li><a href="/tzxy">股票资讯</a></li>
 </ul>
-</div><div class="foosun_pagebox">
-<a disabled="disabled" style="margin-right:5px;">首页</a><a disabled="disabled" style="margin-right:5px;">上一页</a><span class="foosun_pagebox_num_nonce" style="margin-right:5px;">1</span><a href="#" style="margin-right:5px;">2</a><a href="#" style="margin-right:5px;">下一页</a><a href="#" style="margin-right:5px;">尾页</a>
 </div>
 </div>
 </div>

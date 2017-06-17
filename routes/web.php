@@ -36,9 +36,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 //首页
-Route::get('/index', function () {
-    return view('home.index');
-});
+Route::get('/index', 'PublicController@index');
 
 //公司介绍
 Route::get('/gsjs', function () {
@@ -81,6 +79,11 @@ Route::get('/gpzx', function () {
     return view('home.gpzx');
 });
 
+//股票资讯列表
+Route::get('/gpzixun', function () {
+    return view('home.gpzixun');
+});
+
 //啥叫期货配资
 Route::get('/sjqhpz', function () {
     return view('home.sjqhpz');
@@ -96,8 +99,11 @@ Route::get('/xzzq', function () {
     return view('home.xzzq');
 });
 
-//最新新闻
-//Route::post('/findNewsList',);
+//获取最新新闻
+Route::post('/findNewsList','PublicController@findNewsList');
+
+//验证是否登录
+Route::post('/homeIslogin','PublicController@homeIslogin');
 
 
 //忘记密码
@@ -114,4 +120,7 @@ Route::get('/register', function () {
 Route::get('/gsjs', function () {
     return view('home.gsjs');
 });
+
+//详情模板
+Route::get('/xiangqing/{type}/{id}', 'PublicController@getDetails');
 
