@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>股票行情 - 沪市行情</title>
+<link href="hqnew.css" rel="stylesheet" type="text/css">
+<script type="text/javascript"> 
+    var operaMini = navigator.userAgent.indexOf('Opera') > -1 && navigator.userAgent.indexOf('Mini') > -1;
+    if (operaMini) {
+        window.location.href = "http://data.stock.hexun.com/iframequote/stock_ipad.htm";
+    }
+</script>
+</head>
+
+<body marginwidth="0" marginheight="0">
+<div id="debug" style="position:absolute;top:300px;"></div>
+<div class="hqnewmod">
+<style>
+.hqnmenu{ width:52px; float:left; padding-top:3px; }
+/*=MQL 更改项：background 、margin*/
+.hqnmenu li{width:42px; height: 16px; background:url(http://data.stock.hexun.com/quote2012/img/libg.gif) no-repeat left bottom; line-height: normal; padding:4px 0 0 11px; margin:3px 0px 0px 0px; cursor: pointer;}
+.hqnmenu li a:hover{ text-decoration:none} 
+/*=MQL 更改项：background*/
+.hqnmenu li.current{ background:url(http://data.stock.hexun.com/quote2012/img/libg.gif) no-repeat left top; color:#fff}
+.hqnmenu li.current a{ color:#fff;}
+ 
+     </style>
+
+<!--左边标签 b-->
+<div class="hqnmenu" id="hqnmenu">
+<ul>
+<li id="n1" class="current"><a href="stock_1.html" title="stock">股市</a></li>
+<li id="n9" class="click_"><a href="http://data.stock.hexun.com/quote2012/global.html" title="global">全球</a></li>
+<li id="n2" class="click_"><a href="http://data.stock.hexun.com/quote2012/fund_1.htm" title="fund">基金</a></li>
+<li id="n3" class="click_"><a href="http://data.stock.hexun.com/quote2012/future_1.htm" title="future">期货</a></li>
+<li id="n4" class="click_"><a href="http://data.stock.hexun.com/quote2012/bond_1.htm" title="bond">债券</a></li>
+<li id="n5" class="click_"><a href="http://data.stock.hexun.com/quote2012/forex_1.htm" title="forex">外汇</a></li>
+<li id="n6" class="click_"><a href="http://data.stock.hexun.com/quote2012/gold_1.htm" title="gold">黄金</a></li>
+<li id="n7" class="click_"><a href="http://data.stock.hexun.com/quote2012/rate_1.htm" title="rate">利率</a></li>
+<li id="n8" class="click_"><a href="http://data.stock.hexun.com/quote2012/licai_1.htm" title="licai">理财</a></li>
+</ul>
+</div>
+<script language="javascript">
+            var objMenu = document.getElementById("hqnmenu");
+            var objLis = objMenu.getElementsByTagName("li");
+            var paths = window.location.href.split('/');
+            var path = paths[paths.length - 1];
+            for (var i = 0; i < objLis.length; i++) {
+                var objA = objLis[i].getElementsByTagName("A");
+                var title = "";
+                if (objA && objA[0]) {
+                    title = objA[0].getAttribute("title");
+                    if (path.toLowerCase().indexOf(title) >= 0) {
+ 
+                        objLis[i].className = "current";
+                    }
+                    else {
+                        objLis[i].className = "click_";
+                    }
+                }
+            }
+        </script> 
+<!--左边标签 e--> 
+
+<!--左边标签 e-->
+<div class="hqncont">
+<ul class="hqntab">
+<li class="current"><a href="stock_1.html">沪市</a></li>
+<li><a href="http://data.stock.hexun.com/quote2012/stock_2.htm">深市</a></li>
+<li><a href="http://data.stock.hexun.com/quote2012/stock_3.htm">港股</a></li>
+<li style="width:53px;"><a href="http://data.stock.hexun.com/quote2012/stock_5.htm" style="color:red;">股指期货</a></li>
+<li style="width:53px;"><a href="http://data.stock.hexun.com/quote2012/stock_4.htm">欧盟指数</a></li>
+</ul>
+<!--沪市 b-->
+<div style="width:300px;height:270px" id="divChartWrapper"> 
+<script src="flashChart.js" language="javascript"></script> 
+<script language="JavaScript"> 
+    miniChartUrl = "http://minpic.quote.stock.hexun.com/Stock_QTMI/QTMI_1_000001.xml";
+</script>
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="miniChart" width="214" height="146" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" viewastext="">
+<param name="movie" value="http://flash.tool.hexun.com/flash_luan/heshouA/quoteMiniA.swf?20150707">
+<param name="quality" value="high">
+<param name="bgcolor" value="#ffffff">
+<param name="wmode" value="Opaque">
+<param name="allowScriptAccess" value="always">
+<embed src="http://flash.tool.hexun.com/flash_luan/heshouA/quoteMiniA.swf?20150707" quality="high" bgcolor="#ffffff" wmode="Opaque" width="214" height="146" name="miniChart" align="middle" play="true" loop="false" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
+</object>
+</div>
+<script src="render.js" type="text/javascript"></script> 
+<script type="text/javascript"> 
+    renderChart('http://minpic.quote.stock.hexun.com/Stock_QTMI/QTMI_1_000001.xml',
+        aGetTimeByIndex,
+        '09:30',  '11:30/13:00',  '15:00',
+        '<a href="http://quote.hexun.com/" target="_blank" class="menuItem">行情中心</a>' +
+        '<a href="http://vol.stock.hexun.com/" target="_blank" class="menuItem">资金流向</a>' +
+        '<a href="http://t.hexun.com/jiepan.html" target="_blank" class="menuItem">微博解盘</a>' +
+        '<a href="http://lc.hexun.com/" target="_blank" class="menuItem">和讯投顾</a>' +
+        '<a href="http://xfh.hexun.com/" target="_blank" class="menuItem focus">操盘软件</a>',
+        241,
+        'http://stockdata.stock.hexun.com/indexhq_000001_1.shtml'
+    );
+</script>
+<div class="hqnsbox">
+<form id="formSearch" name="sb_form" onsubmit="return Auto_Submit()" action="http://data.stock.hexun.com/search/default.aspx" method="post" target="_blank">
+<input type="text" id="ajaxinput" name="msn_stockid" value="股票代码/简称/拼音首字母" class="hqtxt" style="color:gray;" onfocus="if(this.value==&#39;股票代码/简称/拼音首字母&#39;) this.value=&#39;&#39;;this.style.color=&#39;black&#39;;">
+<a onclick="StockSearch_Submit()"><img src="btnsc.gif" alt="查询" style="cursor:pointer"></a> 
+<script src="stocksearch.js" language="javascript" type="text/javascript"></script>
+</form>
+</div>
+
+<!--沪市 e--> 
+
+</div>
+</div>
+</body>
+</html>

@@ -15,4 +15,8 @@ class PublicController extends Controller
         $response_data['message']=$message;
         return response()->json($response_data);
     }
+
+    public function getNewList(){
+
+    }
 }

@@ -1,0 +1,28 @@
+﻿
+
+.bannerbox{ width:100%; height:400px; overflow:hidden;}
+.bannerpic{display:block; width:100%; height:400px;}
+.bannert_hd{ display:block; width:100%; height:400px; background:url(../images/banner_hd.jpg) no-repeat center;}
+.bannert1{ display:block; width:100%; height:400px; background:url(../images/banner1.jpg) no-repeat center;}
+.bannerswznq{ display:block; width:100%; height:400px; background:url(../images/banner_swznq.jpg) no-repeat center;}
+.bannertsw{ display:block; width:100%; height:400px; background:url(../images/banner2.jpg) no-repeat center;}
+.bannerths{ display:block; width:100%; height:400px; background:url(../images/banner3.jpg) no-repeat center;}
+.bannert_dw{ display:block; width:100%; height:400px; background:url(../images/banner_dw.jpg) no-repeat center;}
+.bannert_ydyx{ display:block; width:100%; height:400px; background:url(../images/banner_ydyx.jpg) no-repeat center;}
+.bannertyb{ display:block; width:100%; height:400px; background:url(../images/banner_yb.jpg) no-repeat center;}
+.bannerbxm{ display:block; width:100%; height:400px; background:url(../images/banner_bxm.jpg) no-repeat center;}
+.bannertbjs{ display:block; width:100%; height:400px; background:url(../images/banner_bjs.jpg) no-repeat center;}
+.bannertzqj{ display:block; width:100%; height:400px; background:url(../images/banner_zqj.jpg) no-repeat center;}
+.bannertzgx{ display:block; width:100%; height:400px; background:url(../images/banner_zgx.jpg) no-repeat center;}
+.bannerttm{ display:block; width:100%; height:400px; background:url(../images/banner_tm.jpg) no-repeat center;}
+.banneryyh{ display:block; width:100%; height:400px; background:url(../images/banner_yyh.jpg) no-repeat center;}
+.bannertlbb{ display:block; width:100%; height:400px; background:url(../images/banner_tlbb.jpg) no-repeat center;}
+.bannerblj{ display:block; width:100%; height:400px; background:url(../images/banner_blj.jpg) no-repeat center;}
+.bannertms11{ display:block; width:100%; height:400px; background:url(../images/banner_tms11.jpg) no-repeat center;}
+.bannertms12{ display:block; width:100%; height:400px; background:url(../images/banner_tms12.jpg) no-repeat center;}
+.bannerjci{ display:block; width:100%; height:400px; background:url(../images/banner_jci.jpg) no-repeat center;}
+.banneragg{ display:block; width:100%; height:400px; background:url(../images/banner_agg.jpg) no-repeat center;}
+.bannerxn{ display:block; width:100%; height:400px; background:url(../images/banner_xn.jpg) no-repeat center;}
+.bannerhls{ display:block; width:100%; height:400px; background:url(../images/banner_hls.jpg) no-repeat center;}
+.swiper-button-next{ right:15%;}
+.swiper-button-prev{ left:15%;}

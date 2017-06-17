@@ -22,4 +22,8 @@ return [
     'Database' => '数据',
     'Media' => '媒体',
     'Settings' => '设置',
+    'Users' => '会员',
+    'Newslists' => '资讯管理',
+    'News' => '资讯',
+    'News Lists' => '资讯管理',
 ];
