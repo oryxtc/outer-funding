@@ -29,11 +29,14 @@ class PublicController extends Controller
         return static::apiJson($reponse_data);
     }
 
-
+    /**
+     * 是否登录
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function homeIslogin()
     {
         if (\Auth::check()) {
-            return static::apiJson([], 'success', '已经登录!');
+            return static::apiJson(['phone'=>\Auth::user()->phone], 'success', '已经登录!');
         }
         return static::apiJson([], 'failed', '未登录!');
     }
