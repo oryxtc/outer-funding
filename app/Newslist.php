@@ -18,6 +18,9 @@ class Newslist extends Authenticatable
         'discuss'=>'机构评论',
         'funding'=>'期货配资',
         'discuss'=>'名家观点',
+        'investment'=>'投资学院',
+        'download'=>'下载专区',
+        'gppzjd'=>'配资解答',
     ];
 
 

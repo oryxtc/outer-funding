@@ -89,9 +89,7 @@ Route::get('/sjqhpz', function () {
 Route::get('/tzxy','PublicController@getInvestmentList');
 
 //下载专区
-Route::get('/xzzq', function () {
-    return view('home.xzzq');
-});
+Route::get('/xzzq', 'PublicController@getDownloadList');
 
 //获取最新新闻
 Route::post('/findNewsList','PublicController@findNewsList');
@@ -99,6 +97,8 @@ Route::post('/findNewsList','PublicController@findNewsList');
 //验证是否登录
 Route::post('/homeIslogin','PublicController@homeIslogin');
 
+//股票配资解答
+Route::get('/gppzjd','PublicController@getAnswerList');
 
 //忘记密码
 Route::get('/forgotpass', function () {

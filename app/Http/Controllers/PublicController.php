@@ -151,4 +151,34 @@ class PublicController extends Controller
         $type='investment';
         return view('home.tzxy',compact('list','type'));
     }
+
+    /**
+     * 获取列表
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getDownloadList(Request $request){
+        //获取列表
+        $list=\DB::table('newslists')
+            ->where('type', 'download')
+            ->limit(15)
+            ->get();
+        $type='download';
+        return view('home.xzzq',compact('list','type'));
+    }
+
+    /**
+     * 获取列表
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getAnswerList(Request $request){
+        //获取列表
+        $list=\DB::table('newslists')
+            ->where('type', 'answer')
+            ->limit(15)
+            ->get();
+        $type='answer';
+        return view('home.gppzjd',compact('list','type'));
+    }
 }
