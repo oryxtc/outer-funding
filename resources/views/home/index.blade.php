@@ -108,7 +108,7 @@
             <div class=" infBox">
                 <div class="tab_tit"><a class="ck" onmouseover="tab_v(1,&#39;wja_&#39;,&#39;wjn_&#39;,4)" id="wja_1">股票资讯</a>
                     <a onmouseover="tab_v(2,&#39;wja_&#39;,&#39;wjn_&#39;,4)" id="wja_2" class="">期货资讯</a>
-                    <div class="dw_t_r"><a href="/gpzixun" target="_blank">MORE+</a></div>
+                    <div class="dw_t_r"><a id="more_url" href="/gpzixun/stock" target="_blank">MORE+</a></div>
                 </div>
                 <div id="wjn_1" style="display:block;">
                     <div class="news">

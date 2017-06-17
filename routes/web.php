@@ -78,9 +78,7 @@ Route::get('/gpzx', function () {
 });
 
 //股票资讯列表
-Route::get('/gpzixun', function () {
-    return view('home.gpzixun');
-});
+Route::get('/gpzixun/{type}','PublicController@getList');
 
 //啥叫期货配资
 Route::get('/sjqhpz', function () {

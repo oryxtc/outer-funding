@@ -29,22 +29,22 @@ function showLocale(objD)
 	if(ss<10) ss = '0' + ss;
 
 	var ww = objD.getDay();
-	if  (ww==0)  ww="ÐÇÆÚÌì";
+	if  (ww==0)  ww="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 
-	if  (ww==1)  ww="ÐÇÆÚÒ»";
+	if  (ww==1)  ww="ï¿½ï¿½ï¿½ï¿½Ò»";
 
-	if  (ww==2)  ww="ÐÇÆÚ¶þ";
+	if  (ww==2)  ww="ï¿½ï¿½ï¿½Ú¶ï¿½";
 
-	if  (ww==3)  ww="ÐÇÆÚÈý";
+	if  (ww==3)  ww="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 
-	if  (ww==4)  ww="ÐÇÆÚËÄ";
+	if  (ww==4)  ww="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 
-	if  (ww==5)  ww="ÐÇÆÚÎå";
+	if  (ww==5)  ww="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 
-	if  (ww==6)  ww="ÐÇÆÚÁù";
+	if  (ww==6)  ww="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 
 
-	str =  "½ñÌìÊÇ£º"+ yy + "Äê" + MM + "ÔÂ" + dd +"&nbsp;&nbsp;"+ ww
+	str =  "ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½"+ yy + "ï¿½ï¿½" + MM + "ï¿½ï¿½" + dd +"&nbsp;&nbsp;"+ ww
 
 	return(str);
 
@@ -63,11 +63,13 @@ function tab_v(id,taba,tabli,num){
 		if(id==i){
 			document.getElementById(taba+i).className="ck";
 			document.getElementById(tabli+i).style.display="block";
+			$('#more_url').attr('href','/gpzixun/futures')
 		}
 		else
 		{
 			document.getElementById(taba+i).className=" ";
 			document.getElementById(tabli+i).style.display="none";
+			$('#more_url').attr('href','/gpzixun/stock')
 		}
 	}
 }

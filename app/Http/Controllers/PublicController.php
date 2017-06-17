@@ -106,4 +106,19 @@ class PublicController extends Controller
             ->get();
         return view('home.xiangqing', compact('news', 'previous_news', 'next_news', 'list'));
     }
+
+    /**
+     * 获取列表
+     * @param Request $request
+     * @param $type
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getList(Request $request,$type){
+        //获取列表
+        $list=\DB::table('newslists')
+            ->where('type', $type)
+            ->limit(15)
+            ->get();
+        return view('home.gpzixun',compact('list','type'));
+    }
 }
