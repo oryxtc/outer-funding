@@ -53,7 +53,25 @@ class PublicController extends Controller
             ->orderBy('created_at', 'DESC')
             ->limit(5)
             ->get();
-        return view('home.index', compact('stock_data', 'futures_data'));
+        //配资技巧
+        $skill_data =\DB::table('newslists')
+                ->where('type', 'skill')
+                ->orderBy('created_at', 'DESC')
+                ->limit(7)
+                ->get();
+        //公司优势
+        $company_data =\DB::table('newslists')
+            ->where('type', 'company')
+            ->orderBy('created_at', 'DESC')
+            ->limit(7)
+            ->get();
+        //机构评论
+        $discuss_data =\DB::table('newslists')
+            ->where('type', 'discuss')
+            ->orderBy('created_at', 'DESC')
+            ->limit(7)
+            ->get();
+        return view('home.index', compact('stock_data', 'futures_data','skill_data','company_data','discuss_data'));
     }
 
     /**
@@ -70,7 +88,7 @@ class PublicController extends Controller
             ->where('id', $id)
             ->first();
         //更新点击数
-        $save_result=\DB::table('newslists')
+        $save_result = \DB::table('newslists')
             ->where('id', $id)
             ->increment('count');
         //获取上一篇

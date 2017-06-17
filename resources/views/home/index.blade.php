@@ -172,13 +172,11 @@
                 <div class="lysub" id="wjc_1" style="display:block;">
                     <div class="s_ys">
                         <ul>
-                            <li><a target="_blank" href="#">良好的客户口碑：中国最老牌的配资公司</a></li>
-                            <li><a target="_blank" href="#youshi/zijin.html">灵活的资金组合：客户自由选择资金配比</a></li>
-                            <li><a target="_blank" href="#youshi/ruanjian.html">简易的交易软件：简单实用的主流交易软件</a></li>
-                            <li><a target="_blank" href="#youshi/churujin.html">便捷的出入金机制：自由出入金，落袋为安</a></li>
-                            <li><a target="_blank" href="#youshi/zhanghu.html">高效的账户安排：资金到账，账户立即到位</a></li>
-                            <li><a target="_blank" href="#youshi/pingtai.html">稳定的交易平台：知名证券公司合作开户</a></li>
-                            <li><a target="_blank" href="#youshi/pingtai.html">稳定的交易平台：知名证券公司合作开户</a></li>
+                            @foreach($company_data as $key=>$item)
+                                    <li>
+                                        <a target="_blank" href="/xiangqing/company/{{$item->id}}"class="&#39;s&#39;">{{$item->title}}</a>
+                                    </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -261,16 +259,11 @@
                             <!--end news-->
                             <div class="gppzlist_inf">
                                 <ul>
-                                    <li><a href="#/guping/mingjia/4/422.html" target="_blank"> 海通国际：中国电力新能源受国策扶持</a>
-                                    </li>
-                                    <li><a href="#/guping/mingjia/7/570.html" target="_blank"> 靳理政：由腾讯引发的蝴蝶效应</a></li>
-                                    <li><a href="#/guping/mingjia/7/569.html" target="_blank"> 靳理政：A股中长期行情向上空间可期 </a>
-                                    </li>
-                                    <li><a href="#/guping/mingjia/4/421.html" target="_blank"> 海通国际：国泰航空维持平稳发展</a></li>
-                                    <li><a href="#/guping/mingjia/1/43.html" target="_blank"> 苏渝：鼓励基金公司上市不是雪中送炭</a></li>
-                                    <li><a href="#/guping/mingjia/1/42.html" target="_blank"> 苏渝：平安与上海家化窝里斗的启示</a></li>
-                                    <li><a href="#/guping/mingjia/1/41.html" target="_blank"> 苏渝：对欺诈上市不仅仅只有重罚和赔偿</a>
-                                    </li>
+                                    @foreach($skill_data as $key=>$item)
+                                        <li>
+                                            <a target="_blank" href="/xiangqing/skill/{{$item->id}}"class="&#39;s&#39;">{{$item->title}}</a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -284,16 +277,11 @@
                             <!--end news-->
                             <div class="gppzlist_inf">
                                 <ul>
-                                    <li><a href="#/guping/mingjia/4/422.html" target="_blank"> 海通国际：中国电力新能源受国策扶持</a>
-                                    </li>
-                                    <li><a href="#/guping/mingjia/7/570.html" target="_blank"> 靳理政：由腾讯引发的蝴蝶效应</a></li>
-                                    <li><a href="#/guping/mingjia/7/569.html" target="_blank"> 靳理政：A股中长期行情向上空间可期 </a>
-                                    </li>
-                                    <li><a href="#/guping/mingjia/4/421.html" target="_blank"> 海通国际：国泰航空维持平稳发展</a></li>
-                                    <li><a href="#/guping/mingjia/1/43.html" target="_blank"> 苏渝：鼓励基金公司上市不是雪中送炭</a></li>
-                                    <li><a href="#/guping/mingjia/1/42.html" target="_blank"> 苏渝：平安与上海家化窝里斗的启示</a></li>
-                                    <li><a href="#/guping/mingjia/1/41.html" target="_blank"> 苏渝：对欺诈上市不仅仅只有重罚和赔偿</a>
-                                    </li>
+                                    @foreach($discuss_data as $key=>$item)
+                                        <li>
+                                            <a target="_blank" href="/xiangqing/discuss/{{$item->id}}"class="&#39;s&#39;">{{$item->title}}</a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

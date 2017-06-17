@@ -11,8 +11,11 @@ class Newslist extends Authenticatable
     use VoyagerUser;
 
     const TYPE_LIST=[
-        'stock'=>'股票',
-        'futures'=>'期货',
+        'stock'=>'股票资讯',
+        'futures'=>'期货资讯',
+        'skill'=>'配资技巧',
+        'company'=>'公司优势',
+        'discuss'=>'机构评论',
     ];
 
 
