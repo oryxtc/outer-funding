@@ -63,12 +63,8 @@
                         @endforeach
                     </ul>
                 </div>
-                <div class="foosun_pagebox">
-                    <a disabled="disabled" style="margin-right:5px;">首页</a><a disabled="disabled"
-                                                                              style="margin-right:5px;">上一页</a><span
-                            class="foosun_pagebox_num_nonce" style="margin-right:5px;">1</span><a href="#"
-                                                                                                  style="margin-right:5px;">2</a><a
-                            href="#" style="margin-right:5px;">下一页</a><a href="#" style="margin-right:5px;">尾页</a>
+                <div class="foosun_pagebox " style="display: flex;justify-content: center;">
+                    {{ $list->links()}}
                 </div>
             </div>
             <div class="clist_r">

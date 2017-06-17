@@ -20,7 +20,8 @@ class Newslist extends Authenticatable
         'discuss'=>'名家观点',
         'investment'=>'投资学院',
         'download'=>'下载专区',
-        'gppzjd'=>'配资解答',
+        'answer'=>'股票配资解答',
+        'qhpzjd'=>'期货配资解答',
     ];
 
 

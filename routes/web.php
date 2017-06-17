@@ -97,8 +97,17 @@ Route::post('/findNewsList','PublicController@findNewsList');
 //验证是否登录
 Route::post('/homeIslogin','PublicController@homeIslogin');
 
+//股票配资技巧
+Route::get('/gppzjq','PublicController@getSkillList');
+
 //股票配资解答
 Route::get('/gppzjd','PublicController@getAnswerList');
+
+//期货配资
+Route::get('/qhpz','PublicController@getFundingList');
+
+//期货配资解答
+Route::get('/qhpzjd','PublicController@getQhpzjdList');
 
 //忘记密码
 Route::get('/forgotpass', function () {

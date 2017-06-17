@@ -132,8 +132,7 @@ class PublicController extends Controller
         //获取列表
         $list=\DB::table('newslists')
             ->where('type', $type)
-            ->limit(15)
-            ->get();
+            ->paginate(4);
         return view('home.gpzixun',compact('list','type'));
     }
 
@@ -146,8 +145,7 @@ class PublicController extends Controller
         //获取列表
         $list=\DB::table('newslists')
             ->where('type', 'investment')
-            ->limit(15)
-            ->get();
+            ->paginate(4);
         $type='investment';
         return view('home.tzxy',compact('list','type'));
     }
@@ -161,8 +159,7 @@ class PublicController extends Controller
         //获取列表
         $list=\DB::table('newslists')
             ->where('type', 'download')
-            ->limit(15)
-            ->get();
+            ->paginate(4);
         $type='download';
         return view('home.xzzq',compact('list','type'));
     }
@@ -176,9 +173,51 @@ class PublicController extends Controller
         //获取列表
         $list=\DB::table('newslists')
             ->where('type', 'answer')
-            ->limit(15)
-            ->get();
+            ->paginate(4);
         $type='answer';
         return view('home.gppzjd',compact('list','type'));
+    }
+
+    /**
+     * 获取列表
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getFundingList(Request $request){
+        //获取列表
+        $list=\DB::table('newslists')
+            ->where('type', 'funding')
+            ->paginate(4);
+        $type='funding';
+        return view('home.qhpz',compact('list','type'));
+    }
+
+    /**
+     * 获取列表
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getSkillList(Request $request){
+        //获取列表
+        $list=\DB::table('newslists')
+            ->where('type', 'skill')
+            ->paginate(4);
+        $type='skill';
+        return view('home.gppzjq',compact('list','type'));
+    }
+
+
+    /**
+     * 获取列表
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getQhpzjdList(Request $request){
+        //获取列表
+        $list=\DB::table('newslists')
+            ->where('type', 'qhpzjd')
+            ->paginate(4);
+        $type='qhpzjd';
+        return view('home.qhpzjd',compact('list','type'));
     }
 }
