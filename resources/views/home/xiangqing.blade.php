@@ -71,7 +71,7 @@
                     <div class="title_desc"><span
                                 class="gray">时间：{{ \Carbon\Carbon::parse($news->created_at)->format('Y年m月d日 H点s分') }}</span>
                         <span
-                                class="gray">来源：中国配资网</span> <span class="gray">访问量：1982</span></div>
+                                class="gray">来源：中国配资网</span> <span class="gray">访问量：{{$news->count}}</span></div>
                     <div class="art_context">
                         <p>{!! $news->content !!}</p>
                     </div>

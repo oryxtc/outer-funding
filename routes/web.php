@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home.index');
-});
+Route::get('/','PublicController@index');
 
 //注册 登录 忘记密码
 Auth::routes();

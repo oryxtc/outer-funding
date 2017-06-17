@@ -70,7 +70,7 @@ class PublicController extends Controller
             ->where('id', $id)
             ->first();
         //更新点击数
-        \DB::table('newslists')
+        $save_result=\DB::table('newslists')
             ->where('id', $id)
             ->increment('count');
         //获取上一篇
