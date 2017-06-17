@@ -86,9 +86,7 @@ Route::get('/sjqhpz', function () {
 });
 
 //投资学院
-Route::get('/tzxy', function () {
-    return view('home.tzxy');
-});
+Route::get('/tzxy','PublicController@getInvestmentList');
 
 //下载专区
 Route::get('/xzzq', function () {
