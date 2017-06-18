@@ -17,7 +17,7 @@ class Newslist extends Authenticatable
         'company'=>'公司优势',
         'discuss'=>'机构评论',
         'funding'=>'期货配资',
-        'discuss'=>'名家观点',
+        'famous'=>'名家观点',
         'investment'=>'投资学院',
         'download'=>'下载专区',
         'answer'=>'股票配资解答',
