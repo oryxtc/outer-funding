@@ -226,20 +226,16 @@
                         </div>
                     </div>
                     <div class="cp_sdfont">
-                        <label>总操盘费用：</label>
-                        <span class=""><i id="lx"></i>元<strong style="margin-left: 14px; font-weight: 100;">一次性收取管理费用，中途终结方案不予退还，到期后自动延期一个月并扣除相应费用</strong></span>
+                        <label>月利息：</label>
+                        <span class=""><i id="monthly_interest"></i>元</span>
                     </div>
                     <div class="cp_sdfont">
-                        <label>开始交易时间：</label>
-                        <i class="cp_sd_time">
-                            <input type="radio" class="tday" name="tradeStart" value="0">
-                            <b class="tday">立即交易</b></i> <i class="cp_sd_time">
-                            <input type="radio" class="nday" name="tradeStart" value="1">
-                            <b class="nday">下个交易日</b></i>
-                        <div class="uc_pay_promt uc_pay_promt4" style="display: none;"><i class="uc_pp_arrow"></i>
-                            <p>一般选择下个交易日，如看中行情急需交易，可直接选择今天交易（今天开始收取账户管理费并扣除利息）</p>
-                        </div>
-                        <div class="cp_resd" id="hint">30分钟内开户</div>
+                        <label>管理费：</label>
+                        <span class=""><i id="management_fee"></i>元</span>
+                    </div>
+                    <div class="cp_sdfont">
+                        <label>总操盘费用：</label>
+                        <span class=""><i id="lx"></i>元</span>
                     </div>
                 </div>
                 <div class="cp_bom">
@@ -267,14 +263,20 @@
 </html>
 <script type="application/javascript">
         var computeFunding=function () {
-            var caution_money=$('#tz').val();
+            var caution_money=Number($('#tz').val().replace(',',''));
             var multiple=$('.cp_m_mul .on').val()
             var duration=$('.cp_m_dur .on').val()
             var request_data={"caution_money":caution_money,"multiple":multiple,"duration":duration};
             $.post('/computeFunding',request_data,function(data){
                 if(data.status==='success'){
-                     $("#pzgg").val(Number($(this).attr('data')));
-                    console.log(data.data)
+                     $("#pzje").text(data.data.quota);
+                     $("#zcpzj").text(data.data.funds);
+                     $("#ksbcx").text(data.data.loss_cordon);
+                     $("#kspcx").text(data.data.loss_money);
+                     $("#end_day").text(data.data.end_time);
+                     $("#monthly_interest").text(data.data.monthly_interest);
+                     $("#management_fee").text(data.data.management_fee);
+                     $("#lx").text(data.data.total_costs);
                 }
             })
         }
