@@ -326,7 +326,7 @@ $(document).ready(function(e) {
 		$(this).focus();
 	}).focus(function() {
 		if($(this).val()==''){
-			$("#use_day").removeClass("font_size_15").addClass("font_size_22");	
+			$("#use_day").removeClass("font_size_15").addClass("font_size_22");
 			$(this).val('');
 			}
 		$(this).css("ime-mode","disabled");
@@ -334,13 +334,13 @@ $(document).ready(function(e) {
 	
 	//配额选中事件
 	$('#margin ul li').click(function() {
-		$("#tz").removeClass("font_size_15").addClass("font_size_22");	
+		$("#tz").removeClass("font_size_15").addClass("font_size_22");
 		$('#margin ul li.on').removeClass('on');
 		$(this).addClass('on');
-		$("#tz").val($.formatMoney(Number($(this).attr('data'))));	
-		getAllData($("#pzgg").val());
+		$("#tz").val($.formatMoney(Number($(this).attr('data'))));
+		// getAllData($("#pzgg").val());
 		showLever();
-		
+
 	});
 	
 	//倍数选中事件
@@ -354,10 +354,10 @@ $(document).ready(function(e) {
 	
 	//天数选中事件
 	$('#match_days ul li').click(function() {
-		$("#use_day").removeClass("font_size_15").addClass("font_size_22");	
+		$("#use_day").removeClass("font_size_15").addClass("font_size_22");
 		$('#match_days ul li.on').removeClass('on');
 		$(this).addClass('on');
-		$("#use_day").val(Number($(this).attr('data')));
+		// $("#use_day").val(Number($(this).attr('data')));
 		dayChange();
 		getData();
 	});
@@ -462,7 +462,7 @@ $(document).ready(function(e) {
 		$("#tz").val(tz);
 		var gg=$.isNumeric($('#capital_lever ul li.on').attr('data'))?Number($('#capital_lever ul li.on').attr('data')):'';
 		if(gg==''){
-			$("#pzgg").removeClass("font_size_22").addClass("font_size_15");	
+			$("#pzgg").removeClass("font_size_22").addClass("font_size_15");
 		}
 		$("#pzgg").val(gg);
 		var use_day=$.isNumeric($('#match_days ul li.on').attr('data'))?Number($('##match_days ul li.on').attr('data')):'';
@@ -512,7 +512,7 @@ $(document).ready(function(e) {
         			$("#pzgg").removeClass("font_size_15").addClass("font_size_22");	
         			$('#capital_lever ul li.on').removeClass('on');
         			$(this).addClass('on');
-        			$("#pzgg").val(Number($(this).attr('data')));
+        			// $("#pzgg").val(Number($(this).attr('data')));
         			getAllData($("#pzgg").val());
         		});
            }else

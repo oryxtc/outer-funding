@@ -52,7 +52,7 @@ class UsersController extends Controller
         $B = $request->input('multiple', 1); //倍数 即B
         $Y = $request->input('duration', 0); //持续时间 即Y
 
-        $data = $this->fundingConfige($A, $B, $Y);
+        $data = $this->fundingConfig($A, $B, $Y);
 
         return PublicController::apiJson($data);
     }
@@ -77,7 +77,7 @@ class UsersController extends Controller
         //验证数据
         $validator_result = $this->validatorFunding($request->all());
         if ($validator_result['status'] === false) {
-            return PublicController::apiJson($validator_result['data'], 'failed');
+            return redirect('/yyyouyu');
         }
 
         //验证是否实名认证
@@ -107,9 +107,9 @@ class UsersController extends Controller
         $save_result = \DB::table('fundings')
             ->insert($data);
         if ($save_result === false) {
-            return PublicController::apiJson([], 'failed', '提交失败!');
+            return redirect('/yyyouyu');
         }
-        return PublicController::apiJson($data);
+        return redirect('/yyyouyu');
     }
 
     /**

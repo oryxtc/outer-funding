@@ -137,19 +137,19 @@
                         </div>
                         <div class="cp_m_list" id="capital_lever">
                             <ul class="cp_m_mul">
-                                <li data="1" class="">
+                                <li data="1" class="" value="1">
                                     <p><i>1倍</i></p>
                                 </li>
-                                <li data="2" class="">
+                                <li data="2" class="" value="2">
                                     <p><i>2倍</i></p>
                                 </li>
-                                <li data="3" class="">
+                                <li data="3" class="" value="3">
                                     <p><i>3倍</i></p>
                                 </li>
-                                <li data="4" class="">
+                                <li data="4" class="" value="4">
                                     <p><i>4倍</i></p>
                                 </li>
-                                <li data="5" class="">
+                                <li data="5" class="" value="5">
                                     <p><i>5倍</i></p>
                                 </li>
                             </ul>
@@ -163,20 +163,20 @@
                                    placeholder="2~180天" onpaste="return false" autocomplete="off" value="">
                         </div>
                         <div class="cp_m_list" id="match_days">
-                            <ul>
-                                <li data="1" style="background:#fff;">
+                            <ul class="cp_m_dur">
+                                <li data="1" style="background:#fff;" value="1">
                                     <p><i>1月</i></p>
                                 </li>
-                                <li data="2" style="background:#fff;">
+                                <li data="2" style="background:#fff;" value="2">
                                     <p><i>2月</i></p>
                                 </li>
-                                <li data="3" style="background:#fff;">
+                                <li data="3" style="background:#fff;" value="3">
                                     <p><i>3月</i></p>
                                 </li>
-                                <li data="4" style="background:#fff;">
+                                <li data="4" style="background:#fff;" value="4">
                                     <p><i>6月</i></p>
                                 </li>
-                                <li data="5" style="background:#fff;">
+                                <li data="5" style="background:#fff;" value="5">
                                     <p><i>12月</i></p>
                                 </li>
                             </ul>
@@ -194,7 +194,7 @@
                         <label>操盘配额：</label>
                         <span><i id="pzje"></i>元</span>
                         <div class="uc_pay_promt uc_pay_promt1" style="display: none;"><i class="uc_pp_arrow"></i>
-                            <p>配股宝借给您炒股的资金。</p>
+                            <p>借给您炒股的资金。</p>
                         </div>
                     </div>
                     <div class="cp_sdfont">
@@ -265,3 +265,30 @@
 </div>
 </body>
 </html>
+<script type="application/javascript">
+        var computeFunding=function () {
+            var caution_money=$('#tz').val();
+            var multiple=$('.cp_m_mul .on').val()
+            var duration=$('.cp_m_dur .on').val()
+            var request_data={"caution_money":caution_money,"multiple":multiple,"duration":duration};
+            $.post('/computeFunding',request_data,function(data){
+                if(data.status==='success'){
+                     $("#pzgg").val(Number($(this).attr('data')));
+                    console.log(data.data)
+                }
+            })
+        }
+    $(function () {
+        $('#margin ul li').click(function() {
+            computeFunding();
+        });
+        $('#capital_lever ul li').click(function() {
+            computeFunding();
+        });
+        $('#match_days ul li').click(function() {
+            computeFunding();
+        });
+
+
+    })
+</script>
