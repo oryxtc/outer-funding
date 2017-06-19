@@ -105,12 +105,36 @@
 </html>
 <script type="application/javascript">
     $(function () {
+        var countdown=60;
+        function settime(val) {
+            console.log(val)
+            if (countdown == 0) {
+                val.attr("disabled", false);
+                val.text("重新发送");
+                val.css({
+                    "background":"#fe8836"
+                });
+                countdown = 60;
+                return false;
+            } else {
+                val.attr("disabled", true);
+                val.text("正在获取"+countdown);
+                val.css({
+                    "background":"#ccc"
+                });
+                countdown--;
+            }
+            setTimeout(function() {
+                settime(val);
+            },1000);
+        }
+        
         $('#push_phone_code').click(function () {
             var phone=$('#phone').val();
             var type='reset_pass';
             $.post('/sendValidatorCode',{"phone":phone,"type":type},function (data) {
                 if(data.status==='success'){
-                    //TODO
+                    settime(btn)
                 }
             })
         })
