@@ -67,8 +67,8 @@ function tab_v(id,taba,tabli,num){
 		}
 		else
 		{
-			document.getElementById(taba+i).className=" ";
-			document.getElementById(tabli+i).style.display="none";
+			// document.getElementById(taba+i).className=" ";
+			// document.getElementById(tabli+i).style.display="none";
 			$('#more_url').attr('href','/gpzixun/stock')
 		}
 	}
