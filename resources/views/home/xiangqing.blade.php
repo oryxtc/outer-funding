@@ -13,13 +13,8 @@
 
 </head>
 <body>
-<div class="headTop">
-    <div class="header">
-        <div class="salogan"></div>
-        <p><a href="/login" rel="nofollow">登录</a>|<a href="/register" rel="nofollow">免费注册</a> <span>客服热线：</span><font>0931-8500903</font>
-        </p>
-    </div>
-</div>
+//导航面包屑
+@include('home.layouts.islogin')
 <div class="wapper">
     <div class="top">
         <div class="top2"><a href="/index" title="股票配资网"><img src="{{asset('./AmImages/logo.png')}}" alt="股票配资网"> </a>
