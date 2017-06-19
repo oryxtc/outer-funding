@@ -9,7 +9,8 @@
                 <span>用户名:{{auth()->user()->phone}}
                     <a href="/logout" rel="nofollow"
                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">退出</a>
-                </span>
+                </span>|
+                <a href="/userinfo">个人中心</a>
             @endif
             <span>客服热线：</span><font>0931-8500903</font>
         </p>
