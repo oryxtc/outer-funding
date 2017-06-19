@@ -47,6 +47,6 @@ class ValidatorController extends Controller
         if ($save_result === false) {
             return PublicController::apiJson([], 'failed', '发送验证码失败!');
         }
-        return PublicController::apiJson(['code'=>$code]);
+        return PublicController::apiJson();
     }
 }

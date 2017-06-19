@@ -108,8 +108,8 @@ Route::get('/qhpz','PublicController@getFundingList');
 Route::get('/qhpzjd','PublicController@getQhpzjdList');
 
 //忘记密码
-Route::get('/forgotpass', function () {
-    return view('home.forgotpass');
+Route::get('/forgetpw', function () {
+    return view('home.forgetpw');
 });
 
 //注册

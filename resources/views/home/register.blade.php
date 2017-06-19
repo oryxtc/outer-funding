@@ -99,7 +99,7 @@
             </form>
         </div>
         <div style="display: none;">
-            <form id="loginForm" action="http://login.peigubao.com/login" onsubmit="return loginValidate();"
+            <form id="loginForm" action="/login" onsubmit="return loginValidate();"
                   method="post" target="ssoLoginFrame">
                 <input type="hidden" name="isajax" value="true">
                 <input type="hidden" name="isframe" value="true">
