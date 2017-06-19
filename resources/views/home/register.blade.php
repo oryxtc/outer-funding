@@ -46,43 +46,56 @@
             <h3>用户注册
                 <p id="rightP" style="margin-top:-15px; *margin-top:-34px;">已有账号？<a href="/login">立即登录</a></p>
             </h3>
-            <form class="form" action="" method="post">
+            <form class="form" action="register" method="post">
                 <ul class="rg_list">
                     <li><i>*</i>
                         <label>手机号码</label>
                         <input type="text" class="phone rg_l_ip rg_l_iperror" id="mobile" name="mobile" maxlength="11">
-                        <span class="rg_l_promt" style="display: block;">以后用该手机号码登录平台</span>
-                        <p style="display: none;" class="rg_l_error">该手机号码已经存在</p>
+                        @if ($errors->has('phone'))
+                            <span class="rg_l_error">{{ $errors->first('phone') }}</span>
+                        @else
+                            <span class="rg_l_promt" style="display: block;">以后用该手机号码登录平台</span>
+                        @endif
                     </li>
                     <li><i>*</i>
                         <label>手机验证</label>
-                        <input type="text" class="rg_l_codeip rg_l_tlcode rg_l_ip" id="code" name="code" maxlength="6">
+                        <input type="text" class="rg_l_codeip rg_l_tlcode rg_l_ip" id="code" name="phone_code" maxlength="6">
                         <span class="rg_l_promt" style="display: none">请先获取验证码</span>
                         <!-- <a href="javascript:void(0);" status="true" id="getCode" name="getCode" class="rg_l_codebtn">获取验证码</a> -->
                         <a href="javascript:void(0);" status="true" id="openYZMBox" name="openYZMBox"
                            class="rg_l_codebtn"
                            onclick="_hmt.push([&#39;_trackEvent&#39;,&#39;signin&#39;,&#39;click&#39;,&#39;sendcode&#39;]);">获取验证码</a>
-                        <p style="display: none;" class="rg_l_error">输入验证码有误！</p>
+                        @if ($errors->has('phone_code'))
+                            <span class="rg_l_error">{{ $errors->first('phone_code') }}</span>
+                        @endif
                     </li>
                     <li><i>*</i>
                         <label>登录密码</label>
                         <input type="password" class="rg_l_password rg_l_ip" id="password" name="password"
                                maxlength="16">
                         <span class="rg_l_promt" style="display: none">6-16位数字和字母组成</span>
-                        <p style="display: none;" class="rg_l_error">密码必须由6-16位数字和字母组成</p>
+                        @if ($errors->has('password'))
+                            <span class="rg_l_error">{{ $errors->first('password') }}</span>
+                        @endif
                     </li>
                     <li><i>*</i>
                         <label>确认密码</label>
-                        <input type="password" class="rg_l_password rg_l_ip" id="affirmpassword" name="affirmpassword"
+                        <input type="password" class="rg_l_password rg_l_ip" id="affirmpassword"
+                               name="password_confirmation"
                                maxlength="16">
                         <span class="rg_l_promt" style="display: none">请再输入一次您设置的密码</span>
-                        <p style="display: none;" class="rg_l_error">两次密码不一致</p>
+                        @if ($errors->has('password_confirmation'))
+                            <span class="rg_l_error">{{ $errors->first('password_confirmation') }}</span>
+                        @endif
+                        {{--<p style="display: none;" class="rg_l_error">两次密码不一致</p>--}}
                     </li>
                 </ul>
                 <div class="rg_agree">
                     <input type="checkbox" checked="checked" id="agreement" name="agreement">
                     我已阅读并同意<a href="javascript:showAgreement();">《配资网站服务协议》</a></div>
-                <div class="rg_btn"><a status="true" id="signin" name="signin" href="javascript:void(0);">立即注册</a></div>
+                <div class="rg_btn">
+                    <a status="true" id="signin" name="signin" href="javascript:void(0);" onclick="$('.form').submit()">立即注册</a>
+                </div>
             </form>
         </div>
         <div style="display: none;">

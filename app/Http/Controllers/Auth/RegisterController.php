@@ -52,16 +52,17 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         //验证数据
-        $validator_result = $this->validator($request->all());
-        if ($validator_result['status'] === false) {
-            return PublicController::apiJson($validator_result['data'], 'failed');
+        $validator = $this->validator($request->all());
+        //如果验证失败
+        if ($validator->fails() === true) {
+            $validator->validate();
         }
         event(new Registered($user = $this->create($request->all())));
 
         $this->guard()->login($user);
 
         return $this->registered($request, $user)
-            ?: PublicController::apiJson([], 'success', '注册成功!');
+            ?: redirect('/');
     }
 
     /**
@@ -93,9 +94,12 @@ class RegisterController extends Controller
             'phone.required' => '请输入手机号!',
             'phone_code.required' => '请输入验证码!',
             'password.required' => '请输入密码!',
+            'password_confirmation.required' => '请确认密码!',
             'password.confirmed' => '两次密码不一致!',
             'password.min' => '请输入6-16位密码!',
+            'password_confirmation.min' => '请输入6-16位密码!',
             'password.max' => '请输入6-16位密码!',
+            'password_confirmation.max' => '请输入6-16位密码!',
         ];
 
         //验证数据类型
@@ -103,11 +107,12 @@ class RegisterController extends Controller
             'phone' => 'required|numeric|unique:users',
             'phone_code' => 'required|string',
             'password' => 'required|string|min:6|max:16|confirmed',
+            'password_confirmation' => 'required|string|min:6|max:16',
         ], $message);
+
         //如果验证失败
-        if ($validator->fails() === true) {
-            return ['status' => false, 'data' => $validator->errors()->all()];
-        }
+        return $validator;
+
         //验证手机注册验证码
         $validator->after(function ($validator) use ($data) {
             $validator_code_result = ValidatorController::validatorCode($data['phone'], $data['phone_code'], 'register');
@@ -115,10 +120,7 @@ class RegisterController extends Controller
                 $validator->errors()->add('phone_code', '验证码错误或已过期!');
             }
         });
-        //如果验证失败
-        if ($validator->fails() === true) {
-            return ['status' => false, 'data' => $validator->errors()->all()];
-        }
-        return ['status' => true];
+
+        return $validator;
     }
 }
