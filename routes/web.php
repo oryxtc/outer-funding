@@ -36,6 +36,14 @@ Route::group(['prefix' => 'admin'], function () {
 //首页
 Route::get('/index', 'PublicController@index');
 
+//实名认证
+Route::get('/securityInfo','UsersController@securityInfo');
+
+//个人信息
+Route::get('/userinfo', function () {
+    return view('home.userinfo');
+});
+
 //公司介绍
 Route::get('/gsjs', function () {
     return view('home.gsjs');

@@ -84,7 +84,7 @@
         </div>
     </div>
     <div class="capital">
-        <form method="POST" action="">
+        <form method="POST" action="fundingApplication" id="funding_form">
             <input type="hidden" name="type" value="1">
             <input type="hidden" name="capitalMargin" id="capitalMargin" value="100000">
             <input type="hidden" name="leverBack" id="lever" value="1">
@@ -240,7 +240,7 @@
                 </div>
                 <div class="cp_bom">
                     <p>如您不清楚规则，或有其他疑问，请联系客服：0931-8500903</p>
-                    <div class="cp_b_btn"><a href="javascript:void(0);" id="submit">提交操盘申请</a></div>
+                    <div class="cp_b_btn"><a href="javascript:void(0);" id="submit" onclick="$('#funding_form').submit()">提交操盘申请</a></div>
                     <div class="cp_b_link">
                         <input type="checkbox" checked="checked" id="agree">
                         <span>我已阅读并同意<a href="javascript:tradeContract(1);">《月月操盘合作协议》</a><a

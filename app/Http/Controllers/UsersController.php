@@ -23,22 +23,22 @@ class UsersController extends Controller
     {
         $request_data = $request->all();
         //验证数据
-        $validator_result = $this->validator($request_data);
-        if ($validator_result['status'] === false) {
-            return PublicController::apiJson($validator_result['data'], 'failed');
+        $validator = $this->validator($request_data);
+        if ($validator->fails()) {
+            return redirect('/securityInfo');
         }
         //准备数据
-        $id          = \Auth::id();
+        $id = \Auth::id();
         $actual_name = $request_data['actual_name'];
-        $id_card     = $request_data['id_card'];
+        $id_card = $request_data['id_card'];
         //更新数据
         $update_result = \DB::table('users')
             ->where([['id', $id]])
             ->update(['actual_name' => $actual_name, 'id_card' => $id_card]);
         if ($update_result === false) {
-            return PublicController::apiJson([], 'failed', '实名认证失败!');
+            return redirect('/securityInfo');
         }
-        return PublicController::apiJson([], 'success', '实名认证成功!');
+        return redirect('/userinfo');
     }
 
     /**
@@ -57,9 +57,24 @@ class UsersController extends Controller
         return PublicController::apiJson($data);
     }
 
+    /**
+     * 认证用户
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function securityInfo()
+    {
 
-    public function showFunding(Request $request){
+        $actual_name = auth()->user()->actual_name;
+        $id_card = auth()->user()->id_card;
+        $haveVerified = true;
+        if (empty($actual_name) || empty($id_card)) {
+            $haveVerified = false;
+        }
+        return view('home.securityInfo', ['haveVerified' => $haveVerified]);
+    }
 
+    public function showFunding(Request $request)
+    {
         return view('home.yyyouyu');
     }
 
@@ -73,36 +88,32 @@ class UsersController extends Controller
         $A = $request->input('caution_money'); //保证金 即A
         $B = $request->input('multiple', 1); //倍数 即B
         $Y = $request->input('duration', 0); //持续时间 即Y
-
         //验证数据
-        $validator_result = $this->validatorFunding($request->all());
-        if ($validator_result['status'] === false) {
+        $validator = $this->validatorFunding($request->all());
+        if ($validator->fails()) {
             return redirect('/yyyouyu');
         }
-
         //验证是否实名认证
         $user_info = \DB::table('users')
             ->select('actual_name', 'id_card', 'phone')
             ->where('id', \Auth::id())
             ->first();
         if (empty($user_info->actual_name) || empty($user_info->id_card)) {
-            return PublicController::apiJson([], 'failed', '配资前请先实名认证!');
+            return redirect('/securityInfo');
         }
-
-
         $date = date('Y-m-d H:i:s', time());
         //准备数据
-        $data                  = $this->fundingConfig($A, $B, $Y);
-        $data['user_id']       = \Auth::id();
-        $data['phone']         = $user_info->phone;
-        $data['id_card']       = $user_info->id_card;
-        $data['actual_name']   = $user_info->actual_name;
+        $data = $this->fundingConfig($A, $B, $Y);
+        $data['user_id'] = \Auth::id();
+        $data['phone'] = $user_info->phone;
+        $data['id_card'] = $user_info->id_card;
+        $data['actual_name'] = $user_info->actual_name;
         $data['caution_money'] = $A;
-        $data['multiple']      = $B;
-        $data['duration']      = $Y;
-        $data['duration']      = $Y;
-        $data['created_at']    = $date;
-        $data['updated_at']    = $date;
+        $data['multiple'] = $B;
+        $data['duration'] = $Y;
+        $data['duration'] = $Y;
+        $data['created_at'] = $date;
+        $data['updated_at'] = $date;
         //存入数据库
         $save_result = \DB::table('fundings')
             ->insert($data);
@@ -134,11 +145,7 @@ class UsersController extends Controller
             'multiple' => 'required|numeric|min:1',
             'duration' => 'required|numeric|min:1',
         ], $message);
-        //如果验证失败
-        if ($validator->fails() === true) {
-            return ['status' => false, 'data' => $validator->errors()->all()];
-        }
-        return ['status' => true];
+        return $validator;
     }
 
     /**
@@ -154,15 +161,12 @@ class UsersController extends Controller
             'id_card.required' => '身份证号不能为空!',
         ];
         //验证数据类型
-        $validator = Validator::make($data, [
-            'actual_name' => 'required|string',
-            'id_card' => 'required|string',
+        $validator = \Validator::make($data, [
+            'actual_name' => 'required',
+            'id_card' => 'required',
         ], $message);
         //如果验证失败
-        if ($validator->fails() === true) {
-            return ['status' => false, 'data' => $validator->errors()->all()];
-        }
-        return ['status' => true];
+        return $validator;
     }
 
     /**
@@ -175,14 +179,14 @@ class UsersController extends Controller
     private function fundingConfig($A, $B, $Y)
     {
         //计算数据
-        $data['quota']       = floatval($A * $B); //配额
-        $data['funds']       = floatval($A * $B + $A); //总操盘资金
+        $data['quota'] = floatval($A * $B); //配额
+        $data['funds'] = floatval($A * $B + $A); //总操盘资金
         $data['loss_cordon'] = floatval($A * $B * 1.15); //亏损警戒线
-        $data['loss_money']  = floatval($A * $B * 1.10); //亏损平仓线
-        $data['end_time']    = date("Y-m-d", strtotime("+" . $Y . "month +1day"));; //结束时间
+        $data['loss_money'] = floatval($A * $B * 1.10); //亏损平仓线
+        $data['end_time'] = date("Y-m-d", strtotime("+" . $Y . "month +1day"));; //结束时间
         $data['monthly_interest'] = $Y > 0 ? floatval($A * $B * 0.02) : 0; //月利息
-        $data['management_fee']   = $Y > 0 ? floatval($A * $B * 0.01) : 0; //管理费
-        $data['total_costs']      = $Y > 0 ? floatval($A * $B * 0.02 * $Y + $A * $B * 0.01 * $Y) : 0; //总费用
+        $data['management_fee'] = $Y > 0 ? floatval($A * $B * 0.01) : 0; //管理费
+        $data['total_costs'] = $Y > 0 ? floatval($A * $B * 0.02 * $Y + $A * $B * 0.01 * $Y) : 0; //总费用
 
         return $data;
     }
