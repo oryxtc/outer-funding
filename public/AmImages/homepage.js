@@ -126,7 +126,38 @@ $(function () {
 		    	return
 			}
 		},"json");
-	})
+	});
+
+	//登录操作
+	$("#login").click(function(){
+		var $this = $(this);
+		$this.text("正在登录");
+		$this.attr("disabled","disabled");
+		var loginName = $.trim($("#username").val());
+		var password = $.trim($("#password").val());
+		if(loginName == null || loginName.length <= 0){
+			$this.text("立即登录");
+			$this.removeAttr("disabled");
+			$("#username").focus();
+			return;
+		}else if(password == null || password.length <= 0){
+			$this.text("立即登录");
+			$this.removeAttr("disabled");
+			$("#password").focus();
+			return;
+		}
+		loginValid = true;
+		// $("#loginForm").submit();
+		//ajax调用
+		$.post('/login',{"phone":loginName,"password":password},function (data) {
+			if(data.status==='success'){
+				$("#logindiv").hide();
+				location.reload();
+			}
+		})
+		$this.text("立即登录");
+		$this.removeAttr("disabled");
+	});
 	
 });
 
@@ -142,30 +173,6 @@ form.on("keypress", "input", function(event){
 		return false;
 	}
 })
-
-//登录操作
-$("#login").click(function(){
-	var $this = $(this);
-	$this.text("正在登录");
-	$this.attr("disabled","disabled");
-	var loginName = $.trim($("#username").val());
-	var password = $.trim($("#password").val());
-	if(loginName == null || loginName.length <= 0){
-		$this.text("立即登录");
-		$this.removeAttr("disabled");
-		$("#username").focus();
-		return;
-	}else if(password == null || password.length <= 0){
-		$this.text("立即登录");
-		$this.removeAttr("disabled");
-		$("#password").focus();
-		return;
-	}
-	loginValid = true;
-	$("#loginForm").submit();
-	$this.text("立即登录");
-	$this.removeAttr("disabled");
-});
 
 // 登录验证函数, 由 onsubmit 事件触发
 function loginValidate() {
@@ -205,13 +212,14 @@ function flushLoginTicket() {
 //判断用户是否登陆
 function islogin(){
 	$.post(basepath+"homeIslogin",function(data){
-		if(data.success){
+		//TODO
+		if(data.status==='success'){
 			$("#logindiv").hide();
 			$("#logondiv").show();
 			// 账户信息
 	    }else{
 	    	$("#logindiv").show();
-			$("#logondiv").hide();
+            $("#logondiv").hide();
 		}
 	},"json");
 }

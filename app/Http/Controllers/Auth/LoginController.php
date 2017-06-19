@@ -93,7 +93,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return PublicController::apiJson([],'success','登出成功!');
+        return redirect('/');
     }
 
     /**
