@@ -50,7 +50,7 @@
                 <ul class="rg_list">
                     <li><i>*</i>
                         <label>手机号码</label>
-                        <input type="text" class="phone rg_l_ip rg_l_iperror" id="mobile" name="mobile" maxlength="11">
+                        <input type="text" class="phone rg_l_ip rg_l_iperror" id="phone" name="phone" maxlength="11">
                         @if ($errors->has('phone'))
                             <span class="rg_l_error">{{ $errors->first('phone') }}</span>
                         @else
@@ -59,12 +59,12 @@
                     </li>
                     <li><i>*</i>
                         <label>手机验证</label>
-                        <input type="text" class="rg_l_codeip rg_l_tlcode rg_l_ip" id="code" name="phone_code" maxlength="6">
+                        <input type="text" class="rg_l_codeip rg_l_tlcode rg_l_ip" id="phone_code" name="phone_code" maxlength="6">
                         <span class="rg_l_promt" style="display: none">请先获取验证码</span>
                         <!-- <a href="javascript:void(0);" status="true" id="getCode" name="getCode" class="rg_l_codebtn">获取验证码</a> -->
-                        <a href="javascript:void(0);" status="true" id="openYZMBox" name="openYZMBox"
+                        <a id="push_phone_code" href="javascript:void(0);" status="true" id="openYZMBox" name="openYZMBox"
                            class="rg_l_codebtn"
-                           onclick="_hmt.push([&#39;_trackEvent&#39;,&#39;signin&#39;,&#39;click&#39;,&#39;sendcode&#39;]);">获取验证码</a>
+                           onclick="">获取验证码</a>
                         @if ($errors->has('phone_code'))
                             <span class="rg_l_error">{{ $errors->first('phone_code') }}</span>
                         @endif
@@ -122,3 +122,16 @@
 </div>
 </body>
 </html>
+<script type="application/javascript">
+    $(function () {
+        $('#push_phone_code').click(function () {
+            var phone=$('#phone').val();
+            var type='register';
+            $.post('/sendValidatorCode',{"phone":phone,"type":type},function (data) {
+                if(data.status==='success'){
+                   //TODO
+                }
+            })
+        })
+    })
+</script>
