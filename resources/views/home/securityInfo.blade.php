@@ -105,6 +105,9 @@
     <!-- notice -->
 
     <!-- 浮动层 -->
+    @component('home.layouts.alert')
+    <strong>哇！</strong> 出现了一些问题！
+@endcomponent
 
     <!--弹出框-->
     <div id="div_loading">

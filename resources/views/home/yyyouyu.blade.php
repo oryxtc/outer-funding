@@ -84,21 +84,24 @@
         </div>
     </div>
     <div class="capital">
+
+        <input type="hidden" name="type" value="1">
+        <input type="hidden" name="capitalMargin" id="capitalMargin" value="50000">
+        <input type="hidden" name="leverBack" id="lever" value="1">
+        <input type="hidden" name="borrowPeriodBack" id="borrowPeriod" value="1">
+        <input type="hidden" name="backTradeStart" id="backTradeStart" value="1">
+        <input type="hidden" name="max" id="max" value="6000000.0">
+        <input type="hidden" name="month" id="month">
+        <input type="hidden" name="maxLever" id="maxLever" value="5">
+        <input type="hidden" name="minLever" id="minLever" value="1 ">
+        <input type="hidden" name="maxMonth" id="maxMonth" value="6">
+        <input type="hidden" name="minMonth" id="minMonth" value="1 ">
+        <input type="hidden" name="maxFunding" id="maxFunding" value="6000000.0">
+        <input type="hidden" name="minFunding" id="minFunding" value="10000.0 ">
         <form method="POST" action="fundingApplication" id="funding_form">
-            <input type="hidden" name="type" value="1">
-            <input type="hidden" name="capitalMargin" id="capitalMargin" value="100000">
-            <input type="hidden" name="leverBack" id="lever" value="1">
-            <input type="hidden" name="min" id="min" value="10000.0">
-            <input type="hidden" name="borrowPeriodBack" id="borrowPeriod" value="2">
-            <input type="hidden" name="backTradeStart" id="backTradeStart" value="1">
-            <input type="hidden" name="max" id="max" value="6000000.0">
-            <input type="hidden" name="month" id="month">
-            <input type="hidden" name="maxLever" id="maxLever" value="5">
-            <input type="hidden" name="minLever" id="minLever" value="1 ">
-            <input type="hidden" name="maxMonth" id="maxMonth" value="6">
-            <input type="hidden" name="minMonth" id="minMonth" value="1 ">
-            <input type="hidden" name="maxFunding" id="maxFunding" value="6000000.0">
-            <input type="hidden" name="minFunding" id="minFunding" value="10000.0 ">
+            <input type="hidden" name="caution_money" id="caution_money" value="">
+            <input type="hidden" name="multiple" id="multiple" value="1">
+            <input type="hidden" name="duration" id="duration">
             <div class="capital_ctn">
                 <div class="cp_main" style="border-right:1px solid #e5e5e5; margin-right:-1px;">
                     <div class="cp_m_ctn">
@@ -240,7 +243,8 @@
                 </div>
                 <div class="cp_bom">
                     <p>如您不清楚规则，或有其他疑问，请联系客服：0931-8500903</p>
-                    <div class="cp_b_btn"><a href="javascript:void(0);" id="submit" onclick="$('#funding_form').submit()">提交操盘申请</a></div>
+                    <div class="cp_b_btn"><a href="javascript:void(0);" id="submit"
+                                             onclick="$('#funding_form').submit()">提交操盘申请</a></div>
                     <div class="cp_b_link">
                         <input type="checkbox" checked="checked" id="agree">
                         <span>我已阅读并同意<a href="javascript:tradeContract(1);">《月月操盘合作协议》</a><a
@@ -262,35 +266,41 @@
 </body>
 </html>
 <script type="application/javascript">
-        var computeFunding=function () {
-            var caution_money=Number($('#tz').val().replace(',',''));
-            var multiple=$('.cp_m_mul .on').val()
-            var duration=$('.cp_m_dur .on').val()
-            var request_data={"caution_money":caution_money,"multiple":multiple,"duration":duration};
-            $.post('/computeFunding',request_data,function(data){
-                if(data.status==='success'){
-                     $("#pzje").text(data.data.quota);
-                     $("#zcpzj").text(data.data.funds);
-                     $("#ksbcx").text(data.data.loss_cordon);
-                     $("#kspcx").text(data.data.loss_money);
-                     $("#end_day").text(data.data.end_time);
-                     $("#monthly_interest").text(data.data.monthly_interest);
-                     $("#management_fee").text(data.data.management_fee);
-                     $("#lx").text(data.data.total_costs);
-                }
-            })
-        }
+    var computeFunding = function () {
+        var caution_money = Number($('#tz').val().replace(',', ''));
+        var multiple = $('.cp_m_mul .on').val()
+        var duration = $('.cp_m_dur .on').val()
+        //表单赋值
+        $("#caution_money").val(caution_money)
+        $("#multiple").val(multiple)
+        $("#duration").val(duration)
+        var request_data = {"caution_money": caution_money, "multiple": multiple, "duration": duration};
+        $.post('/computeFunding', request_data, function (data) {
+            if (data.status === 'success') {
+                $("#pzje").text(data.data.quota);
+                $("#zcpzj").text(data.data.funds);
+                $("#ksbcx").text(data.data.loss_cordon);
+                $("#kspcx").text(data.data.loss_money);
+                $("#end_day").text(data.data.end_time);
+                $("#monthly_interest").text(data.data.monthly_interest);
+                $("#management_fee").text(data.data.management_fee);
+                $("#lx").text(data.data.total_costs);
+            }
+        })
+    }
     $(function () {
-        $('#margin ul li').click(function() {
+        computeFunding();
+        $('#tz').keyup(function () {
+            computeFunding();
+        })
+        $('#margin ul li').click(function () {
             computeFunding();
         });
-        $('#capital_lever ul li').click(function() {
+        $('#capital_lever ul li').click(function () {
             computeFunding();
         });
-        $('#match_days ul li').click(function() {
+        $('#match_days ul li').click(function () {
             computeFunding();
         });
-
-
     })
 </script>

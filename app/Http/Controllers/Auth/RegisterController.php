@@ -92,6 +92,7 @@ class RegisterController extends Controller
         $message = [
             'phone.unique' => '手机号已存在!',
             'phone.required' => '请输入手机号!',
+            'phone.regex' => '请输入正确手机号!',
             'phone_code.required' => '请输入验证码!',
             'password.required' => '请输入密码!',
             'password_confirmation.required' => '请确认密码!',
@@ -104,7 +105,7 @@ class RegisterController extends Controller
 
         //验证数据类型
         $validator = Validator::make($data, [
-            'phone' => 'required|numeric|unique:users',
+            'phone' => 'required|numeric|regex:/^1[0-9]{10}/|unique:users',
             'phone_code' => 'required|string',
             'password' => 'required|string|min:6|max:16|confirmed',
             'password_confirmation' => 'required|string|min:6|max:16',

@@ -90,7 +90,7 @@ class UsersController extends Controller
         $Y = $request->input('duration', 0); //持续时间 即Y
         //验证数据
         $validator = $this->validatorFunding($request->all());
-        if ($validator->fails()) {
+            if ($validator->fails()) {
             return redirect('/yyyouyu');
         }
         //验证是否实名认证
@@ -158,12 +158,14 @@ class UsersController extends Controller
         //自定义错误信息
         $message = [
             'actual_name.required' => '真实姓名不能为空!',
+            'actual_name.string' => '请输入正确的姓名!',
             'id_card.required' => '身份证号不能为空!',
         ];
         //验证数据类型
         $validator = \Validator::make($data, [
-            'actual_name' => 'required',
+            'actual_name' => 'required|string',
             'id_card' => 'required',
+            'id_card' => ['regex:/^\d{17}(\d|x)$/i'],
         ], $message);
         //如果验证失败
         return $validator;
