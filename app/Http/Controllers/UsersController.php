@@ -57,6 +57,12 @@ class UsersController extends Controller
         return PublicController::apiJson($data);
     }
 
+
+    public function showFunding(Request $request){
+
+        return view('home.yyyouyu');
+    }
+
     /**
      * 配资申请
      * @param Request $request
@@ -180,4 +186,5 @@ class UsersController extends Controller
 
         return $data;
     }
+
 }

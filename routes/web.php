@@ -57,9 +57,7 @@ Route::get('/wypz', function () {
 });
 
 //月月有余
-Route::get('/yyyouyu', function () {
-    return view('home.yyyouyu');
-});
+Route::get('/yyyouyu','UsersController@showFunding');
 
 //登录页面
 Route::get('/login', function () {
