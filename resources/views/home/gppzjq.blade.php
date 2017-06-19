@@ -10,7 +10,7 @@
     <script language="javascript" src="{{asset('./AmImages/common.js')}}"></script>
 </head>
 <body>
-//导航面包屑
+{{--导航面包屑--}}
 @include('home.layouts.islogin')
 <div class="wapper">
     <div class="top">
