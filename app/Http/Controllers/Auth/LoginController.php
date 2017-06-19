@@ -75,8 +75,7 @@ class LoginController extends Controller
         // user surpasses their maximum number of attempts they will get locked out.
         $this->incrementLoginAttempts($request);
 
-        //返回给前端json
-        return PublicController::apiJson([], 'failed', '用户名或密码错误!');
+        return redirect('/');
     }
 
     /**
@@ -109,6 +108,6 @@ class LoginController extends Controller
         $this->clearLoginAttempts($request);
 
         return $this->authenticated($request, $this->guard()->user())
-            ?: PublicController::apiJson([],'success','登录成功!');
+            ?: redirect('/');
     }
 }

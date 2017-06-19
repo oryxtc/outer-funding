@@ -82,18 +82,17 @@
                                 src="./AmImages/ban3.jpg"></a></div>
                 <div class="login" id="logindiv" style="display: none">
                     <div class="main">
-                        <form id="loginForm" name="loginForm" action="/login" onsubmit="return loginValidate();"
-                              method="post" target="ssoLoginFrame">
+                        <form id="loginForm" name="loginForm" action="/login" method="post">
                             <input type="hidden" name="isajax" value="true">
                             <input type="hidden" name="isframe" value="true">
                             <input type="hidden" name="lt" value="" id="J_LoginTicket">
                             <input type="hidden" name="execution" value="e1s1" id="J_FlowExecutionKey">
                             <input type="hidden" name="_eventId" value="submit">
                             <p class="t1">用户登录</p>
-                            <input class="uname" id="username" name="username" placeholder="请输入手机号码" value="">
+                            <input class="uname" id="username" name="phone" placeholder="请输入手机号码" value="">
                             <input class="key" type="password" id="password" name="password" placeholder="请输入登录密码"
                                    value="">
-                            <input class="bot" id="login" type="button" value="登录" rel="nofollow">
+                            <input class="bot" id="login" type="submit" value="登录" rel="nofollow">
                             <p class="fr"><span><a href="/forgetpw" rel="nofollow">忘记密码？</a></span><font><a
                                             href="/register" rel="nofollow">免费注册</a></font></p>
                         </form>

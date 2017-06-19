@@ -19,10 +19,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            $url = $guard ? '/admin':'/home';
-            if($url==='/home'){
-                return PublicController::apiJson([],'success','你已经登录!');
-            }
+            $url = $guard ? '/admin':'/';
             return redirect($url);
         }
 

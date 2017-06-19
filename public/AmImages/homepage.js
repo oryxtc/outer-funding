@@ -129,35 +129,35 @@ $(function () {
 	});
 
 	//登录操作
-	$("#login").click(function(){
-		var $this = $(this);
-		$this.text("正在登录");
-		$this.attr("disabled","disabled");
-		var loginName = $.trim($("#username").val());
-		var password = $.trim($("#password").val());
-		if(loginName == null || loginName.length <= 0){
-			$this.text("立即登录");
-			$this.removeAttr("disabled");
-			$("#username").focus();
-			return;
-		}else if(password == null || password.length <= 0){
-			$this.text("立即登录");
-			$this.removeAttr("disabled");
-			$("#password").focus();
-			return;
-		}
-		loginValid = true;
-		// $("#loginForm").submit();
-		//ajax调用
-		$.post('/login',{"phone":loginName,"password":password},function (data) {
-			if(data.status==='success'){
-				$("#logindiv").hide();
-				location.reload();
-			}
-		})
-		$this.text("立即登录");
-		$this.removeAttr("disabled");
-	});
+	// $("#login").click(function(){
+	// 	var $this = $(this);
+	// 	$this.text("正在登录");
+	// 	$this.attr("disabled","disabled");
+	// 	var loginName = $.trim($("#username").val());
+	// 	var password = $.trim($("#password").val());
+	// 	if(loginName == null || loginName.length <= 0){
+	// 		$this.text("立即登录");
+	// 		$this.removeAttr("disabled");
+	// 		$("#username").focus();
+	// 		return;
+	// 	}else if(password == null || password.length <= 0){
+	// 		$this.text("立即登录");
+	// 		$this.removeAttr("disabled");
+	// 		$("#password").focus();
+	// 		return;
+	// 	}
+	// 	loginValid = true;
+	// 	// $("#loginForm").submit();
+	// 	//ajax调用
+	// 	$.post('/login',{"phone":loginName,"password":password},function (data) {
+	// 		if(data.status==='success'){
+	// 			$("#logindiv").hide();
+	// 			location.reload();
+	// 		}
+	// 	})
+	// 	$this.text("立即登录");
+	// 	$this.removeAttr("disabled");
+	// });
 	
 });
 
