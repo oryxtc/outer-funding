@@ -25,7 +25,8 @@ class UsersController extends Controller
         //验证数据
         $validator = $this->validator($request_data);
         if ($validator->fails()) {
-            return redirect('/securityInfo');
+            return redirect('/securityInfo')
+                ->withErrors($validator);
         }
         //准备数据
         $id = \Auth::id();
@@ -160,6 +161,7 @@ class UsersController extends Controller
             'actual_name.required' => '真实姓名不能为空!',
             'actual_name.string' => '请输入正确的姓名!',
             'id_card.required' => '身份证号不能为空!',
+            'id_card.regex' => '身份证号格式错误!',
         ];
         //验证数据类型
         $validator = \Validator::make($data, [

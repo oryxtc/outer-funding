@@ -70,6 +70,14 @@
 
 
 </script>
+@if(count($errors) > 0)
+    @component('home.layouts.alert')
+    @slot('status')
+    danger
+    @endslot
+    {{$errors->all()[0]}}
+    @endcomponent
+@endif
 <div id="div_Mask" style="display:none;"></div>
 {{--导航面包屑--}}
 @include('home.layouts.islogin')
@@ -105,14 +113,9 @@
     <!-- notice -->
 
     <!-- 浮动层 -->
-    @component('home.layouts.alert')
-    <strong>哇！</strong> 出现了一些问题！
-@endcomponent
-
     <!--弹出框-->
     <div id="div_loading">
         <!--001-->
-
         <div class="tck01" id="idcardDiv" style="display: none;" display="block">
             <div class="navtitle"><a class="nava" style="width:90px;">实名认证</a><a class="close"
                                                                                  onclick="javascript:closeDiv(&#39;idcardDiv&#39;)"></a>
@@ -127,19 +130,13 @@
                 <div class="smain">
                     <div class="srk"><span class="label">真实姓名：</span>
                         <input class="au-ipt" name="actual_name" id="actual_name" type="text">
-                        @if ($errors->has('actual_name'))
-                            <span class="rg_l_error">{{ $errors->first('actual_name') }}</span>
-                        @endif
                     </div>
                     <div class="srk"><span class="label">身份证号：</span>
                         <input class="au-ipt" name="id_card" id="id_card" type="text">
-                        @if ($errors->has('id_card'))
-                            <span class="rg_l_error">{{ $errors->first('id_card') }}</span>
-                        @endif
                     </div>
                 </div>
                 <!--001-1-->
-                <div class="anniu"><a class="btn-h01" id="validating"
+                <div class="anniu" style="margin-left: 75px"><a class="btn-h01" id="validating"
                                       onclick="$('#verified').submit()">提&nbsp;交</a><a
                             class="btn-h02" onclick="javascript:closeDiv(&#39;idcardDiv&#39;)">取&nbsp;消</a></div>
             </form>
