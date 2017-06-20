@@ -22,6 +22,9 @@ class Newslist extends Authenticatable
         'download'=>'下载专区',
         'answer'=>'股票配资解答',
         'qhpzjd'=>'期货配资解答',
+        'company_profile'=>'企业介绍',
+        'company_culture'=>'企业文化',
+        'company_style'=>'企业风采',
     ];
 
 
