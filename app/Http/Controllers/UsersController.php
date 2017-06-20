@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use cszchen\citizenid\Parser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -170,6 +171,15 @@ class UsersController extends Controller
             'id_card' => 'required',
             'id_card' => ['regex:/^\d{17}(\d|x)$/i'],
         ], $message);
+
+        $validator->after(function ($validator) use($data){
+            $parser =new Parser();
+            $parser->setId($data['id_card']);
+            //身份证号码格式是否正确
+            if ($parser->isValidate()===false) {
+                $validator->errors()->add('id_card', '身份证号格式错误!');
+            }
+        });
         //如果验证失败
         return $validator;
     }

@@ -25,6 +25,10 @@ class ComposerStaticInit13db052e5b8e7db5f1499af32f59a737
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'c' => 
+        array (
+            'cszchen\\citizenid\\' => 18,
+        ),
         'X' => 
         array (
             'XdgBaseDir\\' => 11,
@@ -119,6 +123,10 @@ class ComposerStaticInit13db052e5b8e7db5f1499af32f59a737
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+        ),
+        'cszchen\\citizenid\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cszchen/citizenid',
         ),
         'XdgBaseDir\\' => 
         array (
@@ -377,6 +385,7 @@ class ComposerStaticInit13db052e5b8e7db5f1499af32f59a737
         'App\\Http\\Controllers\\Voyager\\VoyagerFundingsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Voyager/VoyagerFundingsController.php',
         'App\\Http\\Controllers\\Voyager\\VoyagerMediaController' => __DIR__ . '/../..' . '/app/Http/Controllers/Voyager/VoyagerMediaController.php',
         'App\\Http\\Controllers\\Voyager\\VoyagerMenuController' => __DIR__ . '/../..' . '/app/Http/Controllers/Voyager/VoyagerMenuController.php',
+        'App\\Http\\Controllers\\Voyager\\VoyagerNewslistsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Voyager/VoyagerNewslistsController.php',
         'App\\Http\\Controllers\\Voyager\\VoyagerProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/Voyager/VoyagerProfileController.php',
         'App\\Http\\Controllers\\Voyager\\VoyagerRoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/Voyager/VoyagerRoleController.php',
         'App\\Http\\Controllers\\Voyager\\VoyagerSettingsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Voyager/VoyagerSettingsController.php',
@@ -385,6 +394,7 @@ class ComposerStaticInit13db052e5b8e7db5f1499af32f59a737
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Newslist' => __DIR__ . '/../..' . '/app/Newslist.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -4032,6 +4042,7 @@ class ComposerStaticInit13db052e5b8e7db5f1499af32f59a737
         'VoyagerDummyDatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/VoyagerDummyDatabaseSeeder.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
+        'cszchen\\citizenid\\Parser' => __DIR__ . '/..' . '/cszchen/citizenid/Parser.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',

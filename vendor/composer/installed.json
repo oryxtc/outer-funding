@@ -4395,5 +4395,43 @@
             "laravel",
             "sms"
         ]
+    },
+    {
+        "name": "cszchen/citizenid",
+        "version": "v2.0",
+        "version_normalized": "2.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/imdgr/CitizenID.git",
+            "reference": "8f0d17d077efcaef7dda216b932fa358bf380bbb"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/imdgr/CitizenID/8f0d17d077efcaef7dda216b932fa358bf380bbb.zip",
+            "reference": "8f0d17d077efcaef7dda216b932fa358bf380bbb",
+            "shasum": ""
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.6.*"
+        },
+        "time": "2016-10-18T03:30:05+00:00",
+        "type": "extension",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "cszchen\\citizenid\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "cszchen",
+                "email": "csz@soyhw.com"
+            }
+        ],
+        "description": "中国居民身份证号码信息验证"
     }
 ]

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b1f15e8445a0b54f955649ae7c84cd01",
+    "content-hash": "0cc202192e43bc1397b8cf484e0c82af",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -66,6 +66,42 @@
                 "widgets"
             ],
             "time": "2017-06-06T23:00:07+00:00"
+        },
+        {
+            "name": "cszchen/citizenid",
+            "version": "v2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/imdgr/CitizenID.git",
+                "reference": "8f0d17d077efcaef7dda216b932fa358bf380bbb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/imdgr/CitizenID/8f0d17d077efcaef7dda216b932fa358bf380bbb.zip",
+                "reference": "8f0d17d077efcaef7dda216b932fa358bf380bbb",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.6.*"
+            },
+            "type": "extension",
+            "autoload": {
+                "psr-4": {
+                    "cszchen\\citizenid\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "cszchen",
+                    "email": "csz@soyhw.com"
+                }
+            ],
+            "description": "中国居民身份证号码信息验证",
+            "time": "2016-10-18T03:30:05+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
