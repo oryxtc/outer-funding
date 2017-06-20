@@ -20,6 +20,14 @@
     <script src="./AmImages/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
 </head>
 <body>
+@if(count($errors) > 0)
+    @component('home.layouts.alert')
+    @slot('status')
+    success
+    @endslot
+    {{$errors->all()[0]}}
+    @endcomponent
+@endif
 {{--导航面包屑--}}
 @include('home.layouts.islogin')
 <div class="wapper">
