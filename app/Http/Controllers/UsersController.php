@@ -118,7 +118,7 @@ class UsersController extends Controller
         if ($save_result === false) {
             return redirect('/yyyouyu');
         }
-        return redirect('/')
+        return redirect('/yyyouyu')
             ->withErrors(['success'=>'您的操盘方案已经提交成功，等待审核!']);
     }
 

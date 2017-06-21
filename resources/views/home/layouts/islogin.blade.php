@@ -1,6 +1,7 @@
 <div class="headTop">
     <div class="header">
         <div class="salogan"></div>
+        <input type="hidden" id="isLogin" value="{{auth()->check()}}">
         <p>
             @if(!\Auth::check())
                 <span><a href="/login" rel="nofollow">登录</a>|<a href="/register"
@@ -19,3 +20,5 @@
         </form>
     </div>
 </div>
+<script type="application/javascript" src="js/bootstrap.min.js"></script>
+<link  href="css/bootstrap.min.css" rel="stylesheet">
