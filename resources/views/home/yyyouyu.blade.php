@@ -9,7 +9,7 @@
     <script src="{{asset('./AmImages/jquery-1.10.1.min.js')}}"></script>
     <script language="javascript" src="{{asset('./AmImages/common.js')}}"></script>
     <!--[if lt IE 9]>
-    <script src="{{asset('./AmImages/ie9.min.js')}}"></script> <![endif]-->
+    <script src="scripts/IE9.js"></script> <![endif]-->
     {{--<script language="javascript" src="./AmImages/jquery-1.8.0.min.js"></script>--}}
     <script language="javascript" src="./AmImages/jquery-1.10.1.min.js"></script>
     <script language="javascript" src="./AmImages/tzdr.js"></script>
