@@ -51,6 +51,7 @@
                     <li><i>*</i>
                         <label>手机号码</label>
                         <input type="text" class="phone rg_l_ip rg_l_iperror" id="phone" name="phone" maxlength="11">
+                        <span class="rg_l_error" style="display: none" id="verifyPhone-mes"></span>
                         @if ($errors->has('phone'))
                             <span class="rg_l_error">{{ $errors->first('phone') }}</span>
                         @else
@@ -155,6 +156,19 @@
             $.post('/sendValidatorCode',{"phone":phone,"type":type},function (data) {
                 if(data.status==='success'){
                     settime(btn)
+                }
+            })
+        })
+
+        $('#phone').blur(function () {
+            var phone=$('#phone').val()
+            $.post('/verifyPhone',{"phone":phone},function (data) {
+                if(data.status==='failed'){
+                    $('#verifyPhone-mes').text(data.message).show()
+                    $('.rg_l_promt').hide()
+                }else {
+                    $('#verifyPhone-mes').hide()
+                    $('.rg_l_promt').show()
                 }
             })
         })

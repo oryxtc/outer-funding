@@ -103,6 +103,9 @@ Route::post('/findNewsList','PublicController@findNewsList');
 //验证是否登录
 Route::post('/homeIslogin','PublicController@homeIslogin');
 
+//验证手机号是否可行
+Route::post('/verifyPhone','PublicController@verifyPhone');
+
 //股票配资技巧
 Route::get('/gppzjq','PublicController@getSkillList');
 

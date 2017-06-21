@@ -17,6 +17,27 @@ class PublicController extends Controller
         return response()->json($response_data);
     }
 
+    /**
+     * 验证手机号
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function verifyPhone(Request $request)
+    {
+        $phone=$request->get('phone');
+        if(empty($phone)){
+            return PublicController::apiJson([],'failed','手机号不能为空!');
+        }
+        if (!preg_match("/^1[0-9]{10}/",$phone)){
+            return PublicController::apiJson([],'failed','手机号格式错误!');
+        }
+        if(\DB::table('users')->where('phone',$phone)->first()){
+            return PublicController::apiJson([],'failed','手机号已存在!');
+        }
+        return PublicController::apiJson();
+    }
+
+
     public function findNewsList(Request $request)
     {
         $type = $request->get('type', 'stock');
@@ -36,7 +57,7 @@ class PublicController extends Controller
     public function homeIslogin()
     {
         if (\Auth::check()) {
-            return static::apiJson(['phone'=>\Auth::user()->phone], 'success', '已经登录!');
+            return static::apiJson(['phone' => \Auth::user()->phone], 'success', '已经登录!');
         }
         return static::apiJson([], 'failed', '未登录!');
     }
@@ -57,36 +78,36 @@ class PublicController extends Controller
             ->limit(5)
             ->get();
         //配资技巧
-        $skill_data =\DB::table('newslists')
-                ->where('type', 'skill')
-                ->orderBy('created_at', 'DESC')
-                ->limit(7)
-                ->get();
+        $skill_data = \DB::table('newslists')
+            ->where('type', 'skill')
+            ->orderBy('created_at', 'DESC')
+            ->limit(7)
+            ->get();
         //公司优势
-        $company_data =\DB::table('newslists')
+        $company_data = \DB::table('newslists')
             ->where('type', 'company')
             ->orderBy('created_at', 'DESC')
             ->limit(7)
             ->get();
         //机构评论
-        $discuss_data =\DB::table('newslists')
+        $discuss_data = \DB::table('newslists')
             ->where('type', 'discuss')
             ->orderBy('created_at', 'DESC')
             ->limit(7)
             ->get();
         //期货配资
-        $funding_data =\DB::table('newslists')
+        $funding_data = \DB::table('newslists')
             ->where('type', 'funding')
             ->orderBy('created_at', 'DESC')
             ->limit(8)
             ->get();
         //名家观点
-        $famous_data =\DB::table('newslists')
+        $famous_data = \DB::table('newslists')
             ->where('type', 'famous')
             ->orderBy('created_at', 'DESC')
             ->limit(8)
             ->get();
-        return view('home.index', compact('stock_data', 'futures_data','skill_data','company_data','discuss_data','funding_data','famous_data'));
+        return view('home.index', compact('stock_data', 'futures_data', 'skill_data', 'company_data', 'discuss_data', 'funding_data', 'famous_data'));
     }
 
     /**
@@ -128,12 +149,13 @@ class PublicController extends Controller
      * @param $type
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getList(Request $request,$type){
+    public function getList(Request $request, $type)
+    {
         //获取列表
-        $list=\DB::table('newslists')
+        $list = \DB::table('newslists')
             ->where('type', $type)
             ->paginate(4);
-        return view('home.gpzixun',compact('list','type'));
+        return view('home.gpzixun', compact('list', 'type'));
     }
 
     /**
@@ -141,13 +163,14 @@ class PublicController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getInvestmentList(Request $request){
+    public function getInvestmentList(Request $request)
+    {
         //获取列表
-        $list=\DB::table('newslists')
+        $list = \DB::table('newslists')
             ->where('type', 'investment')
             ->paginate(4);
-        $type='investment';
-        return view('home.tzxy',compact('list','type'));
+        $type = 'investment';
+        return view('home.tzxy', compact('list', 'type'));
     }
 
     /**
@@ -155,13 +178,14 @@ class PublicController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getDownloadList(Request $request){
+    public function getDownloadList(Request $request)
+    {
         //获取列表
-        $list=\DB::table('newslists')
+        $list = \DB::table('newslists')
             ->where('type', 'download')
             ->paginate(4);
-        $type='download';
-        return view('home.xzzq',compact('list','type'));
+        $type = 'download';
+        return view('home.xzzq', compact('list', 'type'));
     }
 
     /**
@@ -169,13 +193,14 @@ class PublicController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getAnswerList(Request $request){
+    public function getAnswerList(Request $request)
+    {
         //获取列表
-        $list=\DB::table('newslists')
+        $list = \DB::table('newslists')
             ->where('type', 'answer')
             ->paginate(4);
-        $type='answer';
-        return view('home.gppzjd',compact('list','type'));
+        $type = 'answer';
+        return view('home.gppzjd', compact('list', 'type'));
     }
 
     /**
@@ -183,13 +208,14 @@ class PublicController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getFundingList(Request $request){
+    public function getFundingList(Request $request)
+    {
         //获取列表
-        $list=\DB::table('newslists')
+        $list = \DB::table('newslists')
             ->where('type', 'funding')
             ->paginate(4);
-        $type='funding';
-        return view('home.qhpz',compact('list','type'));
+        $type = 'funding';
+        return view('home.qhpz', compact('list', 'type'));
     }
 
     /**
@@ -197,13 +223,14 @@ class PublicController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getSkillList(Request $request){
+    public function getSkillList(Request $request)
+    {
         //获取列表
-        $list=\DB::table('newslists')
+        $list = \DB::table('newslists')
             ->where('type', 'skill')
             ->paginate(4);
-        $type='skill';
-        return view('home.gppzjq',compact('list','type'));
+        $type = 'skill';
+        return view('home.gppzjq', compact('list', 'type'));
     }
 
 
@@ -212,12 +239,13 @@ class PublicController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getQhpzjdList(Request $request){
+    public function getQhpzjdList(Request $request)
+    {
         //获取列表
-        $list=\DB::table('newslists')
+        $list = \DB::table('newslists')
             ->where('type', 'qhpzjd')
             ->paginate(4);
-        $type='qhpzjd';
-        return view('home.qhpzjd',compact('list','type'));
+        $type = 'qhpzjd';
+        return view('home.qhpzjd', compact('list', 'type'));
     }
 }
