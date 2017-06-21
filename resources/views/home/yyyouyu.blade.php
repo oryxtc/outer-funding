@@ -119,6 +119,7 @@
                            value="">
                 </div>
                 <div class="modal-footer">
+                    <a class="registerlink pull-left" href="/register">免费注册</a>
                     <button type="button" class="btn btn-default" data-dismiss="modal">
                         关闭
                     </button>
