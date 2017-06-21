@@ -115,7 +115,7 @@
                 <div class="modal-body">
                     密码:
                     <input type="password" class="form-control" name="password"
-                           placeholder="Password" id="login-password"
+                           placeholder="密码" id="login-password"
                            value="">
                 </div>
                 <div class="modal-footer">
