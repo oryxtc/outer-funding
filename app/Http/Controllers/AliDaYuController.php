@@ -24,7 +24,7 @@ class AliDaYuController extends Controller
         if ($type === 'register') {
             $sms_template_code = 'SMS_10195570';   //注册模板
         } elseif ($type === 'reset_pass') {
-            $sms_template_code = 'SMS_10195570';  //找回密码模板
+            $sms_template_code = 'SMS_14255752';  //找回密码模板
         } else {
             return false;
         }
