@@ -176,10 +176,10 @@
                                 <li data="3" style="background:#fff;" value="3">
                                     <p><i>3月</i></p>
                                 </li>
-                                <li data="4" style="background:#fff;" value="4">
+                                <li data="4" style="background:#fff;" value="6">
                                     <p><i>6月</i></p>
                                 </li>
-                                <li data="5" style="background:#fff;" value="5">
+                                <li data="5" style="background:#fff;" value="12">
                                     <p><i>12月</i></p>
                                 </li>
                             </ul>
