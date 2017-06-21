@@ -86,7 +86,7 @@
     <div class="capital">
 
         <input type="hidden" name="type" value="1">
-        <input type="hidden" name="capitalMargin" id="capitalMargin" value="50000">
+        <input type="hidden" name="capitalMargin" id="capitalMargin" value="10000">
         <input type="hidden" name="leverBack" id="lever" value="1">
         <input type="hidden" name="borrowPeriodBack" id="borrowPeriod" value="1">
         <input type="hidden" name="backTradeStart" id="backTradeStart" value="1">
@@ -112,10 +112,10 @@
                         </div>
                         <div class="cp_m_list" id="margin">
                             <ul>
-                                <li data="50000">
-                                    <p><i>5万</i>元</p>
+                                <li data="10000" class="on">
+                                    <p><i>1万</i>元</p>
                                 </li>
-                                <li data="100000" class="on">
+                                <li data="100000" >
                                     <p><i>10万</i>元</p>
                                 </li>
                                 <li data="300000" class="">
@@ -267,7 +267,7 @@
 </html>
 <script type="application/javascript">
     var computeFunding = function () {
-        var caution_money = Number($('#tz').val().replace(',', ''));
+        var caution_money = Number($('#tz').val().replace(/\,/g, ''));
         var multiple = $('.cp_m_mul .on').val()
         var duration = $('.cp_m_dur .on').val()
         //表单赋值
@@ -277,14 +277,14 @@
         var request_data = {"caution_money": caution_money, "multiple": multiple, "duration": duration};
         $.post('/computeFunding', request_data, function (data) {
             if (data.status === 'success') {
-                $("#pzje").text(data.data.quota);
-                $("#zcpzj").text(data.data.funds);
-                $("#ksbcx").text(data.data.loss_cordon);
-                $("#kspcx").text(data.data.loss_money);
+                $("#pzje").text($.formatMoney(data.data.quota));
+                $("#zcpzj").text($.formatMoney(data.data.funds));
+                $("#ksbcx").text($.formatMoney(data.data.loss_cordon));
+                $("#kspcx").text($.formatMoney(data.data.loss_money));
                 $("#end_day").text(data.data.end_time);
-                $("#monthly_interest").text(data.data.monthly_interest);
-                $("#management_fee").text(data.data.management_fee);
-                $("#lx").text(data.data.total_costs);
+                $("#monthly_interest").text($.formatMoney(data.data.monthly_interest));
+                $("#management_fee").text($.formatMoney(data.data.management_fee));
+                $("#lx").text($.formatMoney(data.data.total_costs));
             }
         })
     }
