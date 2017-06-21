@@ -108,7 +108,7 @@
                 <div class="modal-body">
                     手机号:
                     <input type="text" class="form-control" name="phone"
-                           placeholder="手机哈珀" id="login-phone"
+                           placeholder="手机号" id="login-phone"
                            value="">
                     <span id="error-mes" style="color: red;display: none">用户名或密码错误!</span>
                 </div>
