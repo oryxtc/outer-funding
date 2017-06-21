@@ -362,80 +362,80 @@ $(document).ready(function(e) {
 		getData();
 	});
 
-	$("#submit").on("click",function(){
-		var T_pzbzj = $.isNumeric(getIntMoney())?getIntMoney():0;
-		var T_pzgg = Number($("#pzgg").val());
-		var T_pzje=T_pzbzj*T_pzgg;
-		
-		$.post(basepath + "maxAmount.json", {		
-			lever : T_pzgg
-		}, function(result) {
-			if (result.success) {
-				var maxAmount=maxFunding;
-				var maxLeverMoney=Number(result.data.maxLeverMoney);
-				var isOpen=Number(result.data.isOpen);
-				var loginStatus = Number(result.data.loginStatus);
-				var userTodayTradeNum = Number(result.data.userTodayTradeNum);
-				var limitTradeNum = Number(result.data.limitTradeNum);
-				if(T_pzje>maxAmount){
-					showMsgDialog("提示",T_pzgg+"倍最大操盘配额为"+maxFunding+"元");	
-					return false;	
-				}if(isOpen==1&& loginStatus==1 && (T_pzje>maxLeverMoney || userTodayTradeNum >= limitTradeNum)){
-					$('#OK').parent().find('p i').text($.formatMoney(maxLeverMoney,2));
-					$('#OK').parent().find('p span i').text(limitTradeNum);
-					$('#OK').parent().css({display:'block'});
-					$('.fl_mask').css({display:'block'});
-					return false;	
-				}else{
-					if($("#agree").attr("checked")){
-						var pzbzjTemp = $.isNumeric(getIntMoney())?getIntMoney():0;
-						if(pzbzjTemp>=minOperMoney){ 
-							var no=Number($("#use_day").val());
-							if(no<=maxHoldDays&&no>=minHoldDays){
-								var minPzgg = minLever;
-								var maxPzgg = maxLever;
-								var inputgg=$('#pzgg').val()
-								if(inputgg>=minPzgg&&inputgg<=maxPzgg){
-									if(typeof($("input[name='tradeStart']:checked").val())!='undefined'){
-									if($("input[name='tradeStart']:checked").val()==1){
-									showConfirmDialog("提示","请确认是否要在下个交易日开始操盘!",function(){
-										if(!isLoginSSO){
-							    			window.location.href=basepath+"/toDaySSO"; 
-										}else{
-											$("form").submit();		
-										}		
-									},"确定",function(){
-										return true;		
-									});
-									}else{
-										if(!isLoginSSO){
-							    			window.location.href=basepath+"/toDaySSO"; 
-										}else{
-											$("form").submit();		
-										}
-									}
-									}else{
-										showMsgDialog("提示","请选择开始交易时间！");	
-									}
-									
-								}else{
-								showMsgDialog("提示","请选择操盘倍数！"); 
-								}
-							}else{
-								showMsgDialog("提示","操盘天数最少"+minHoldDays+"天，最多"+maxHoldDays+"天");	
-							}
-						}else{
-							showMsgDialog("提示","操盘保证金最少"+minOperMoney+"元，最多"+(maxOperMoney/10000).toFixed(1)+"万元。");
-						}
-					}else{
-						showMsgDialog("提示","请阅读并同意《借款协议》。");
-					}		
-				}
-			} else {
-				showMsgDialog("提示",result.message);
-			}
-		}, "json");
-	});
+	// $("#submit").on("click",function(){
+	// 	var T_pzbzj = $.isNumeric(getIntMoney())?getIntMoney():0;
+	// 	var T_pzgg = Number($("#pzgg").val());
+	// 	var T_pzje=T_pzbzj*T_pzgg;
+    //
+	// 	$.post(basepath + "maxAmount.json", {
+	// 		lever : T_pzgg
+	// 	}, function(result) {
+	// 		if (result.success) {
+	// 			var maxAmount=maxFunding;
+	// 			var maxLeverMoney=Number(result.data.maxLeverMoney);
+	// 			var isOpen=Number(result.data.isOpen);
+	// 			var loginStatus = Number(result.data.loginStatus);
+	// 			var userTodayTradeNum = Number(result.data.userTodayTradeNum);
+	// 			var limitTradeNum = Number(result.data.limitTradeNum);
+	// 			if(T_pzje>maxAmount){
+	// 				showMsgDialog("提示",T_pzgg+"倍最大操盘配额为"+maxFunding+"元");
+	// 				return false;
+	// 			}if(isOpen==1&& loginStatus==1 && (T_pzje>maxLeverMoney || userTodayTradeNum >= limitTradeNum)){
+	// 				$('#OK').parent().find('p i').text($.formatMoney(maxLeverMoney,2));
+	// 				$('#OK').parent().find('p span i').text(limitTradeNum);
+	// 				$('#OK').parent().css({display:'block'});
+	// 				$('.fl_mask').css({display:'block'});
+	// 				return false;
+	// 			}else{
+	// 				if($("#agree").attr("checked")){
+	// 					var pzbzjTemp = $.isNumeric(getIntMoney())?getIntMoney():0;
+	// 					if(pzbzjTemp>=minOperMoney){
+	// 						var no=Number($("#use_day").val());
+	// 						if(no<=maxHoldDays&&no>=minHoldDays){
+	// 							var minPzgg = minLever;
+	// 							var maxPzgg = maxLever;
+	// 							var inputgg=$('#pzgg').val()
+	// 							if(inputgg>=minPzgg&&inputgg<=maxPzgg){
+	// 								if(typeof($("input[name='tradeStart']:checked").val())!='undefined'){
+	// 								if($("input[name='tradeStart']:checked").val()==1){
+	// 								showConfirmDialog("提示","请确认是否要在下个交易日开始操盘!",function(){
+	// 									if(!isLoginSSO){
+	// 						    			window.location.href=basepath+"/toDaySSO";
+	// 									}else{
+	// 										$("form").submit();
+	// 									}
+	// 								},"确定",function(){
+	// 									return true;
+	// 								});
+	// 								}else{
+	// 									if(!isLoginSSO){
+	// 						    			window.location.href=basepath+"/toDaySSO";
+	// 									}else{
+	// 										$("form").submit();
+	// 									}
+	// 								}
+	// 								}else{
+	// 									showMsgDialog("提示","请选择开始交易时间！");
+	// 								}
+    //
+	// 							}else{
+	// 							showMsgDialog("提示","请选择操盘倍数！");
+	// 							}
+	// 						}else{
+	// 							showMsgDialog("提示","操盘天数最少"+minHoldDays+"天，最多"+maxHoldDays+"天");
+	// 						}
+	// 					}else{
+	// 						showMsgDialog("提示","操盘保证金最少"+minOperMoney+"元，最多"+(maxOperMoney/10000).toFixed(1)+"万元。");
+	// 					}
+	// 				}else{
+	// 					showMsgDialog("提示","请阅读并同意《借款协议》。");
+	// 				}
+	// 			}
+	// 		} else {
+	// 			showMsgDialog("提示",result.message);
+	// 		}
+	// 	}, "json");
+	// });
 
 	if($('#capitalMargin').val()!=0){
 		$("#tz").val($.formatMoney(Number($('#capitalMargin').val())));
@@ -489,12 +489,12 @@ $(document).ready(function(e) {
         });
     });
 	
-    //关闭最大融资额限制弹框
-    $('#OK').live('click',function(){
-    	var $this = $(this);
-    	$this.parent().css({display:'none'});
-    	$('.fl_mask').css({display:'none'});
-    });
+    // //关闭最大融资额限制弹框
+    // $('#OK').live('click',function(){
+    // 	var $this = $(this);
+    // 	$this.parent().css({display:'none'});
+    // 	$('.fl_mask').css({display:'none'});
+    // });
     
     //保证金变更时，校验倍数是否允许选择
     var  showLever=function(){

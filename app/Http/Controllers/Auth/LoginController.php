@@ -56,7 +56,15 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $this->validateLogin($request);
-
+        if(\Request::ajax()){
+            if ($this->attemptLogin($request)) {
+                $request->session()->regenerate();
+                $this->clearLoginAttempts($request);
+                return PublicController::apiJson();
+            }else{
+                return PublicController::apiJson([],'failed');
+            }
+        }
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.

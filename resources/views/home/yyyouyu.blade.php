@@ -10,9 +10,12 @@
     <script language="javascript" src="{{asset('./AmImages/common.js')}}"></script>
     <!--[if lt IE 9]>
     <script src="scripts/IE9.js"></script> <![endif]-->
-    <script language="javascript" src="./AmImages/jquery-1.8.0.min.js"></script>
+    {{--<script language="javascript" src="./AmImages/jquery-1.8.0.min.js"></script>--}}
+    <script language="javascript" src="./AmImages/jquery-1.10.1.min.js"></script>
     <script language="javascript" src="./AmImages/tzdr.js"></script>
     <script language="javascript" src="./AmImages/preByDay.js"></script>
+    <script language="javascript" src="js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <script type="text/javascript">
 
         var basepath = '' + "/";
@@ -52,6 +55,14 @@
     </script>
 </head>
 <body>
+@if(count($errors) > 0)
+    @component('home.layouts.alert')
+    @slot('status')
+    success
+    @endslot
+    {{$errors->all()[0]}}
+    @endcomponent
+@endif
 {{--导航面包屑--}}
 @include('home.layouts.islogin')
 <div class="wapper">
@@ -80,6 +91,40 @@
                     <li><a href="/tzxy">投资学院</a></li>
                     <li><a href="/xzzq">下载专区</a></li>
                 </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">用户登录</h4>
+                </div>
+                <div class="modal-body">
+                    手机号:
+                    <input type="text" class="form-control" name="phone"
+                           placeholder="手机哈珀" id="login-phone"
+                           value="">
+                    <span id="error-mes" style="color: red;display: none">用户名或密码错误!</span>
+                </div>
+                <div class="modal-body">
+                    密码:
+                    <input type="password" class="form-control" name="password"
+                           placeholder="Password" id="login-password"
+                           value="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="button" class="btn btn-primary" id="login-user">登录
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -115,7 +160,7 @@
                                 <li data="10000" class="on">
                                     <p><i>1万</i>元</p>
                                 </li>
-                                <li data="100000" >
+                                <li data="100000">
                                     <p><i>10万</i>元</p>
                                 </li>
                                 <li data="300000" class="">
@@ -243,8 +288,7 @@
                 </div>
                 <div class="cp_bom">
                     <p>如您不清楚规则，或有其他疑问，请联系客服：0931-8500903</p>
-                    <div class="cp_b_btn"><a href="javascript:void(0);" id="submit"
-                                             onclick="$('#funding_form').submit()">提交操盘申请</a></div>
+                    <div class="cp_b_btn"><a href="javascript:void(0);" id="submit">提交操盘申请</a></div>
                     <div class="cp_b_link">
                         <input type="checkbox" checked="checked" id="agree">
                         <span>我已阅读并同意<a href="javascript:tradeContract(1);">《月月操盘合作协议》</a><a
@@ -302,5 +346,29 @@
         $('#match_days ul li').click(function () {
             computeFunding();
         });
+
+        $("#submit").click(function () {
+            //判断是否登录
+            var isLogin = $("#isLogin").val()
+            if (isLogin == true) {
+                $('#funding_form').submit();
+            } else {
+                console.log(11);
+                $('#myModal').modal()
+            }
+        })
+
+        $("#login-user").click(function () {
+            var phone=$("#login-phone").val()
+            var password=$("#login-password").val()
+            var requestData={"phone":phone,"password":password};
+            $.post('/login',requestData,function (data) {
+                if(data.status==='success'){
+                    $('#funding_form').submit();
+                }else {
+                    $('#error-mes').show().delay(4000).hide(0)
+                }
+            })
+        })
     })
 </script>

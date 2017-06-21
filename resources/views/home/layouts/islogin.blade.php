@@ -20,5 +20,3 @@
         </form>
     </div>
 </div>
-<script type="application/javascript" src="js/bootstrap.min.js"></script>
-<link  href="css/bootstrap.min.css" rel="stylesheet">
