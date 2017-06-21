@@ -94,6 +94,11 @@ class UsersController extends Controller
             if ($validator->fails()) {
             return redirect('/yyyouyu');
         }
+        //验证是否实名认证
+        $user_info = \DB::table('users')
+            ->select('actual_name', 'id_card', 'phone')
+            ->where('id', \Auth::id())
+            ->first();
         $date = date('Y-m-d H:i:s', time());
         //准备数据
         $data = $this->fundingConfig($A, $B, $Y);
