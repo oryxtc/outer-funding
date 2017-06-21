@@ -132,10 +132,9 @@
         $('#push_phone_code').click(function () {
             var phone=$('#phone').val();
             var type='reset_pass';
+            var btn=$(this);
             $.post('/sendValidatorCode',{"phone":phone,"type":type},function (data) {
-                if(data.status==='success'){
-                    settime(btn)
-                }
+                settime(btn)
             })
         })
     })

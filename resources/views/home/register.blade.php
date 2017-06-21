@@ -154,9 +154,7 @@
             var type='register';
             var btn=$(this);
             $.post('/sendValidatorCode',{"phone":phone,"type":type},function (data) {
-                if(data.status==='success'){
-                    settime(btn)
-                }
+                settime(btn)
             })
         })
 
