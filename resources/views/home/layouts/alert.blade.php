@@ -1,5 +1,3 @@
-
-
 <div class="alert alert-{{$status}}" role="alert">
     <div style="text-align: center">
         <b><span>{{$slot}}</span></b>

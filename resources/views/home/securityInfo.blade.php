@@ -129,15 +129,14 @@
             <form action="/verifiedUser" method="post" id="verified">
                 <div class="smain">
                     <div class="srk"><span class="label">真实姓名：</span>
-                        <input class="au-ipt" name="actual_name" id="actual_name" type="text">
+                        <input class="au-ipt" name="actual_name" id="actual_name" type="text"><span></span>
                     </div>
                     <div class="srk"><span class="label">身份证号：</span>
-                        <input class="au-ipt" name="id_card" id="id_card" type="text">
+                        <input class="au-ipt" name="id_card" id="id_card" type="text"><span></span>
                     </div>
                 </div>
                 <!--001-1-->
-                <div class="anniu" style="margin-left: 75px"><a class="btn-h01" id="validating"
-                                      onclick="$('#verified').submit()">提&nbsp;交</a><a
+                <div class="anniu" style="margin-left: 75px"><a class="btn-h01" id="validating">提&nbsp;交</a><a
                             class="btn-h02" onclick="javascript:closeDiv(&#39;idcardDiv&#39;)">取&nbsp;消</a></div>
             </form>
         </div>
@@ -205,5 +204,29 @@
         </div>
     </div>
 </div>
+<div class="alert alert-success" role="alert" hidden>已成功申请认证!</div>
 </body>
 </html>
+<script type="application/javascript">
+    $(function () {
+        $("#validating").click(function (e) {
+            var actual_name=$("#actual_name").val();
+            var id_card=$("#id_card").val();
+            var request_data={"actual_name":actual_name,"id_card":id_card}
+            $.post('/verifiedUser',request_data,function (data) {
+                if(data.status!='success'){
+                    if(data.data[0]==='真实姓名不能为空!' || data.data[1]==='请输入正确的姓名!'){
+                        var actual_name_mes=data.data[0];
+                        var id_card_mes=data.data[1];
+                    }else{
+                        var id_card_mes=data.data[0];
+                    }
+                    $("#actual_name+span").html("&nbsp;"+actual_name_mes)
+                    $("#id_card+span").html("&nbsp;"+id_card_mes)
+                }else {
+                    $(".alert-success").show().delay(3000).hide(0)
+                }
+            })
+        });
+    })
+</script>

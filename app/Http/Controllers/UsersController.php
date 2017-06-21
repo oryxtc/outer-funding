@@ -12,7 +12,7 @@ class UsersController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except(['showFunding','computeFunding']);
+        $this->middleware('auth')->except(['showFunding','computeFunding','verifiedUser']);
     }
 
     /**
@@ -26,8 +26,7 @@ class UsersController extends Controller
         //验证数据
         $validator = $this->validator($request_data);
         if ($validator->fails()) {
-            return redirect('/securityInfo')
-                ->withErrors($validator);
+            return PublicController::apiJson($validator->errors()->all(),'failed');
         }
         //准备数据
         $id = \Auth::id();
@@ -38,9 +37,9 @@ class UsersController extends Controller
             ->where([['id', $id]])
             ->update(['actual_name' => $actual_name, 'id_card' => $id_card]);
         if ($update_result === false) {
-            return redirect('/securityInfo');
+            return PublicController::apiJson([],'failed','认证失败!');
         }
-        return redirect('/userinfo');
+        return PublicController::apiJson();
     }
 
     /**
@@ -169,17 +168,9 @@ class UsersController extends Controller
         $validator = \Validator::make($data, [
             'actual_name' => 'required|string',
             'id_card' => 'required',
-            'id_card' => ['regex:/^\d{17}(\d|x)$/i'],
+            'id_card' => ['regex:/^\d[{14}|{17}](\d|x)$/i'],
         ], $message);
 
-        $validator->after(function ($validator) use($data){
-            $parser =new Parser();
-            $parser->setId($data['id_card']);
-            //身份证号码格式是否正确
-            if ($parser->isValidate()===false) {
-                $validator->errors()->add('id_card', '身份证号格式错误!');
-            }
-        });
         //如果验证失败
         return $validator;
     }
