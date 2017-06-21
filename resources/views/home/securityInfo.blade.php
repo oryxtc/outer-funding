@@ -216,15 +216,16 @@
             $.post('/verifiedUser',request_data,function (data) {
                 if(data.status!='success'){
                     if(data.data[0]==='真实姓名不能为空!' || data.data[1]==='请输入正确的姓名!'){
-                        var actual_name_mes=data.data[0];
-                        var id_card_mes=data.data[1];
+                        var actual_name_mes=data.data[0]==='undefined'?"":data.data[0];
+                        var id_card_mes=data.data[1]==='undefined'?"":data.data[1];
                     }else{
-                        var id_card_mes=data.data[0];
+                        var id_card_mes=data.data[0]==='undefined'?"":data.data[0];
+                        var actual_name_mes='';
                     }
                     $("#actual_name+span").html("&nbsp;"+actual_name_mes)
                     $("#id_card+span").html("&nbsp;"+id_card_mes)
                 }else {
-                    $(".alert-success").show().delay(3000).hide(0)
+                    location.reload()
                 }
             })
         });

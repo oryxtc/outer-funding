@@ -64,12 +64,12 @@ class UsersController extends Controller
      */
     public function securityInfo()
     {
-
-        $actual_name = auth()->user()->actual_name;
-        $id_card = auth()->user()->id_card;
-        $haveVerified = true;
-        if (empty($actual_name) || empty($id_card)) {
-            $haveVerified = false;
+        $haveVerified = false;
+        $status=\DB::table('users')
+            ->where('id',auth()->id())
+            ->value('status');
+        if($status===10){
+            $haveVerified = true;
         }
         return view('home.securityInfo', ['haveVerified' => $haveVerified]);
     }
@@ -167,8 +167,8 @@ class UsersController extends Controller
         //验证数据类型
         $validator = \Validator::make($data, [
             'actual_name' => 'required|string',
-            'id_card' => 'required',
-            'id_card' => ['regex:/^\d[{14}|{17}](\d|x)$/i'],
+            'id_card' => 'required|min:15|max:18',
+            'id_card' => ['regex:/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/'],
         ], $message);
 
         //如果验证失败
