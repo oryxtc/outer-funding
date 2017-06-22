@@ -133,6 +133,21 @@ Route::get('/gsjs', function () {
     return view('home.gsjs');
 });
 
+//免责申明
+Route::get('/mzsm', function () {
+    return view('home.mzsm');
+});
+
+//站点地图
+Route::get('/zddt', function () {
+    return view('home.zddt');
+});
+
+//联系我们
+Route::get('/lxwm', function () {
+    return view('home.lxwm');
+});
+
 //详情模板
 Route::get('/xiangqing/{type}/{id}', 'PublicController@getDetails');
 
