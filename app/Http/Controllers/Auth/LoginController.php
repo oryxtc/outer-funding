@@ -83,7 +83,7 @@ class LoginController extends Controller
         // user surpasses their maximum number of attempts they will get locked out.
         $this->incrementLoginAttempts($request);
 
-        return redirect('/');
+        return redirect('/login')->withErrors(['mes'=>'用户不存在或密码错误!']);
     }
 
     /**

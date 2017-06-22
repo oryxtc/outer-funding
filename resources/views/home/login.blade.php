@@ -56,7 +56,11 @@
                     <label>手机号码</label>
                     <input id="username" name="phone" class="holder userName" tabindex="1" accesskey="n" type="text"
                            maxlength="11" autocomplete="off">
-                    <div class="ui-err loginError usernameError" style="display: none; width:140px;"></div>
+                    @if($errors->has('mes'))
+                        <div class="ui-err loginError usernameError" style="width: 134px">
+                            {{ $errors->first('mes') }}
+                        </div>
+                    @endif
                 </div>
                 <div class="logon-ipt mgt20 passwordLi">
                     <label>登录密码</label>
