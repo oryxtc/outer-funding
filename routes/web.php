@@ -83,8 +83,10 @@ Route::get('/gpzx', function () {
     return view('home.gpzx');
 });
 
-//股票资讯列表//
+//股票资讯列表
 Route::get('/gpzixun/{type}','PublicController@getList');
+
+
 
 //啥叫期货配资
 Route::get('/sjqhpz', function () {
@@ -93,6 +95,9 @@ Route::get('/sjqhpz', function () {
 
 //投资学院
 Route::get('/tzxy','PublicController@getInvestmentList');
+
+//公司优势列表
+Route::get('/gsys','PublicController@getCompanyList');
 
 //下载专区
 Route::get('/xzzq', 'PublicController@getDownloadList');
@@ -118,6 +123,12 @@ Route::get('/qhpz','PublicController@getFundingList');
 //期货配资解答
 Route::get('/qhpzjd','PublicController@getQhpzjdList');
 
+//机构评论
+Route::get('/jgpl', 'PublicController@getQhpzjdList');
+
+//名家观点
+Route::get('/mjgd', 'PublicController@getFamousList');
+
 //忘记密码
 Route::get('/forgetpw', function () {
     return view('home.forgetpw');
@@ -133,10 +144,16 @@ Route::get('/gsjs', function () {
     return view('home.gsjs');
 });
 
+//配资流程
+Route::get('/pzlc', function () {
+    return view('home.pzlc');
+});
+
 //免责申明
 Route::get('/mzsm', function () {
     return view('home.mzsm');
 });
+
 
 //站点地图
 Route::get('/zddt', function () {

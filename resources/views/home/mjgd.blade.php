@@ -50,30 +50,22 @@
             <div class="clist_l">
                 <div class="newlist">
                     <ul>
-                        <li><span> 2013-03-05</span> <a href="#/wenda/42.html" title="期货配资合作后，盈利或者亏损了怎么处理？"
-                                                        target="_blank"> 期货配资合作后，盈利或者亏损了怎么处理？ </a></li>
-                        <li><span> 2013-03-05</span> <a href="#/wenda/40.html" title="期货配资的流程是怎么样的？" target="_blank">
-                                期货配资的流程是怎么样的？ </a></li>
-                        <li><span> 2013-03-05</span> <a href="#/wenda/39.html" title="请问你们的帐户一般用什么下单软件？"
-                                                        target="_blank"> 请问你们的帐户一般用什么下单软件？ </a></li>
-                        <li><span> 2013-03-05</span> <a href="#/wenda/38.html" title="异地操作与到你们那里去操作有什么区别啊？"
-                                                        target="_blank"> 异地操作与到你们那里去操作有什么区别啊？ </a></li>
-                        <li><span> 2013-03-05</span> <a href="#/wenda/37.html" title="请问你们的手续费标准是多少啊？" target="_blank">
-                                请问你们的手续费标准是多少啊？ </a></li>
-                        <li><span> 2013-03-05</span> <a href="#/wenda/35.html" title="请问你们配资有什么要求吗？" target="_blank">
-                                请问你们配资有什么要求吗？ </a></li>
-                        <li><span> 2013-03-05</span> <a href="#/wenda/32.html" title="关于期货配资合作账户的资金安全问题"
-                                                        target="_blank"> 关于期货配资合作账户的资金安全问题 </a></li>
-                        <li><span> 2013-03-05</span> <a href="#/wenda/31.html" title="提供期货资金5倍到10倍的期货配资"
-                                                        target="_blank"> 提供期货资金5倍到10倍的期货配资 </a></li>
+                        @foreach($list as $key=>$item)
+                            <li>
+                                <span>{{ \Carbon\Carbon::parse($item->created_at)->format('Y-m-d') }}</span>
+                                <a target="_blank" href="/xiangqing/{{$type}}/{{$item->id}}"
+                                   class="&#39;s&#39;">{{$item->title}}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="foosun_pagebox">
-                    <a disabled="disabled" style="margin-right:5px;">首页</a><a disabled="disabled"
-                                                                              style="margin-right:5px;">上一页</a><span
-                            class="foosun_pagebox_num_nonce" style="margin-right:5px;">1</span><a href="#"
-                                                                                                  style="margin-right:5px;">2</a><a
-                            href="#" style="margin-right:5px;">下一页</a><a href="#" style="margin-right:5px;">尾页</a>
+                    {{ $list->links()}}
+                    {{--<a disabled="disabled" style="margin-right:5px;">首页</a><a disabled="disabled"--}}
+                                                                              {{--style="margin-right:5px;">上一页</a><span--}}
+                            {{--class="foosun_pagebox_num_nonce" style="margin-right:5px;">1</span><a href="#"--}}
+                                                                                                  {{--style="margin-right:5px;">2</a><a--}}
+                            {{--href="#" style="margin-right:5px;">下一页</a><a href="#" style="margin-right:5px;">尾页</a>--}}
                 </div>
             </div>
             <div class="clist_r">

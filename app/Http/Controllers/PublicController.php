@@ -248,4 +248,49 @@ class PublicController extends Controller
         $type = 'qhpzjd';
         return view('home.qhpzjd', compact('list', 'type'));
     }
+
+    /**
+     * 获取列表
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getCompanyList(Request $request)
+    {
+        //获取列表
+        $list = \DB::table('newslists')
+            ->where('type', 'company')
+            ->paginate(4);
+        $type = 'company';
+        return view('home.gsys', compact('list', 'type'));
+    }
+
+    /**
+     * 获取列表
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getDiscussList(Request $request)
+    {
+        //获取列表
+        $list = \DB::table('newslists')
+            ->where('type', 'discuss')
+            ->paginate(4);
+        $type = 'discuss';
+        return view('home.jgpl', compact('list', 'type'));
+    }
+
+    /**
+     * 获取列表
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getFamousList(Request $request)
+    {
+        //获取列表
+        $list = \DB::table('newslists')
+            ->where('type', 'famous')
+            ->paginate(4);
+        $type = 'famous';
+        return view('home.mjgd', compact('list', 'type'));
+    }
 }
