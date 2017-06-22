@@ -5,7 +5,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>月月有余</title>
+    <title>我要配资</title>
     <link href="{{asset('./AmImages/index.css')}}" rel="stylesheet" type="text/css">
     <script src="{{asset('./AmImages/jquery-1.10.1.min.js')}}"></script>
     <script language="javascript" src="{{asset('./AmImages/common.js')}}"></script>
@@ -74,19 +74,19 @@
             <div class="top3_box">
                 <ul class="top3_nav">
                     <li><a href="/index">首页</a></li>
-                    <li><a>关于我们</a><img alt="关于我们" src="{{asset('./AmImages/top3_icon.png')}}">
+                    <li><a href="/gsjs">关于我们</a><img alt="关于我们" src="{{asset('./AmImages/top3_icon.png')}}">
                         <div class="top3_popnav" style="display: none;"><a href="/gsjs">公司介绍</a> <a
                                     href="/qywh">企业文化</a> <a href="/qyfc">企业风采</a></div>
                     </li>
-                    <li><a>我要配资</a><img alt="我要配资" src="{{asset('./AmImages/top3_icon.png')}}">
-                        <div class="top3_popnav" style="display: none;"><a href="/wypz" target="_blank">我要配资</a> <a
-                                    href="/yyyouyu">月月有余</a></div>
+                    <li><a href="/yyyouyu">我要配资</a><img alt="我要配资" src="{{asset('./AmImages/top3_icon.png')}}">
+                        <div class="top3_popnav" style="display: none;"><a href="/yyyouyu" target="_blank">我要配资</a> <a
+                                    href="/wypz">月月有余</a></div>
                     </li>
-                    <li><a>股票配资</a><img alt="股票配资" src="{{asset('./AmImages/top3_icon.png')}}">
+                    <li><a href="/sjgppz">股票配资</a><img alt="股票配资" src="{{asset('./AmImages/top3_icon.png')}}">
                         <div class="top3_popnav" style="display: none;"><a href="/sjgppz">啥叫股票配资</a> <a href="/gpzx">股票咨询</a>
                         </div>
                     </li>
-                    <li><a>期货配资</a><img alt="期货配资" src="{{asset('./AmImages/top3_icon.png')}}">
+                    <li><a href="/sjqhpz">期货配资</a><img alt="期货配资" src="{{asset('./AmImages/top3_icon.png')}}">
                         <div class="top3_popnav" style="display: none;"><a href="/sjqhpz">啥叫期货配资</a></div>
                     </li>
                     <li><a href="/tzxy">投资学院</a></li>
@@ -207,7 +207,7 @@
                     </div>
                     <div class="cp_m_ctn">
                         <div class="cp_m_num"><i>③</i>选择操盘月数<em
-                                    style="font-size: 14px; color: #999">（1个月统一为30天，含节假日）</em></div>
+                                    style="font-size: 14px; color: #999">（指自然月）</em></div>
                         <div class="cp_m_titl" style="height:0px">
                             <input class="font_size_15" type="hidden" id="use_day" name="borrowPeriod"
                                    placeholder="2~180天" onpaste="return false" autocomplete="off" value="">
@@ -234,8 +234,7 @@
                     </div>
                 </div>
                 <div class="cp_sider">
-                    <div class="cp_m_num"><i>④</i>确认操盘规则<a href="#" target="_blank">今日限制股</a><a href="#" target="_blank"
-                                                                                                style="margin-right:20px;">当前风控等级</a>
+                    <div class="cp_m_num"><i>④</i>确认操盘规则
                     </div>
                     <div class="cp_sdfont">
                         <label>操盘须知：</label>

@@ -39,19 +39,19 @@
             <div class="top3_box">
                 <ul class="top3_nav">
                     <li><a href="/index">首页</a></li>
-                    <li><a>关于我们</a><img alt="关于我们" src="{{asset('./AmImages/top3_icon.png')}}">
+                    <li><a href="/gsjs">关于我们</a><img alt="关于我们" src="{{asset('./AmImages/top3_icon.png')}}">
                         <div class="top3_popnav" style="display: none;"><a href="/gsjs">公司介绍</a> <a
                                     href="/qywh">企业文化</a> <a href="/qyfc">企业风采</a></div>
                     </li>
-                    <li><a>我要配资</a><img alt="我要配资" src="{{asset('./AmImages/top3_icon.png')}}">
-                        <div class="top3_popnav" style="display: none;"><a href="/wypz" target="_blank">我要配资</a> <a
-                                    href="/yyyouyu">月月有余</a></div>
+                    <li><a href="/yyyouyu">我要配资</a><img alt="我要配资" src="{{asset('./AmImages/top3_icon.png')}}">
+                        <div class="top3_popnav" style="display: none;"><a href="/yyyouyu" target="_blank">我要配资</a> <a
+                                    href="/wypz">月月有余</a></div>
                     </li>
-                    <li><a>股票配资</a><img alt="股票配资" src="{{asset('./AmImages/top3_icon.png')}}">
+                    <li><a href="/sjgppz">股票配资</a><img alt="股票配资" src="{{asset('./AmImages/top3_icon.png')}}">
                         <div class="top3_popnav" style="display: none;"><a href="/sjgppz">啥叫股票配资</a> <a href="/gpzx">股票咨询</a>
                         </div>
                     </li>
-                    <li><a>期货配资</a><img alt="期货配资" src="{{asset('./AmImages/top3_icon.png')}}">
+                    <li><a href="/sjqhpz">期货配资</a><img alt="期货配资" src="{{asset('./AmImages/top3_icon.png')}}">
                         <div class="top3_popnav" style="display: none;"><a href="/sjqhpz">啥叫期货配资</a></div>
                     </li>
                     <li><a href="/tzxy">投资学院</a></li>
@@ -98,6 +98,31 @@
 //	$('#id-xm-rorate').Microslider();
         });
     </script>
+    <div class="safe-app-wrap">
+            <div class="grid-1200 clearfix">
+                <div class="safeInfo pd-fl">
+                <ul class="clearfix">
+                    <li class="item"> <a href="javascript:;"> <em class="em-intro-01"><i></i></em>
+                    <h3>一次性可申请12个月</h3>
+                    <span>适合资金量大，投资时间长                    </span> </a> </li>
+                    <li class="item"> <a href="javascript:;"> <em class="em-intro-02"><i></i></em>
+                    <h3>融资操盘成本更低</h3>
+                    <span>操盘周期越长、越优惠
+                   </span> </a> </li>
+                    <li class="item"> <a href="javascript:;"> <em class="em-intro-03"><i></i></em>
+                    <h3>融资1至5倍任意选</h3>
+                    <span>自动投标，省时省力
+                    </span> </a> </li>
+                </ul>
+                </div>
+                <div class="appInfo pd-fr">
+               <div class="appInfo-cont">
+               
+              <h3> <a href="/yyyouyu" target="_blank">我要配资</a></h3>
+               </div>
+                </div>
+            </div>
+        </div>
     <div class="main">
         <div class="congz">
             <div class="navleft"><a href="/sjgppz" target="_blank" title="股票配资"> <img src="./AmImages/hqzx.jpg"></a>
@@ -121,7 +146,7 @@
                                     <li><a href="/xiangqing/stock/{{$stock_data[0]->id}}"
                                            title="{{$stock_data[0]->title}}"
                                            target="_blank">{{$stock_data[0]->title}}</a></li>
-                                    <span class="cc">{!!substr($stock_data[0]->content,0,100) !!}</span>
+                                    <span class="cc">{!!substr($stock_data[0]->content,0,200) !!}</span>
                                 @else
                                     <li>暂时没有新文章!</li>
                                 @endif
@@ -142,17 +167,18 @@
                         </ul>
                     </div>
                 </div>
-                <div class="infcon" id="wjn_2" style="display:none;">
+                <div id="wjn_2" style="display:none;">
                     <div class="news">
                         <div class="t_news">
                             <ul>
                                 <li><a href="/xiangqing/futures/{{$futures_data[0]->id}}"
                                        title="{{$futures_data[0]->title}}"
                                        target="_blank">{{$futures_data[0]->title}}</a></li>
-                                <span class="cc">{!!substr($futures_data[0]->content,0,100) !!}</span>
+                                <span class="cc">{!!substr($futures_data[0]->content,0,200) !!}</span>
                             </ul>
                         </div>
                         <div class="clear"></div>
+                        </div>
                         <!--end news-->
                         <div class="list_inf">
                             <ul>
@@ -167,7 +193,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+          
             <div class="cn_ly">
                 <div class="lytit">
                     <ul class="lyul">
@@ -194,25 +220,10 @@
                             <img src="./AmImages/lc2.jpg"></a> <a href="#liucheng/"> <img src="./AmImages/lc3.jpg"></a>
                         <a href="#liucheng/"> <img src="./AmImages/lc4.jpg"></a></div>
                 </div>
-            </div>
+            </div>  </div>
         </div>
     </div>
-    <div class="panel" id="slides">
-        <ul class="wall1">
-            <li class="banner_li mr6"><a target="_blank" href="#" title="期货配资">
-                    <div class="toll_img show1"><img src="./AmImages/qh.jpg"></div>
-                </a></li>
-            <li class="banner_li mr6"><a href="#/" target="_blank" title="股票配资">
-                    <div class="toll_img show1"><img src="./AmImages/gp.jpg"></div>
-                </a></li>
-            <li class="banner_li mr6"><a href="#" target="_blank" title="股指配资" style="top: 0px;">
-                    <div class="toll_info show2" style="display: block;"><img src="./AmImages/gz2.jpg"></div>
-                </a></li>
-            <li class="banner_li"><a href="#" target="_blank" title="外盘配资" style="top: 0px;">
-                    <div class="toll_info show2" style="display: block;"><img src="./AmImages/wp2.jpg"></div>
-                </a></li>
-        </ul>
-    </div>
+    
     <div class="main">
         <div class="congzCenter">
             <div class="navleft1"><a href="/sjgppz" target="_blank" title="股票配资"> <img src="./AmImages/gppz.jpg"></a>
@@ -222,10 +233,10 @@
                     <div class="kf"><img src="./AmImages/kf_03.jpg"></div>
                     <div class="but">
                         <ul class="ul1">
-                            <li><a href="/wypz" target="_blank">我要配资</a></li>
+                            <li><a href="/yyyouyu" target="_blank">我要配资</a></li>
                         </ul>
                         <ul class="ul2">
-                            <li><a href="/yyyouyu" target="_blank">月月有余</a></li>
+                            <li><a href="/wypz" target="_blank">月月有余</a></li>
                         </ul>
                     </div>
                 </div>
@@ -301,22 +312,7 @@
             </div>
         </div>
     </div>
-    <div class="panel" id="slides">
-        <ul class="wall1">
-            <li class="banner_li mr6"><a target="_blank" href="#" title="期货配资">
-                    <div class="toll_img show1"><img src="./AmImages/qh.jpg"></div>
-                </a></li>
-            <li class="banner_li mr6"><a href="#" target="_blank" title="股票配资">
-                    <div class="toll_img show1"><img src="./AmImages/gp.jpg"></div>
-                </a></li>
-            <li class="banner_li mr6"><a href="#" target="_blank" title="股指配资" style="top: 0px;">
-                    <div class="toll_info show2"><img src="./AmImages/gz2.jpg"></div>
-                </a></li>
-            <li class="banner_li"><a href="#" target="_blank" title="外盘配资" style="top: 0px;">
-                    <div class="toll_info show2"><img src="./AmImages/wp2.jpg"></div>
-                </a></li>
-        </ul>
-    </div>
+    
     <div class="main">
         <div class="qhpzbottom">
             <div class="navleft282"><a href="/sjgppz" target="_blank" title="股票配资"> <img src="./AmImages/qhpz.jpg"></a>
@@ -367,7 +363,7 @@
                         <div class="qhpz">
                             <div class="gb_tit">
                                 <ul>
-                                    <li><a href="/qhpz" target="_blank">期货配资</a></li>
+                                    <li><a href="/qhpzjd" target="_blank">期货配资</a></li>
                                 </ul>
                             </div>
                             <div class="gb_sub">
@@ -407,7 +403,7 @@
     <div class="main">
         <div class="titleT"><a href="#">友情链接</a></div>
         <div class=" link">
-            <div class="linktext"><a href="#">第一金融网</a> <a href="#">东方财经</a> <a href="#">财经头条</a> <a href="#">中信证券</a>
+            <div class="linktext"><a href="http://www.jinrong.com/" target="_blank">第一金融网</a> <a href="#">东方财经</a> <a href="http://www.ck33.com/" target="_blank">财经头条</a> <a href="#">中信证券</a>
             </div>
         </div>
     </div>
@@ -439,5 +435,10 @@
         </div>
     </div>
 </div>
+
+
+
+
+
 </body>
 </html>
