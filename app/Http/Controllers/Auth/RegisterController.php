@@ -111,8 +111,6 @@ class RegisterController extends Controller
             'password_confirmation' => 'required|string|min:6|max:16',
         ], $message);
 
-        //如果验证失败
-        return $validator;
 
         //验证手机注册验证码
         $validator->after(function ($validator) use ($data) {
