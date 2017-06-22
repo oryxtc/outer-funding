@@ -25,6 +25,15 @@ $(document).ready(function(e) {
 	$('#navlist a').removeClass('cur');
 	$("#stockli").addClass("cur");
 
+	//修复重定向报错formatMoney 不是个方法
+	$.extend({
+		formatMoney : function(num,n) {
+			num = String(Number(num).toFixed(n?n:2));
+			var re = /(-?\d+)(\d{3})/;
+			while(re.test(num)) num = num.replace(re,"$1,$2")
+			return n?num:num.replace(/^([0-9,]+\.[1-9])0$/,"$1").replace(/^([0-9,]+)\.00$/,"$1");
+		}
+	})
 	//初始化交易日选项
 	var initTradeStart= function(){
 		$.post(basepath + "isTrading.json", {}, function(result) {
